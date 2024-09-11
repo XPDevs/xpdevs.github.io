@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs Employee Portal</title>
+    <style>
+        /* Existing modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Additional styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            background-image: url('hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .products {
+            padding: 50px 0;
+            text-align: center;
+        }
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+        }
+        .product h3 {
+            margin-top: 0;
+        }
+        .product p {
+            margin-bottom: 0;
+        }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .sneak-peek {
+            background-color: #f4f4f4;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .sneak-peek h2 {
+            margin-bottom: 20px;
+        }
+        .sneak-peek p {
+            color: #666;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<header>
+        <div class="container">
+            <h1>XPDevs Employee Portal</h1> 
+            <!-- Navigation -->
+            <nav>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#sneak-peek">Sneak Peek</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="Doors.html">Doors</a></li>
+                    <li><a href="Software.html">Our Software</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="beta.html">Become a Beta tester now</a></li>
+                    <li><a href="kernel.html">Our kernel</a></li>
+					<button onclick="logout()">Logout</button>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</code>
+</pre>
+
+<h2>Buttons</h2>
+<br>
+<p>3x3 Buttons
+<pre>
+<code>
+pushd "%~dp0..\System"
+Set "Path=%cd%;%cd%\Files;%Path%;"
+Popd
+
+Color 80
+Call Button3 5 3 08 "button" 15 3 08 "button" 30 3 08 "button" X _Box _hover _Code
+
+:Loop
+REM To reprint the buttons Quick, without re-calculating every button each time...
+REM This SAVEs a lot of time...
+Batbox %_Code%
+
+REM To check, if a Button is clicked or not.
+GetInput /M %_Box% /H %_hover%
+if %errorlevel% equ 1 button
+if %errorlevel% equ 2 goto :button
+if %errorlevel% equ 3 goto :button
+</code>
+</pre>
+<br>
+<p>2x2 Buttons
+<pre>
+<code>
+pushd "%~dp0..\System"
+Set "Path=%cd%;%cd%\Files;%Path%;"
+Popd
+
+Color 80
+Call Button2 5 3 08 "button" 15 3 08 "button" 30 3 08 "button" X _Box _hover _Code
+
+:Loop
+REM To reprint the buttons Quick, without re-calculating every button each time...
+REM This SAVEs a lot of time...
+Batbox %_Code%
+
+REM To check, if a Button is clicked or not.
+GetInput /M %_Box% /H %_hover%
+if %errorlevel% equ 1 button
+if %errorlevel% equ 2 goto :button
+if %errorlevel% equ 3 goto :button
+</code>
+</pre>
+    <script>
+        function checkVariable() {
+            // Retrieve the variable from localStorage
+            const log5373 = localStorage.getItem('log5373');
+            const resultDiv = document.getElementById('result');
+
+            if (log5373) {
+                resultDiv.textContent = 'Variable log5373 is set!';
+            } else {
+                resultDiv.textContent = 'Variable log5373 is not set.';
+			window.location.href = 'index.html';	
+            }
+        }
+
+        function logout() {
+            // Clear the variable from localStorage
+            localStorage.removeItem('log5373');
+            // Redirect to index.html
+            window.location.href = 'index.html';
+        }
+
+        // Check the variable when the page loads
+        window.onload = checkVariable;
+    </script>
+	    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 XPDevs. All rights reserved.</p>
+        </div>
+    </footer>
+	</body>
+</html>
