@@ -1,174 +1,108 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: Set the log file
-set log_file=execution_log.txt
+:: Set directory where the script is located
+set SCRIPT_DIR=%~dp0
+set TOOLS_DIR=%SCRIPT_DIR%Tools
+set SEVEN_ZIP=%TOOLS_DIR%\7zip
+set WIX=%TOOLS_DIR%\WiX
 
-:: User authentication
-set user_db=users.txt
-if not exist "%user_db%" echo. > "%user_db%"
+:: Set download URLs
+set SEVEN_ZIP_URL=https://www.7-zip.org/a/7z2301-x64.exe
+set WIX_URL=https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311-binaries.zip
 
-:login
-cls
-echo ================================
-echo        Login System
-echo ================================
-echo 1. Login
-echo 2. Register
-echo 3. Exit
-echo ================================
-set /p choice=Enter your choice (1, 2, or 3): 
+:: Ask user for the EXE file
+set /p EXE_FILE="Enter the full path of the EXE file: "
+if not exist "%EXE_FILE%" (
+    echo File not found! Please enter a valid file.
+    exit /b
+)
 
-if "%choice%"=="1" goto login_user
-if "%choice%"=="2" goto register_user
-if "%choice%"=="3" exit
-echo Invalid choice. Try again.
-pause
-goto login
+set EXTRACTED_DIR=%SCRIPT_DIR%Extracted
+set WIX_FILE=%SCRIPT_DIR%installer.wxs
+set OUTPUT_MSI=%SCRIPT_DIR%installer.msi
 
-:login_user
-set /p username=Enter username: 
-set /p password=Enter password: 
+:: Ensure the Tools folder exists
+if not exist "%TOOLS_DIR%" mkdir "%TOOLS_DIR%"
 
-:: Encrypt entered password
-call :encrypt_password "%password%" encrypted_password
-
-:: Verify login
-set found=0
-for /f "tokens=1,2 delims=:" %%a in (%user_db%) do (
-    if "%%a"=="%username%" if "%%b"=="%encrypted_password%" (
-        set found=1
-        set user_role=normal
-        if "%username%"=="admin" set user_role=admin
+:: Check if 7-Zip is installed
+if not exist "%SEVEN_ZIP%\7z.exe" (
+    echo 7-Zip is not installed.
+    set /p DOWNLOAD_7ZIP="Would you like to download it? (Y/N): "
+    if /I "!DOWNLOAD_7ZIP!"=="Y" (
+        echo Downloading 7-Zip...
+        powershell -Command "& {Invoke-WebRequest '%SEVEN_ZIP_URL%' -OutFile '%SCRIPT_DIR%7zip-installer.exe'}"
+        echo Installing 7-Zip...
+        start /wait "" "%SCRIPT_DIR%7zip-installer.exe" /S /D="%SEVEN_ZIP%"
+        del "%SCRIPT_DIR%7zip-installer.exe"
+    ) else (
+        echo 7-Zip is required. Exiting...
+        exit /b
     )
 )
 
-if "%found%"=="1" (
-    echo [INFO] User %username% logged in at %date% %time% >> "%log_file%"
-    echo Login successful! Welcome, %username%.
-    if "%user_role%"=="admin" echo (Admin Mode Enabled)
-    pause
-    goto menu
-) else (
-    echo [ERROR] Invalid credentials!
-    echo [ERROR] Failed login attempt for %username% at %date% %time% >> "%log_file%"
-    pause
-    goto login
-)
-
-:register_user
-set /p new_username=Enter new username: 
-set /p new_password=Enter new password: 
-
-:: Encrypt password before storing
-call :encrypt_password "%new_password%" encrypted_password
-
-:: Save credentials
-echo %new_username%:%encrypted_password% >> %user_db%
-echo Account created successfully!
-pause
-goto login
-
-:encrypt_password
-setlocal enabledelayedexpansion
-set input=%~1
-set output=
-for /l %%i in (0,1,31) do (
-    set char=!input:~%%i,1!
-    if not "!char!"=="" (
-        set /a ascii=0x1F ^^^^ (0x!char! * 3) %% 256
-        for /f %%A in ('cmd /c echo\^!ascii^!') do set hex=%%A
-        set output=!output!!hex!
+:: Check if WiX Toolset is installed
+if not exist "%WIX%\candle.exe" (
+    echo WiX Toolset is not installed.
+    set /p DOWNLOAD_WIX="Would you like to download it? (Y/N): "
+    if /I "!DOWNLOAD_WIX!"=="Y" (
+        echo Downloading WiX Toolset...
+        powershell -Command "& {Invoke-WebRequest '%WIX_URL%' -OutFile '%SCRIPT_DIR%wix.zip'}"
+        echo Extracting WiX Toolset...
+        "%SEVEN_ZIP%\7z.exe" x "%SCRIPT_DIR%wix.zip" -o"%WIX%" >nul
+        del "%SCRIPT_DIR%wix.zip"
+    ) else (
+        echo WiX Toolset is required. Exiting...
+        exit /b
     )
 )
-endlocal & set "%~2=%output%"
-goto :eof
 
-:: Main Menu
-:menu
-cls
-echo ================================
-echo     Executable Runner
-echo ================================
-echo 1. Run a single executable
-echo 2. Run all executables in a folder
-echo 3. Show execution log
-echo 4. Logout
-if "%user_role%"=="admin" echo 5. Admin Options
-echo ================================
-set /p choice=Enter your choice: 
-
-if "%choice%"=="1" goto single_exe
-if "%choice%"=="2" goto folder_exe
-if "%choice%"=="3" type "%log_file%" & pause & goto menu
-if "%choice%"=="4" goto login
-if "%choice%"=="5" if "%user_role%"=="admin" goto admin_options
-echo Invalid choice. Try again.
-pause
-goto menu
-
-:single_exe
-set /p exe_file=Enter the name of the executable file: 
-
-if not exist "%exe_file%" (
-    echo [ERROR] File not found: %exe_file% >> "%log_file%"
-    echo File not found!
-    pause
-    goto menu
+:: Step 1: Extract the .exe
+echo Extracting %EXE_FILE% to %EXTRACTED_DIR%...
+mkdir "%EXTRACTED_DIR%"
+"%SEVEN_ZIP%\7z.exe" x "%EXE_FILE%" -o"%EXTRACTED_DIR%" >nul
+if %errorlevel% neq 0 (
+    echo Failed to extract the .exe file.
+    exit /b
 )
 
-set /p exe_params=Enter any parameters (leave empty for default): 
+:: Step 2: Generate .wxs file
+echo Creating WiX configuration file...
+(
+    echo ^<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"^>
+    echo     ^<Product Id="*" Name="ConvertedApp" Language="1033" Version="1.0.0.0" Manufacturer="XPDevs" UpgradeCode="12345678-1234-1234-1234-123456789012"^>
+    echo         ^<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" /^>
+    echo         ^<Media Id="1" Cabinet="output.cab" EmbedCab="yes"/^>
+    echo         ^<Directory Id="TARGETDIR" Name="SourceDir"^>
+    echo             ^<Directory Id="ProgramFilesFolder"^>
+    echo                 ^<Directory Id="INSTALLFOLDER" Name="ConvertedApp"^>
+    echo                     ^<Component Id="MainExecutable" Guid="A1234567-89AB-CDEF-0123-456789ABCDEF"^>
+    echo                         ^<File Id="MainExe" Source="%EXTRACTED_DIR%\app.exe" KeyPath="yes"/^>
+    echo                     ^</Component^>
+    echo                 ^</Directory^>
+    echo             ^</Directory^>
+    echo         ^</Directory^>
+    echo         ^<Feature Id="MainFeature" Title="ConvertedApp" Level="1"^>
+    echo             ^<ComponentRef Id="MainExecutable"/^>
+    echo         ^</Feature^>
+    echo     ^</Product^>
+    echo ^</Wix^>
+) > "%WIX_FILE%"
 
-call :run_exe "%exe_file%" "%exe_params%"
-pause
-goto menu
-
-:folder_exe
-set /p folder=Enter the folder path containing the executables: 
-
-if not exist "%folder%" (
-    echo [ERROR] Folder not found: %folder% >> "%log_file%"
-    echo Folder not found!
-    pause
-    goto menu
+if %errorlevel% neq 0 (
+    echo Failed to create the .wxs file.
+    exit /b
 )
 
-for %%f in ("%folder%\*.exe") do call :run_exe "%%f" "/s /x /b /v/qn"
-pause
-goto menu
+:: Step 3: Compile .wxs to .msi
+echo Compiling .msi file...
+"%WIX%\candle.exe" "%WIX_FILE%" -out "%SCRIPT_DIR%installer.wixobj"
+"%WIX%\light.exe" -out "%OUTPUT_MSI%" "%SCRIPT_DIR%installer.wixobj"
 
-:run_exe
-echo Running: %1 %2
-echo [INFO] Running: %1 %2 >> "%log_file%"
+if %errorlevel% neq 0 (
+    echo Failed to compile the .msi file.
+    exit /b
+)
 
-:: Create a VBScript for silent execution with error handling
-echo ' error_handler.vbs > error_handler.vbs
-echo On Error Resume Next >> error_handler.vbs
-echo Set objShell = CreateObject("WScript.Shell") >> error_handler.vbs
-echo objShell.Run WScript.Arguments(0) & " " & WScript.Arguments(1), 0, True >> error_handler.vbs
-echo If Err.Number ^<^> 0 Then >> error_handler.vbs
-echo MsgBox "Error running: " & WScript.Arguments(0) & " " & WScript.Arguments(1), vbCritical, "Error" >> error_handler.vbs
-echo echo [ERROR] Failed to run: %1 %2 >> "%log_file%" >> error_handler.vbs
-echo End If >> error_handler.vbs
-
-cscript //nologo error_handler.vbs "%~1" "%~2"
-del error_handler.vbs
-goto :eof
-
-:admin_options
-cls
-echo ================================
-echo        Admin Options
-echo ================================
-echo 1. View all registered users
-echo 2. Delete execution log
-echo 3. Back to menu
-echo ================================
-set /p admin_choice=Enter your choice: 
-
-if "%admin_choice%"=="1" type %user_db% & pause & goto admin_options
-if "%admin_choice%"=="2" echo. > "%log_file%" & echo Log cleared! & pause & goto admin_options
-if "%admin_choice%"=="3" goto menu
-echo Invalid choice.
-pause
-goto admin_options
+echo Conversion successful! Output: %OUTPUT_MSI%
+exit /b
