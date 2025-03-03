@@ -75,6 +75,48 @@
             padding: 20px 0;
             text-align: center;
         }
+    .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15% auto;
+            width: 50%;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .close {
+            color: #333;
+            float: right;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -90,11 +132,68 @@
             </nav>
         </div>
     </header>
-    <!-- Footer -->
+
+           <h2>Convert EXE to MSI with Ease</h2>
+            <p>The XPDevs EXE to MSI Converter is designed for developers, IT admins, and software distributors who need a reliable way to convert .exe files into MSI packages. MSI files allow for easier software deployment, especially in corporate environments where mass installations are required.</p>
+            
+            <h3>Why Use This Converter?</h3>
+            <p>EXE files are great for individual installations, but MSI files are better suited for enterprise-level deployment. Here’s why you might want to convert:</p>
+            <ul>
+                <li><strong>Silent Installation:</strong> MSI files support unattended installations, allowing software to be installed without user interaction.</li>
+                <li><strong>Group Policy Integration:</strong> Deploy software across multiple machines using Active Directory Group Policy.</li>
+                <li><strong>Rollback Support:</strong> MSI packages provide an uninstall option with rollback capabilities, making it easier to revert installations.</li>
+                <li><strong>System Management:</strong> Works seamlessly with tools like Microsoft SCCM for centralized software distribution.</li>
+                <li><strong>Custom Installation Parameters:</strong> Add custom installation paths, registry edits, and other configurations.</li>
+            </ul>
+            
+            <h3>How It Works</h3>
+            <p>Converting an EXE to an MSI is simple with our tool. Follow these steps:</p>
+            <ol>
+                <li>Select the EXE file you want to convert.</li>
+                <li>Configure installation options such as silent mode or custom installation paths.</li>
+                <li>Click 'Convert' and wait for the process to complete.</li>
+                <li>Download your newly created MSI file, ready for deployment.</li>
+            </ol>
+            
+            <h3>Advanced Features</h3>
+            <p>Our converter isn't just a basic wrapper—it includes advanced features to give you full control over the MSI package:</p>
+            <ul>
+                <li>Custom script execution before and after installation.</li>
+                <li>Ability to include additional dependencies.</li>
+                <li>Registry modifications and system variable settings.</li>
+                <li>Detailed logging for troubleshooting installation issues.</li>
+            </ul>
+            
+ <h3>Select Your Format</h3>
+        <button class="btn" onclick="window.location.href='download/exe-to-msi.bat'">Download Batch File</button>
+        <button class="btn" onclick="openModal()">Download EXE (Coming Soon)</button>
+    </div>
+    
+    <div id="exeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>The EXE version is still in development. Check back soon for updates!</p>
+        </div>
+    </div>
+    
     <footer>
         <div class="container">
             <p>&copy; 2025 XPDevs. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        function openModal() {
+            document.getElementById('exeModal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('exeModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('exeModal')) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
