@@ -15,7 +15,7 @@ set WIX_URL=https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix3
 set /p EXE_FILE="Enter the full path of the EXE file: "
 if not exist "%EXE_FILE%" (
     echo File not found! Please enter a valid file.
-pause
+    pause
     exit /b
 )
 
@@ -38,7 +38,7 @@ if not exist "%SEVEN_ZIP%\7z.exe" (
         del "%SCRIPT_DIR%7zip-installer.exe"
     ) else (
         echo 7-Zip is required. Exiting...
-pause
+        pause
         exit /b
     )
 )
@@ -55,7 +55,7 @@ if not exist "%WIX%\candle.exe" (
         del "%SCRIPT_DIR%wix.zip"
     ) else (
         echo WiX Toolset is required. Exiting...
-pause
+        pause
         exit /b
     )
 )
@@ -66,11 +66,19 @@ if not exist "%EXTRACTED_DIR%" mkdir "%EXTRACTED_DIR%"
 "%SEVEN_ZIP%\7z.exe" x "%EXE_FILE%" -o"%EXTRACTED_DIR%" >nul
 if %errorlevel% neq 0 (
     echo Failed to extract the .exe file.
-pause
+    pause
     exit /b
 )
 
-:: Step 2: Generate .wxs file
+:: Step 2: Ask user for the main executable file
+set /p MAIN_EXE="Enter the main executable filename (from extracted files): "
+if not exist "%EXTRACTED_DIR%\%MAIN_EXE%" (
+    echo Main executable file not found! Please enter a valid filename.
+    pause
+    exit /b
+)
+
+:: Step 3: Generate .wxs file
 echo Creating WiX configuration file...
 (
     echo ^<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"^>
@@ -81,7 +89,7 @@ echo Creating WiX configuration file...
     echo             ^<Directory Id="ProgramFilesFolder"^>
     echo                 ^<Directory Id="INSTALLFOLDER" Name="ConvertedApp"^>
     echo                     ^<Component Id="MainExecutable" Guid="A1234567-89AB-CDEF-0123-456789ABCDEF"^>
-    echo                         ^<File Id="MainExe" Source="%EXTRACTED_DIR%\app.exe" KeyPath="yes"/^>
+    echo                         ^<File Id="MainExe" Source="%EXTRACTED_DIR%\%MAIN_EXE%" KeyPath="yes"/^>
     echo                     ^</Component^>
     echo                 ^</Directory^>
     echo             ^</Directory^>
@@ -93,13 +101,12 @@ echo Creating WiX configuration file...
     echo ^</Wix^>
 ) > "%WIX_FILE%"
 
-
-:: Step 3: Compile .wxs to .msi
+:: Step 4: Compile .wxs to .msi
 echo Compiling .msi file...
 "%WIX%\candle.exe" "%WIX_FILE%" -out "%SCRIPT_DIR%installer.wixobj"
 "%WIX%\light.exe" -out "%OUTPUT_MSI%" "%SCRIPT_DIR%installer.wixobj"
 
 if %errorlevel% neq 0 (
-    echo Failed to compile the .msi file
-pause
+    echo Failed to compile the .msi file.
+    pause
 )
