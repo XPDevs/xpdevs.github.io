@@ -15,6 +15,7 @@ set WIX_URL=https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix3
 set /p EXE_FILE="Enter the full path of the EXE file: "
 if not exist "%EXE_FILE%" (
     echo File not found! Please enter a valid file.
+pause
     exit /b
 )
 
@@ -37,6 +38,7 @@ if not exist "%SEVEN_ZIP%\7z.exe" (
         del "%SCRIPT_DIR%7zip-installer.exe"
     ) else (
         echo 7-Zip is required. Exiting...
+pause
         exit /b
     )
 )
@@ -53,16 +55,18 @@ if not exist "%WIX%\candle.exe" (
         del "%SCRIPT_DIR%wix.zip"
     ) else (
         echo WiX Toolset is required. Exiting...
+pause
         exit /b
     )
 )
 
 :: Step 1: Extract the .exe
 echo Extracting %EXE_FILE% to %EXTRACTED_DIR%...
-mkdir "%EXTRACTED_DIR%"
+if not exist "%EXTRACTED_DIR%" mkdir "%EXTRACTED_DIR%"
 "%SEVEN_ZIP%\7z.exe" x "%EXE_FILE%" -o"%EXTRACTED_DIR%" >nul
 if %errorlevel% neq 0 (
     echo Failed to extract the .exe file.
+pause
     exit /b
 )
 
@@ -89,10 +93,6 @@ echo Creating WiX configuration file...
     echo ^</Wix^>
 ) > "%WIX_FILE%"
 
-if %errorlevel% neq 0 (
-    echo Failed to create the .wxs file.
-    exit /b
-)
 
 :: Step 3: Compile .wxs to .msi
 echo Compiling .msi file...
@@ -100,9 +100,6 @@ echo Compiling .msi file...
 "%WIX%\light.exe" -out "%OUTPUT_MSI%" "%SCRIPT_DIR%installer.wixobj"
 
 if %errorlevel% neq 0 (
-    echo Failed to compile the .msi file.
-    exit /b
+    echo Failed to compile the .msi file
+pause
 )
-
-echo Conversion successful! Output: %OUTPUT_MSI%
-exit /b
