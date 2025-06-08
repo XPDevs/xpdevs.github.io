@@ -37,29 +37,44 @@
       font-size: 1rem;
       line-height: 1.5rem;
     }
+    code {
+      background: #111;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #fffd87;
+    }
   </style>
 </head>
 <body>
   <h1>Latest News from XPDevs</h1>
 
-  <!-- News Item 1 -->
   <div class="news-item">
-    <h2>DoorsOS NexShell Released!</h2>
+    <h2>⚠️ Critical DoorsOS Update Warning</h2>
     <p class="date">8 June 2025</p>
     <p class="content">
-      The latest version of DoorsOS is here — NexShell! A completely custom-built kernel designed from scratch by XPDevs, NexShell introduces powerful CLI support, faster boot time, improved memory management, and raw VGA/TTY integration. This release pushes DoorsOS into a new era of performance and low-level control.
+      A new experimental update for DoorsOS has been released that introduces advanced thread management features using a new CPU thread handler. However, this update may cause some devices to **fail to boot** if the CPU does not support the required instruction set or thread allocation.
+      <br><br>
+      If your device fails to boot after this update, **do not panic**. A recovery method is built-in. Here's how to fix it:
+      <br><br>
+      <strong>Recovery Instructions:</strong>
+      <ol>
+        <li>Hold <code>F12</code> while powering on to boot into the DoorsOS Recovery Console.</li>
+        <li>Once loaded, type the following custom recovery commands in order:</li>
+      </ol>
+      <pre><code>set threadsafe-mode 0
+fix.bootconfig --safe
+reinit.cpu</code></pre>
+      <ol start="3">
+        <li>After entering these commands, type:</li>
+      </ol>
+      <pre><code>sys.reboot</code></pre>
+      <p class="content">
+        If successful, your device will emit a **short single beep** after rebooting. If you hear nothing or the device returns to recovery, re-check your commands and try again.
+        <br><br>
+        Thank you for using DoorsOS. As always, backup your system before major updates.
+      </p>
     </p>
   </div>
 
-  <!-- News Item 2 -->
-  <div class="news-item">
-    <h2>New HTML-Based App Launcher in Dev</h2>
-    <p class="date">5 June 2025</p>
-    <p class="content">
-      We're working on an HTML-based mobile-friendly app launcher designed for ease of use and accessibility. Perfect for older users and custom devices, it integrates support for SMS, camera, Wi-Fi toggle, and more. Early alpha expected later this month!
-    </p>
-  </div>
-
-  <!-- Add more news items below -->
 </body>
 </html>
