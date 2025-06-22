@@ -11,13 +11,13 @@
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            z-index: 1000; /* Sit on top */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+            background-color: rgba(0,0,0,0.8); /* Black background with opacity */
         }
 
         .modal-content {
@@ -26,6 +26,9 @@
             padding: 20px;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 700px;
+            position: relative;
+            border-radius: 8px;
         }
 
         .close {
@@ -33,13 +36,13 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
-            cursor: pointer;
         }
 
         /* Additional styles */
@@ -115,14 +118,43 @@
         }
         .sneak-peek {
             background-color: #f4f4f4;
-            padding: 50px 0;
+        }
+
+        .sneak-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* Container for each image to keep overflow hidden for zoom */
+        .sneak-grid div {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        /* Images style with transition and fixed size */
+        .sneak-grid img {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            display: block;
+            width: 280px;
+            height: 160px;
+        }
+
+        /* Zoom effect on hover */
+        .sneak-grid img:hover {
+            transform: scale(1.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .sneak-grid figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
             text-align: center;
-        }
-        .sneak-peek h2 {
-            margin-bottom: 20px;
-        }
-        .sneak-peek p {
-            color: #666;
         }
         footer {
             background-color: #333;
@@ -130,160 +162,184 @@
             padding: 20px 0;
             text-align: center;
         }
+
+        /* Styles for image modal */
+        #imageModal .modal-content {
+            background-color: transparent;
+            border: none;
+            margin: 5% auto;
+            padding: 0;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        #imageModal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        #imageModal figcaption {
+            color: #fff;
+            font-style: italic;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+<!-- Existing Developer Build Modal -->
 <div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Developer Build Available</h2>
         <p>A developer build of <strong>DoorsOS</strong> is now available for testing and feedback. This version is intended for developers and enthusiasts who want early access to new features.</p>
-        <p><a href="download/DoorsOS.iso" download>Download DoorsOS Developer Build (.iso)</a></p>
+        <p><a href="download/DoorsOS-dev.iso" download>Download DoorsOS Developer Build (.iso)</a></p>
     </div>
 </div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>XPDevs Home Page</h1> <nav> <ul> <li><a href="log.html">Log in</a></li> </ul> </nav>
-                        <br>
-            <!-- Navigation -->
-            <nav>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#sneak-peek">Sneak Peek</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="Doors.html">Doors</a></li>
-                    <li><a href="Software.html">Our Software</a></li>
-                    <li><a href="rules.html">Rules</a></li>
-                    <li><a href="beta.html">Become a Beta tester now</a></li>
-                    <li><a href="kernel.html">Our kernel</a></li>
-                    <li><a href="devs.html">Developers</a></li>
-                    <li><a href="prodcut.html">Product Keys</a></li>
-                    <li><a href="updates.html">Updates</a></li>
-<li><a href="web.html">Exe-to-msi</a></li>
-                    <li><a href="feedback.html">Give your feedback</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <center>
-        <h1>Welcome to XPDevs</h1>
-    </center>
-
-    <!-- About Us Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About XPDevs</h2>
-            <p>Where we specialize in the development and distribution of cutting-edge operating systems. Our passion lies in crafting software solutions that power devices, streamline workflows, and enrich user experiences across a wide array of platforms.</p>
-            <p>At XPDevs, we pride ourselves on our innovative approach to operating system design, leveraging the latest technologies and methodologies to create robust, reliable, and user-friendly software. With a dedicated team of developers, engineers, and designers, we work tirelessly to push the boundaries of what's possible in the world of computing.</p>
-            <p>Our commitment to excellence extends beyond just creating exceptional software. We are also dedicated to providing top-notch support and resources to our users, ensuring that they have everything they need to succeed in their endeavors. Whether you're a seasoned professional or just starting out, we're here to help you navigate the ever-evolving landscape of technology.</p>
-            <p>Join us on our journey as we continue to innovate, inspire, and transform the way the world interacts with technology. Together, we can shape the future of computing and empower individuals and businesses alike to achieve their full potential.</p>
-            <p>Thank you for choosing XPDevs. Let's build something amazing together.</p>
-        </div>
-    </section>
-
-    <!-- Sneak Peek Section -->
-    <section id="sneak-peek" class="sneak-peek">
-        <div class="container">
-            <h2>Sneak Peek at our latest project</h2>
-            <p>Be the first to see what Software we are developing</p>
-            <img src="images/main-screen.jpg" alt="vm-87563" width="280px" height="160px">
-            <figcaption>DoorsOS NexShell main screen (text mode)</figcaption>
-                        <img src="images/boot-screen.jpg" alt="vm-87563" width="280px" height="160px">
-            <figcaption>DoorsOS NexShell boot screen</figcaption>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact XPDevs</h2>
-            <p>We can be contacted through our customer support email:<a href="mailto:xpdevs.github.io.com@gmail.com">xpdevs.github.io.com@gmail.com</a></p>
-            <p>If you would like us to make custom software for you please email use here, where you will be charged for us making your software:<a href="mailto:xpdevsclient@gmail.com">xpdevsclient@gmail.com</a></p>
-        </div>
-    </section>
-
-    <!-- Announcement -->
-    <h1>Announcement from XPDevs</h1>
-<p>Announcement from XPDevs: DoorsOS 4 is in Development!
-
-We at XPDevs are thrilled to officially announce that DoorsOS 4 is currently in development! Our team has been hard at work, and we are excited to share some early progress.</p>
-<section id="sneak-peek" class="sneak-peek">
-    <div class="container">
-        <h3>Stage of the DoorsOS Development</h3>
-        <p>This section is for those tracking the development stage of DoorsOS. Below, you'll find the latest updates and insights into our progress as we work toward an official release.</p>
-        
-        <h4>Current Development Stage:</h4>
-<p>As of now, we are in the <strong>early development phase</strong> of DoorsOS 4. Here's a breakdown of our progress:</p>
-<ul>
-    <li><strong>Completed:</strong>
-        <ul>
-            <li>Implementation of the boot process, including the <code>bootsect</code> script for file integrity checks and logo display.</li>
-            <li>Development of the installer application to facilitate setup.</li>
-        </ul>
-    </li>
-    <li><strong>In Progress:</strong>
-        <ul>
-            <li>Development of the login authentication system.</li>
-        </ul>
-    </li>
-    <li><strong>Upcoming:</strong>
-        <ul>
-            <li>Finalize the login authentication system.</li>
-        </ul>
-    </li>
-</ul>
-
-<h4>Estimated Timeline:</h4>
-<p>We anticipate that the development of the login authentication system will take an additional <strong>1-2 months</strong>.</p>
-<p>The reason the development of DoorsOS 4 is taking so long is because we are ensuring that everything is as stable as possible and secure for your daily use without worrying about being hacked.</p>
-<h4>Get Involved:</h4>
-<p>We value community feedback during this early development phase. If you're interested in becoming a <strong><a href="beta.html">beta tester</a></strong> or want to stay informed about the latest developments, please follow us on our official channels. Your input will help shape the future of DoorsOS!</p>
+<!-- New Image Preview Modal -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="imageModalClose">&times;</span>
+        <figure>
+            <img id="modalImage" src="" alt="">
+            <figcaption id="modalCaption"></figcaption>
+        </figure>
+    </div>
 </div>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <h1>XPDevs Home Page</h1> <nav> <ul> <li><a href="log.html">Log in</a></li> </ul> </nav>
+        <br>
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#sneak-peek">Sneak Peek</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Doors.html">Doors</a></li>
+                <li><a href="Software.html">Our Software</a></li>
+                <li><a href="rules.html">Rules</a></li>
+                <li><a href="beta.html">Become a Beta tester now</a></li>
+                <li><a href="kernel.html">Our kernel</a></li>
+                <li><a href="devs.html">Developers</a></li>
+                <li><a href="prodcut.html">Product Keys</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="web.html">Exe-to-msi</a></li>
+                <li><a href="feedback.html">Give your feedback</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<center>
+    <h1>Welcome to XPDevs</h1>
+</center>
+
+<!-- About Us Section -->
+<section id="about" class="about">
+    <div class="container">
+        <h2>About XPDevs</h2>
+        <p>Where we specialize in the development and distribution of cutting-edge operating systems. Our passion lies in crafting software solutions that power devices, streamline workflows, and enrich user experiences across a wide array of platforms.</p>
+        <p>At XPDevs, we pride ourselves on our innovative approach to operating system design, leveraging the latest technologies and methodologies to create robust, reliable, and user-friendly software. With a dedicated team of developers, engineers, and designers, we work tirelessly to push the boundaries of what's possible in the world of computing.</p>
+        <p>Our commitment to excellence extends beyond just creating exceptional software. We are also dedicated to providing top-notch support and resources to our users, ensuring that they have everything they need to succeed in their endeavors. Whether you're a seasoned professional or just starting out, we're here to help you navigate the ever-evolving landscape of technology.</p>
+        <p>Join us on our journey as we continue to innovate, inspire, and transform the way the world interacts with technology. Together, we can shape the future of computing and empower individuals and businesses alike to achieve their full potential.</p>
+        <p>Thank you for choosing XPDevs. Let's build something amazing together.</p>
+    </div>
 </section>
 
-
-
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 XPDevs. All rights reserved.</p>
+<!-- Sneak Peek Section -->
+<section id="sneak-peek" class="sneak-peek">
+    <div class="container">
+        <h2>Sneak Peek at Our Latest Project</h2>
+        <p>Be the first to see what Software we are developing</p>
+        <div class="sneak-grid">
+            <div>
+                <img src="images/main-screen.jpg" alt="NexShell Main Screen" width="280" height="160" />
+                <figcaption>DoorsOS NexShell main screen (text mode)</figcaption>
+            </div>
+            <div>
+                <img src="images/boot-screen.jpg" alt="NexShell Boot Screen" width="280" height="160" />
+                <figcaption>DoorsOS NexShell boot screen</figcaption>
+            </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Function to show the modal
-        function showModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
-        }
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Contact XPDevs</h2>
+        <p>We can be contacted through our customer support email: <a href="mailto:xpdevs.github.io.com@gmail.com">xpdevs.github.io.com@gmail.com</a></p>
+        <p>If you would like us to make custom software for you please email use here, where you will be charged for us making your software: <a href="mailto:xpdevsclient@gmail.com">xpdevsclient@gmail.com</a></p>
+    </div>
+</section>
 
-        // Function to hide the modal
-        function hideModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
+<!-- Announcement -->
+<h1>Announcement from XPDevs</h1>
+<p>At XPDevs, we are excited to announce a major overhaul of DoorsOS.</p>
+<p>We have decided to completely refound the Doors Operating System. This means that the old batch file–based versions will no longer be developed, and future releases will focus solely on bootable ISO versions.</p>
+<p>Additionally, DoorsOS&reg; (powered by NexShell) will adopt a new versioning system starting from version 1. Technically, this new version 1 will be the fourth iteration of DoorsOS&reg; (powered by NexShell), marking a fresh start for the OS.</p>
+<p>We appreciate your continued support as we work towards making DoorsOS more powerful and accessible than ever.</p>
 
-        // Show the modal when the page loads
-        window.onload = showModal;
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 XPDevs. All rights reserved.</p>
+    </div>
+</footer>
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+<script>
+    // Existing modal for developer build
+    function showModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+    }
+    function hideModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+    window.onload = showModal;
+    var devClose = document.querySelector("#myModal .close");
+    devClose.onclick = hideModal;
+    window.onclick = function(event) {
+        var devModal = document.getElementById("myModal");
+        if (event.target == devModal) {
             hideModal();
         }
+    }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("myModal")) {
-                hideModal();
-            }
+    // New modal for image preview
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const imageModalClose = document.getElementById('imageModalClose');
+
+    // Open modal on sneak peek image click
+    document.querySelectorAll('.sneak-grid img').forEach(img => {
+        img.addEventListener('click', () => {
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalCaption.textContent = img.nextElementSibling ? img.nextElementSibling.textContent : '';
+            imageModal.style.display = "block";
+        });
+    });
+
+    // Close modal on X click
+    imageModalClose.onclick = () => {
+        imageModal.style.display = "none";
+    };
+
+    // Close modal on clicking outside modal content
+    window.addEventListener('click', (event) => {
+        if (event.target == imageModal) {
+            imageModal.style.display = "none";
         }
-    </script>
+    });
+</script>
 </body>
 </html>
