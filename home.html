@@ -189,19 +189,130 @@
     </style>
 </head>
 <body>
-<!-- Existing Developer Build Modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
+<!-- Modal HTML -->
+<div id="myModal" class="modal" style="display:block; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+  <div class="modal-content" style="position:relative; max-width:500px; margin:5% auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.3);">
+
+    <!-- Page indicator -->
+    <div id="pageIndicator" style="position:absolute; top:10px; left:15px; font-weight:bold; font-family:sans-serif;">1/2</div>
+
+    <!-- Close button -->
+    <span class="close" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:22px;">&times;</span>
+
+    <!-- Modal Pages -->
+    <div id="modalPages" style="min-height:220px; position:relative; overflow:hidden;">
+      <!-- Page 1 -->
+      <div class="page" id="page1" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:1; pointer-events:auto; transition: opacity 0.4s ease;">
         <h2>Developer Build Available</h2>
         <p>A developer build of <strong>DoorsOS</strong> is now available for testing and feedback. This version is intended for developers and enthusiasts who want early access to new features.</p>
         <p><a href="download/DoorsOS-dev.iso" download>Download DoorsOS Developer Build (.iso)</a></p>
-    <br>
-<h2>New website design</h2>
-<p>A new design for the XPDevs website is forthcoming. Some changes may already be visible. Completion is expected within a few months.</p>
-<p><a href="feedback.html">Give you feedback of the website design</a></p>
+      </div>
+
+      <!-- Page 2 -->
+      <div class="page" id="page2" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:0; pointer-events:none; transition: opacity 0.4s ease;">
+        <h2>New website design</h2>
+        <p>A new design for the XPDevs website is forthcoming. Some changes may already be visible. Completion is expected within a few months.</p>
+        <p><a href="feedback.html">Give your feedback on the website design</a></p>
+      </div>
+    </div>
+
+    <!-- Navigation button -->
+    <button id="navButton" style="
+        position:absolute;
+        bottom:15px;
+        right:15px;
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        background-color:#fff;
+        border:1px solid #ddd;
+        font-size:18px;
+        cursor:pointer;
+        padding:0;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 1px 3px rgba(0,0,0,0.1);
+        overflow:hidden;
+      ">
+      <span id="arrow" style="
+        display:inline-block;
+        transition: transform 0.4s ease;
+      ">&gt;</span>
+    </button>
+  </div>
 </div>
-</div>
+
+<!-- CSS animation class (optional styling section) -->
+<style>
+  .spin {
+    transform: rotate(180deg);
+  }
+</style>
+
+<!-- Modal Script -->
+<script>
+  const navButton = document.getElementById('navButton');
+  const arrow = document.getElementById('arrow');
+  const pageIndicator = document.getElementById('pageIndicator');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const closeModal = document.querySelector('.close');
+  const modal = document.getElementById('myModal');
+
+  let currentPage = 1;
+  let isTransitioning = false;
+
+  navButton.addEventListener('click', () => {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    // Add spin animation
+    arrow.classList.add('spin');
+
+    setTimeout(() => {
+      // Change arrow character after spin starts
+      arrow.textContent = currentPage === 1 ? '<' : '>';
+    }, 200);
+
+    // Remove spin class after animation ends
+    setTimeout(() => {
+      arrow.classList.remove('spin');
+    }, 400);
+
+    // Page transition
+    if (currentPage === 1) {
+      page1.style.opacity = '0';
+      page1.style.pointerEvents = 'none';
+      page2.style.opacity = '1';
+      page2.style.pointerEvents = 'auto';
+
+      setTimeout(() => {
+        pageIndicator.textContent = '2/2';
+        currentPage = 2;
+        isTransitioning = false;
+      }, 400);
+    } else {
+      page2.style.opacity = '0';
+      page2.style.pointerEvents = 'none';
+      page1.style.opacity = '1';
+      page1.style.pointerEvents = 'auto';
+
+      setTimeout(() => {
+        pageIndicator.textContent = '1/2';
+        currentPage = 1;
+        isTransitioning = false;
+      }, 400);
+    }
+  });
+
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+</script>
+
+
+
 
 <!-- New Image Preview Modal -->
 <div id="imageModal" class="modal">
