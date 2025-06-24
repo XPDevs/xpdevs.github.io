@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://xpdevs.github.io/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>XPDevs - Doors OS</title>
     <style>
-        /* CSS styles would go here */
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
         }
-        /* Add your styles for header, navigation, hero section, etc. */
+
         header {
             background-color: #333;
             color: #fff;
-            padding: 20px;
+            padding: 20px 0;
         }
+
         header h1 {
             margin: 0;
         }
+
         nav ul {
             list-style-type: none;
-            margin: 0;
+            margin: 10px 0 0 0;
             padding: 0;
         }
+
         nav ul li {
             display: inline;
             margin-right: 20px;
         }
+
         nav ul li a {
             color: #fff;
             text-decoration: none;
             font-weight: bold;
         }
-        .hero {
-            background-image: url('hero-image.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            padding: 100px 0;
-            text-align: center;
-        }
+
         .container {
             width: 80%;
             margin: 0 auto;
+            flex: 1;
         }
-        .products {
-            padding: 50px 0;
-            text-align: center;
-        }
+
         .product {
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -59,12 +56,15 @@
             display: inline-block;
             width: 200px;
         }
+
         .product h3 {
             margin-top: 0;
         }
+
         .product p {
             margin-bottom: 0;
         }
+
         .btn {
             background-color: #007bff;
             color: #fff;
@@ -75,25 +75,137 @@
             display: inline-block;
             margin-top: 20px;
         }
+
         .btn:hover {
             background-color: #0056b3;
         }
+
         .sneak-peek {
             background-color: #f4f4f4;
             padding: 50px 0;
             text-align: center;
         }
+
         .sneak-peek h2 {
             margin-bottom: 20px;
         }
+
         .sneak-peek p {
             color: #666;
         }
+
+        .sneak-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .sneak-grid div {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .sneak-grid img {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            display: block;
+            width: 280px;
+            height: 160px;
+        }
+
+        .sneak-grid img:hover {
+            transform: scale(1.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .sneak-grid figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+
+        .about-section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .about-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
         footer {
             background-color: #333;
             color: #fff;
             padding: 20px 0;
             text-align: center;
+        }
+
+        /* Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            border: none;
+            margin: 5% auto;
+            padding: 0;
+            max-width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .modal-content figcaption {
+            color: #fff;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        #imageModalClose {
+            color: white;
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -101,73 +213,89 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>XPDevs - Doors OS</h1>
-            <!-- Navigation -->
+            <h1>XPDevs - DoorsOS</h1>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="Doorsv3.0.html">Doors v3.0</a></li>
-                    <li><a href="Doorsv3.2.html">Doors v3.2</a></li>
-                    <li><a href="Doorsv3.3.html">Doors v3.3</a></li>
-                    <li><a href="Server.html">Server Edition</a></li>
-                    <li><a href="Update.html">Our most up-to-date Version</a></li>
+                    <li><a href="#">DoorsOS developer build</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-   <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+    <!-- About Section -->
+    <main class="container">
+        <section id="doorsos" class="about">
+            <div class="container">
+                <h2>About DoorsOS</h2>
+                <p><strong>DoorsOS</strong> is XPDevs’ flagship operating system, developed from the ground up to redefine simplicity, speed, and accessibility in computing. It is designed for users of all experience levels — from students and hobbyists to developers and professionals.</p>
+                <p>Unlike traditional systems, DoorsOS eliminates unnecessary bloat and focuses on performance, clarity, and control. Each build is optimised to run smoothly on low-end hardware while still delivering a full-featured experience, with a minimal footprint and clean interface.</p>
+                <p>With the transition to a bootable ISO format powered by our custom-built kernel, NexShell, DoorsOS has entered a new era of development. The system supports native shell commands, custom programs, and low-level enhancements — all developed in-house.</p>
+                <p>At XPDevs, we believe in empowering users through innovation. DoorsOS reflects that mission: efficient, open, and evolving — software built for real use, not just for show.</p>
+                <p>DoorsOS isn’t just an alternative OS — it’s a statement. Join us in building something smarter.</p>
+            </div>
+        </section>
+    </main>
 
-    th {
-        background-color: #f2f2f2;
-    }
-</style>
-</head>
-<body>
-<center>
-<table>
-  <tr>
-    <th>Version</th>
-    <th>Feature/s</th>
-    <th>Price</th>
-  </tr>
-  <tr>
-    <td>v3.0</td>
-    <td>Funtional buttons and password Setup in the instillation</td>
-    <td>Free</td>
-  </tr>
-  <tr>
-    <td>v3.2</td>
-    <td>Stability improved</td>
-    <td>Free</td>
-  </tr>
-  <tr>
-    <td>v3.3</td>
-    <td>Factory reset capabilties</td>
-    <td>Free</td>
-  </tr>
-</table>
-</center>
-<img src="images/v3.0desk.jpg" alt="v3.0 Desktop" width="280px" height="160px">    
-<figcaption>DoorsOS v3.0 Desktop</figcaption>
-<br>
-<img src="images/v3.2in.jpg" alt="v3.0 Desktop" width="280px" height="160px">    
-<figcaption>DoorsOS v3.2 instilation</figcaption>
-<h2>What is DoorsOS?</h2>
-<p>DoorOS is an innovative operating system designed with user-friendliness at its core. It prioritizes simplicity and accessibility, aiming to provide a seamless computing experience for users of all levels of expertise. With intuitive interfaces, streamlined workflows, and robust features, DoorOS eliminates unnecessary complexities often associated with traditional operating systems. Its user-centric design ensures that tasks are efficiently executed, making computing tasks a breeze. From navigating the interface to accessing applications, DoorOS offers a smooth and hassle-free experience, redefining the way users interact with their devices.</p>
+    <!-- Sneak Peek Section -->
+    <section id="sneak-peek" class="sneak-peek">
+        <div class="container">
+            <h2>Latest DoorsOS build</h2>
+            <p>Our latest DoorsOS build for download</p>
+            <p>This is a developer build</p>
+            <div class="sneak-grid">
+                <div>
+                    <img src="images/main-screen.jpg" alt="NexShell Main Screen" />
+                    <figcaption>DoorsOS NexShell main screen (text mode)</figcaption>
+                </div>
+                <div>
+                    <img src="images/boot-screen.jpg" alt="NexShell Boot Screen" />
+                    <figcaption>DoorsOS NexShell boot screen</figcaption>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 XPDevs. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="" />
+            <figcaption id="modalCaption"></figcaption>
+            <span id="imageModalClose">&times;</span>
+        </div>
+    </div>
+
+    <script>
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const imageModalClose = document.getElementById('imageModalClose');
+
+        document.querySelectorAll('.sneak-grid img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                modalCaption.textContent = img.nextElementSibling ? img.nextElementSibling.textContent : '';
+                imageModal.style.display = "block";
+            });
+        });
+
+        imageModalClose.onclick = () => {
+            imageModal.style.display = "none";
+        };
+
+        window.addEventListener('click', (event) => {
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
