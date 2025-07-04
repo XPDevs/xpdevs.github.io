@@ -112,6 +112,7 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 20px;
+            cursor: pointer;
         }
         .btn:hover {
             background-color: #0056b3;
@@ -186,6 +187,26 @@
             font-style: italic;
             margin-top: 10px;
         }
+
+        /* Educational Service Promotion Section */
+        #education-promo {
+            background-image: url('exam-students.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 20px;
+            color: white;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid #007bff;
+        }
+        #education-promo > div {
+            background: rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -199,22 +220,30 @@
     <!-- Close button -->
     <span class="close" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:22px;">&times;</span>
 
-    <!-- Modal Pages -->
-    <div id="modalPages" style="min-height:220px; position:relative; overflow:hidden;">
-      <!-- Page 1 -->
-      <div class="page" id="page1" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:1; pointer-events:auto; transition: opacity 0.4s ease;">
-        <h2>Developer Build Available</h2>
-        <p>A developer build of <strong>DoorsOS</strong> is now available for testing and feedback. This version is intended for developers and enthusiasts who want early access to new features.</p>
-        <p><a href="download/DoorsOS-dev.iso" download>Download DoorsOS Developer Build (.iso)</a></p>
-      </div>
+<div id="modalPages" style="min-height:220px; position:relative; overflow:hidden;">
+  <!-- Page 1 -->
+  <div class="page" id="page1" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:1; pointer-events:auto; transition: opacity 0.4s ease;">
+    <h2>Developer Build Available</h2>
+    <p>A developer build of <strong>DoorsOS</strong> is now available for testing and feedback. This version is intended for developers and enthusiasts who want early access to new features.</p>
+    <p><a href="download/DoorsOS-dev.iso" download>Download DoorsOS Developer Build (.iso)</a></p>
+  </div>
 
-      <!-- Page 2 -->
-      <div class="page" id="page2" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:0; pointer-events:none; transition: opacity 0.4s ease;">
-        <h2>New website design</h2>
-        <p>A new design for the XPDevs website is forthcoming. Some changes may already be visible. Completion is expected within a few months.</p>
-        <p><a href="feedback.html">Give your feedback on the website design</a></p>
-      </div>
-    </div>
+  <!-- Page 2: New ExamOS page -->
+  <div class="page" id="page2" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:0; pointer-events:none; transition: opacity 0.4s ease;">
+    <h2>Introducing ExamOS</h2>
+    <p><strong>ExamOS</strong> is a secure operating system developed by XPDevs specifically for educational institutions to safely manage and conduct exams.</p>
+    <p>It is designed with exam security, simplicity, and performance in mind, helping schools prevent cheating and data loss.</p>
+    <p><a href="ExamOS.html">Learn more about ExamOS</a></p>
+  </div>
+
+  <!-- Page 3: Website design moved here -->
+  <div class="page" id="page3" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:0; pointer-events:none; transition: opacity 0.4s ease;">
+    <h2>New website design</h2>
+    <p>A new design for the XPDevs website is forthcoming. Some changes may already be visible. Completion is expected within a few months.</p>
+    <p><a href="feedback.html">Give your feedback on the website design</a></p>
+  </div>
+</div>
+
 
     <!-- Navigation button -->
     <button id="navButton" style="
@@ -264,55 +293,72 @@
   let isTransitioning = false;
 
   navButton.addEventListener('click', () => {
-    if (isTransitioning) return;
-    isTransitioning = true;
+  if (isTransitioning) return;
+  isTransitioning = true;
 
-    // Add spin animation
-    arrow.classList.add('spin');
+  // Add spin animation
+  arrow.classList.add('spin');
+
+  setTimeout(() => {
+    // Change arrow character after spin starts
+    // Show '>' for next page, '<' for previous page (toggle)
+    // But here we cycle pages 1→2→3→1
+    // We'll keep arrow '>' for going forward
+    arrow.textContent = '>';
+  }, 200);
+
+  // Remove spin class after animation ends
+  setTimeout(() => {
+    arrow.classList.remove('spin');
+  }, 400);
+
+  // Page transition logic for 3 pages
+  if (currentPage === 1) {
+    // page1 → page2
+    page1.style.opacity = '0';
+    page1.style.pointerEvents = 'none';
+    page2.style.opacity = '1';
+    page2.style.pointerEvents = 'auto';
 
     setTimeout(() => {
-      // Change arrow character after spin starts
-      arrow.textContent = currentPage === 1 ? '<' : '>';
-    }, 200);
-
-    // Remove spin class after animation ends
-    setTimeout(() => {
-      arrow.classList.remove('spin');
+      pageIndicator.textContent = '2/3';
+      currentPage = 2;
+      isTransitioning = false;
     }, 400);
 
-    // Page transition
-    if (currentPage === 1) {
-      page1.style.opacity = '0';
-      page1.style.pointerEvents = 'none';
-      page2.style.opacity = '1';
-      page2.style.pointerEvents = 'auto';
+  } else if (currentPage === 2) {
+    // page2 → page3
+    page2.style.opacity = '0';
+    page2.style.pointerEvents = 'none';
+    page3.style.opacity = '1';
+    page3.style.pointerEvents = 'auto';
 
-      setTimeout(() => {
-        pageIndicator.textContent = '2/2';
-        currentPage = 2;
-        isTransitioning = false;
-      }, 400);
-    } else {
-      page2.style.opacity = '0';
-      page2.style.pointerEvents = 'none';
-      page1.style.opacity = '1';
-      page1.style.pointerEvents = 'auto';
+    setTimeout(() => {
+      pageIndicator.textContent = '3/3';
+      currentPage = 3;
+      isTransitioning = false;
+    }, 400);
 
-      setTimeout(() => {
-        pageIndicator.textContent = '1/2';
-        currentPage = 1;
-        isTransitioning = false;
-      }, 400);
-    }
-  });
+  } else {
+    // page3 → page1
+    page3.style.opacity = '0';
+    page3.style.pointerEvents = 'none';
+    page1.style.opacity = '1';
+    page1.style.pointerEvents = 'auto';
+
+    setTimeout(() => {
+      pageIndicator.textContent = '1/3';
+      currentPage = 1;
+      isTransitioning = false;
+    }, 400);
+  }
+});
+
 
   closeModal.addEventListener('click', () => {
     modal.style.display = 'none';
   });
 </script>
-
-
-
 
 <!-- New Image Preview Modal -->
 <div id="imageModal" class="modal">
@@ -350,6 +396,24 @@
         </nav>
     </div>
 </header>
+
+<section id="education-promo" style="display: flex; flex-wrap: wrap; align-items: center; padding: 40px 20px; border-bottom: 3px solid #007bff; gap: 20px;">
+  <!-- Left side: Full size image -->
+  <div style="flex: 1 1 400px; max-width: 600px;">
+    <img src="exam-students.jpg" alt="Students taking exams" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);" />
+  </div>
+
+  <!-- Right side: Text box -->
+  <div style="flex: 1 1 300px; background: rgba(0,0,0,0.6); color: white; padding: 30px 20px; border-radius: 8px; max-width: 400px;">
+    <h2>XPDevs Educational Service</h2>
+    <p style="font-size: 1.2em; margin: 15px 0;">
+      Introducing <strong>ExamOS</strong>, an operating system designed specifically for educational institutes to securely manage exams.
+    </p>
+    <a href="ExamOS.html" class="btn" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+      Learn More
+    </a>
+  </div>
+</section>
 
 <center>
     <h1>Welcome to XPDevs</h1>
@@ -434,7 +498,7 @@
     const modalCaption = document.getElementById('modalCaption');
     const imageModalClose = document.getElementById('imageModalClose');
 
-    // Open modal on sneak peek image click
+        // Open modal on sneak peek image click
     document.querySelectorAll('.sneak-grid img').forEach(img => {
         img.addEventListener('click', () => {
             modalImage.src = img.src;
