@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://xpdevs.github.io/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XPDevs - ExamOS</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .sneak-peek {
+            background-color: #f4f4f4;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .sneak-peek h2 {
+            margin-bottom: 20px;
+        }
+
+        .sneak-peek p {
+            color: #666;
+        }
+
+        .sneak-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .sneak-grid div {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .sneak-grid img {
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            display: block;
+            width: 280px;
+            height: 160px;
+        }
+
+        .sneak-grid img:hover {
+            transform: scale(1.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .sneak-grid figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+
+        .about-section {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .about-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Image Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: transparent;
+            border: none;
+            margin: 5% auto;
+            padding: 0;
+            max-width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .modal-content figcaption {
+            color: #fff;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        #imageModalClose {
+            color: white;
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>XPDevs - ExamOS</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="download/OS-downloader.html">Download ExamOS</a></li>
+                    <li><a href="Doors.html">Learn more about DoorsOS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <main class="container">
+        <section id="examos" class="about-section">
+            <div class="container">
+                <h2>About ExamOS</h2>
+                <p><strong>ExamOS</strong> is a secure operating system designed by XPDevs for educational institutions, tailored specifically for use during exams and assessments. Built with simplicity, security, and integrity at its core, it prevents cheating and ensures focus.</p>
+                <p>ExamOS boots into a controlled text editor environment where students can write answers but cannot access external programs, the internet, or system-level functions. It runs efficiently on low-end hardware and is optimised for reliability and focus.</p>
+                <p>To ensure maximum exam security, ExamOS is password-protected from the moment it boots. Only authorised staff or administrators can access the system or exit it. Students are locked into the exam environment until the password is entered correctly — preventing early exits or tampering.</p>
+                <p>Like DoorsOS, ExamOS is built using the custom NexShell kernel — giving it tight low-level control and minimal attack surface. Each session logs usage, disables shortcuts, and maintains exam integrity without compromising on speed or usability.</p>
+                <p>Whether you're running mock exams or full-scale national assessments, ExamOS gives you confidence that students are focused and secure.</p>
+                <p>Simple. Locked down. Purpose-built for education — that's ExamOS.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sneak Peek Section -->
+    <section id="sneak-peek" class="sneak-peek">
+        <div class="container">
+            <h2>Latest ExamOS build</h2>
+            <p>Our latest ExamOS build for download</p>
+            <p>This is a secure exam-mode developer build</p>
+            <div class="sneak-grid">
+                <div>
+                    <img src="images/exam-editor.jpg" alt="ExamOS Text Editor" />
+                    <figcaption>ExamOS secure text editor</figcaption>
+                </div>
+                <div>
+                    <img src="images/exam-boot.jpg" alt="ExamOS Boot Screen" />
+                    <figcaption>ExamOS NexShell boot screen</figcaption>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 XPDevs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="" />
+            <figcaption id="modalCaption"></figcaption>
+            <span id="imageModalClose">&times;</span>
+        </div>
+    </div>
+
+    <script>
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const imageModalClose = document.getElementById('imageModalClose');
+
+        document.querySelectorAll('.sneak-grid img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                modalCaption.textContent = img.nextElementSibling ? img.nextElementSibling.textContent : '';
+                imageModal.style.display = "block";
+            });
+        });
+
+        imageModalClose.onclick = () => {
+            imageModal.style.display = "none";
+        };
+
+        window.addEventListener('click', (event) => {
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
