@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OS Downloader</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f7f7;
+      color: #222;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      margin-top: 2em;
+      font-size: 1.6em;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #e0e0e0;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #0057b7;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>OS Downloader</h1>
+  <p>All ISOs include UK keyboard layout support</p>
+
+  <h2>DoorsOS Dev</h2>
+  <ul>
+    <li><a href="https://xpdevs.github.io/download/DoorsOS-dev-enGB.iso" download>Download DoorsOS Dev (ISO)</a></li>
+  </ul>
+
+  <h2>ExamOS</h2>
+  <ul>
+    <li><a href="https://xpdevs.github.io/download/ExamOS.iso" download>Download ExamOS (ISO)</a></li>
+  </ul>
+
+</body>
+</html>
