@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPDevs - Rules</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XPDevs - Rules & EULA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
         header {
             background-color: #333;
             color: #fff;
             padding: 20px;
+            flex-shrink: 0;
         }
         header h1 {
             margin: 0;
@@ -34,118 +39,330 @@
             font-weight: bold;
         }
         .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px 0;
+            display: flex;
+            flex: 1 1 auto;
+            width: 90%;
+            max-width: 1400px;
+            margin: 20px auto 10px auto;
+            gap: 20px;
+        }
+        .box {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 25px 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .content-scroll {
+            overflow-y: auto;
+            padding-right: 10px;
+            flex-grow: 1;
+        }
+        /* Scrollbar styling for webkit */
+        .content-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        h1, h2 {
+            margin-top: 1em;
+        }
+        ul ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        a {
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         footer {
             background-color: #333;
             color: #fff;
-            padding: 20px 0;
+            padding: 15px 20px;
             text-align: center;
+            flex-shrink: 0;
         }
+        /* Agreement container */
+        .agreement {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .agreement label {
+            font-size: 1.1em;
+            user-select: none;
+        }
+        .agreement input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .agreement button {
+            padding: 10px 25px;
+            font-size: 1em;
+            border: none;
+            background-color: #0066cc;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .agreement button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        .agreement button:hover:not(:disabled) {
+            background-color: #004a99;
+        }
+/* Modal base styles */
+.modal {
+  position: fixed;
+  bottom: -200px; /* start hidden below the viewport */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0066cc;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-size: 1.2em;
+  opacity: 0;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
+  z-index: 9999;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* Show modal */
+.modal.show {
+  bottom: 0;
+  opacity: 1;
+}
+
     </style>
 </head>
 <body>
+<!-- Modal -->
+<div id="confirmation-modal" class="modal">
+  <div class="modal-content">
+    <p>Thank you for agreeing to the Rules and EULA.</p>
+  </div>
+</div>
+
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>XPDevs - Rules</h1>
-            <!-- Navigation -->
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                </ul>
-            </nav>
-        </div>
+            <h1>XPDevs - Rules & EULA</h1><br>
+       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content with two scrollable boxes side by side -->
     <div class="container">
-        <h1>Public Rules and Guidelines</h1>
-        <p>Welcome to XPDevs! To ensure a positive experience for all our visitors and customers, we’ve established the following rules and guidelines. By using our website and services, you agree to these terms.</p>
+        <!-- Rules Box -->
+        <div class="box" id="rules-box">
+            <h1>Public Rules and Guidelines</h1>
+            <div class="content-scroll">
+                <p>Welcome to XPDevs! To ensure a positive experience for all our visitors and customers, we’ve established the following rules and guidelines. By using our website and services, you agree to these terms.</p>
 
-        <h2>Applicable Jurisdiction: United Kingdom</h2>
-        <p>All rules and guidelines outlined below are in accordance with the laws and regulations of the United Kingdom. Users from other regions are expected to comply with these guidelines when accessing XPDevs from within the UK.</p>
+                <h2>Applicable Jurisdiction: United Kingdom</h2>
+                <p>All rules and guidelines outlined below are in accordance with the laws and regulations of the United Kingdom. Users from other regions are expected to comply with these guidelines when accessing XPDevs from within the UK.</p>
 
-        <h2>1. Code of Conduct</h2>
-        <ul>
-            <li><strong>Respect:</strong> Treat all users, customers, and company representatives with respect. Harassment, discrimination, or abusive behavior will not be tolerated.</li>
-            <li><strong>Appropriate Language:</strong> Maintain professional and respectful language in all communications.</li>
-            <li><strong>Inclusivity:</strong> Foster an environment that is welcoming to everyone, regardless of background or identity.</li>
-        </ul>
-
-        <h2>2. Privacy Policy</h2>
-        <ul>
-            <li><strong>Personal Information:</strong> Respect others' privacy. Sharing personal information without consent is prohibited.</li>
-            <li><strong>Data Security:</strong> Do not attempt to access, misuse, or distribute personal or company data without proper authorization.</li>
-            <li><strong>Third-Party Sharing:</strong> XPDevs will never share your data with third parties without explicit consent.</li>
-        </ul>
-
-        <h2>3. Terms of Use</h2>
-        <ul>
-            <li><strong>Compliance:</strong> Adhere to all applicable laws and regulations while using our website and services.</li>
-            <li><strong>Account Responsibility:</strong> Users must maintain the confidentiality of their account information and activities.</li>
-            <li><strong>Service Restrictions:</strong> Unauthorized use of automated tools or bots to interact with our platform is prohibited.</li>
-        </ul>
-
-        <h2>4. User Content</h2>
-        <ul>
-            <li><strong>Content Guidelines:</strong> All content posted or shared must be appropriate, respectful, and lawful. Prohibited content includes:  
+                <h2>1. Code of Conduct</h2>
                 <ul>
-                    <li>Hate speech</li>
-                    <li>Pornographic material</li>
-                    <li>Spam or malicious content</li>
+                    <li><strong>Respect:</strong> Treat all users, customers, and company representatives with respect. Harassment, discrimination, or abusive behavior will not be tolerated.</li>
+                    <li><strong>Appropriate Language:</strong> Maintain professional and respectful language in all communications.</li>
+                    <li><strong>Inclusivity:</strong> Foster an environment that is welcoming to everyone, regardless of background or identity.</li>
                 </ul>
-            </li>
-            <li><strong>Intellectual Property:</strong> Respect intellectual property rights. Do not post or distribute content without proper authorization.</li>
-            <li><strong>Content Removal:</strong> XPDevs reserves the right to remove content that violates these guidelines.</li>
-        </ul>
 
-        <h2>5. Interactions and Transactions</h2>
-        <ul>
-            <li><strong>Honest Communication:</strong> Ensure all communications and transactions are truthful and accurate.</li>
-            <li><strong>Fair Transactions:</strong> Conduct fair and transparent transactions. Report suspicious activities to our support team.</li>
-            <li><strong>Refunds and Cancellations:</strong> Requests for refunds or cancellations will be handled in accordance with our refund policy.</li>
-        </ul>
+                <h2>2. Privacy Policy</h2>
+                <ul>
+                    <li><strong>Personal Information:</strong> Respect others' privacy. Sharing personal information without consent is prohibited.</li>
+                    <li><strong>Data Security:</strong> Do not attempt to access, misuse, or distribute personal or company data without proper authorization.</li>
+                    <li><strong>Third-Party Sharing:</strong> XPDevs will never share your data with third parties without explicit consent.</li>
+                </ul>
 
-        <h2>6. Prohibited Activities</h2>
-        <ul>
-            <li><strong>Illegal Activities:</strong> Do not engage in or promote illegal activities through our website or services.</li>
-            <li><strong>Unauthorized Access:</strong> Attempts to gain unauthorized access to any part of our platform or services are strictly prohibited.</li>
-            <li><strong>Malware and Hacking:</strong> The use or distribution of malware, hacking tools, or similar harmful activities is forbidden.</li>
-        </ul>
+                <h2>3. Terms of Use</h2>
+                <ul>
+                    <li><strong>Compliance:</strong> Adhere to all applicable laws and regulations while using our website and services.</li>
+                    <li><strong>Account Responsibility:</strong> Users must maintain the confidentiality of their account information and activities.</li>
+                    <li><strong>Service Restrictions:</strong> Unauthorized use of automated tools or bots to interact with our platform is prohibited.</li>
+                </ul>
 
-        <h2>7. Website Use</h2>
-        <ul>
-            <li><strong>Respectful Use:</strong> Use our website in a manner that does not disrupt other users or the website’s functionality.</li>
-            <li><strong>Content Modification:</strong> Do not alter, damage, or modify website content, services, or technology.</li>
-            <li><strong>Accessibility:</strong> Ensure your usage respects accessibility features and does not interfere with others' access to the platform.</li>
-        </ul>
+                <h2>4. User Content</h2>
+                <ul>
+                    <li><strong>Content Guidelines:</strong> All content posted or shared must be appropriate, respectful, and lawful. Prohibited content includes:
+                        <ul>
+                            <li>Hate speech</li>
+                            <li>Pornographic material</li>
+                            <li>Spam or malicious content</li>
+                        </ul>
+                    </li>
+                    <li><strong>Intellectual Property:</strong> Respect intellectual property rights. Do not post or distribute content without proper authorization.</li>
+                    <li><strong>Content Removal:</strong> XPDevs reserves the right to remove content that violates these guidelines.</li>
+                </ul>
 
-        <h2>8. Feedback and Complaints</h2>
-        <ul>
-            <li><strong>Feedback:</strong> We welcome constructive feedback to improve our services. Submit your feedback <a href="feedback.html">here</a>.</li>
-            <li><strong>Complaint Resolution:</strong> For complaints, contact our customer support team <a href="mailto:xpdevs.github.io.com@gmail.com">here</a>. We are committed to resolving issues promptly and fairly.</li>
-        </ul>
+                <h2>5. Interactions and Transactions</h2>
+                <ul>
+                    <li><strong>Honest Communication:</strong> Ensure all communications and transactions are truthful and accurate.</li>
+                    <li><strong>Fair Transactions:</strong> Conduct fair and transparent transactions. Report suspicious activities to our support team.</li>
+                    <li><strong>Refunds and Cancellations:</strong> Requests for refunds or cancellations will be handled in accordance with our refund policy.</li>
+                </ul>
 
-        <h2>9. Dispute Resolution</h2>
-        <ul>
-            <li><strong>Resolution Process:</strong> In the event of a dispute, contact us directly for resolution. If necessary, disputes may be resolved through mediation or legal channels, in accordance with applicable UK laws.</li>
-            <li><strong>Jurisdiction:</strong> All disputes will be handled under the jurisdiction of the United Kingdom.</li>
-        </ul>
+                <h2>6. Prohibited Activities</h2>
+                <ul>
+                    <li><strong>Illegal Activities:</strong> Do not engage in or promote illegal activities through our website or services.</li>
+                    <li><strong>Unauthorized Access:</strong> Attempts to gain unauthorized access to any part of our platform or services are strictly prohibited.</li>
+                    <li><strong>Malware and Hacking:</strong> The use or distribution of malware, hacking tools, or similar harmful activities is forbidden.</li>
+                </ul>
 
-        <h2>10. Changes to Rules and Guidelines</h2>
-        <ul>
-            <li><strong>Policy Updates:</strong> These rules and guidelines may be updated periodically. Significant changes will be communicated via our website or directly to users.</li>
-            <li><strong>User Agreement:</strong> Continued use of our services implies acceptance of the updated policies.</li>
-        </ul>
+                <h2>7. Website Use</h2>
+                <ul>
+                    <li><strong>Respectful Use:</strong> Use our website in a manner that does not disrupt other users or the website’s functionality.</li>
+                    <li><strong>Content Modification:</strong> Do not alter, damage, or modify website content, services, or technology.</li>
+                    <li><strong>Accessibility:</strong> Ensure your usage respects accessibility features and does not interfere with others' access to the platform.</li>
+                </ul>
 
-        <h2>11. Community Contributions</h2>
-        <ul>
-            <li><strong>Collaboration:</strong> We encourage community contributions to projects and discussions. Contributions must align with these guidelines.</li>
-            <li><strong>Acknowledgment:</strong> Significant contributions to XPDevs projects may be acknowledged publicly, with your consent.</li>
-        </ul>
+                <h2>8. Feedback and Complaints</h2>
+                <ul>
+                    <li><strong>Feedback:</strong> We welcome constructive feedback to improve our services. Submit your feedback <a href="https://xpdevs.github.io/feedback">here</a>.</li>
+                    <li><strong>Complaint Resolution:</strong> For complaints, contact our customer support team <a href="mailto:xpdevs.github.io.com@gmail.com">here</a>. We are committed to resolving issues promptly and fairly.</li>
+                </ul>
+
+                <h2>9. Dispute Resolution</h2>
+                <ul>
+                    <li><strong>Resolution Process:</strong> In the event of a dispute, contact us directly for resolution. If necessary, disputes may be resolved through mediation or legal channels, in accordance with applicable UK laws.</li>
+                    <li><strong>Jurisdiction:</strong> All disputes will be handled under the jurisdiction of the United Kingdom.</li>
+                </ul>
+
+                <h2>10. Changes to Rules and Guidelines</h2>
+                <ul>
+                    <li><strong>Policy Updates:</strong> These rules and guidelines may be updated periodically. Significant changes will be communicated via our website or directly to users.</li>
+                    <li><strong>User Agreement:</strong> Continued use of our services implies acceptance of the updated policies.</li>
+                </ul>
+
+                <h2>11. Community Contributions</h2>
+                <ul>
+                    <li><strong>Collaboration:</strong> We encourage community contributions to projects and discussions. Contributions must align with these guidelines.</li>
+                    <li><strong>Acknowledgment:</strong> Significant contributions to XPDevs projects may be acknowledged publicly, with your consent.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- EULA Box -->
+        <div class="box" id="eula-box">
+            <h1>End User License Agreement (EULA)</h1>
+            <div class="content-scroll">
+                <p><strong>Last Updated:</strong> 15/07/25</p>
+                <p>
+                    This End User License Agreement ("Agreement") is a legal agreement between you ("Licensee" or "you") and XPDevs,
+                    the creator and owner of the XPDevs website ("Licensor," "we," or "us"), governing your access to and use of the
+                    XPDevs website ("Website") located at <a href="https://xpdevs.github.io/">https://xpdevs.github.io/</a>.
+                </p>
+                <p>
+                    By accessing or using the Website, you agree to be bound by the terms of this Agreement. If you do not agree to
+                    these terms, you must not use the Website.
+                </p>
+
+                <h2>1. License Grant</h2>
+                <p>
+                    Licensor grants you a limited, non-exclusive, non-transferable, revocable license to access and use the Website for
+                    your personal or internal business purposes only. This license does not permit you to distribute, rent, lease,
+                    sublicense, or commercially exploit the Website or its content without express written permission from XPDevs.
+                </p>
+
+                <h2>2. Modifications to the Website</h2>
+                <p>
+                    We reserve the right to modify, suspend, or discontinue any aspect or feature of the Website at any time without
+                    notice. We are not obligated to provide maintenance, support, or updates unless explicitly stated otherwise.
+                </p>
+
+                <h2>3. Intellectual Property</h2>
+                <p>
+                    All content and materials available on the Website—including but not limited to text, code, graphics, logos,
+                    icons, interfaces, software, design, layout, and structure—are the property of XPDevs or its licensors and are
+                    protected by applicable intellectual property laws. This Agreement does not transfer any ownership rights; the
+                    Website is licensed, not sold, to you.
+                </p>
+
+                <h2>4. Restrictions</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Copy, modify, distribute, or create derivative works based on the Website or its contents.</li>
+                    <li>Reverse-engineer, decompile, or disassemble any part of the Website, except where such activity is expressly permitted by applicable law.</li>
+                    <li>Remove, obscure, or alter any copyright, trademark, or other proprietary notices.</li>
+                    <li>Use the Website in any unlawful manner or for any unlawful purpose.</li>
+                    <li>Use bots, scrapers, or other automated tools to access the Website without prior consent.</li>
+                </ul>
+
+                <h2>5. Termination</h2>
+                <p>
+                    This Agreement is effective until terminated. Your rights under this license will terminate automatically and without
+                    notice if you breach any term of this Agreement. Upon termination, you must cease all use of the Website and destroy
+                    any downloaded or cached copies in your possession.
+                </p>
+
+                <h2>6. Disclaimer of Warranties</h2>
+                <p>
+                    The Website is provided on an "AS IS" and "AS AVAILABLE" basis. To the fullest extent permitted by law, XPDevs
+                    disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability,
+                    fitness for a particular purpose, title, and non-infringement. We do not guarantee that the Website will be
+                    error-free, secure, or uninterrupted.
+                </p>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>
+                    To the maximum extent permitted by applicable law, XPDevs shall not be liable for any indirect, incidental, special,
+                    consequential, punitive, or exemplary damages (including loss of data, revenue, or profits) arising from or related
+                    to your use of or inability to use the Website, even if we have been advised of the possibility of such damages.
+                </p>
+
+                <h2>8. Governing Law</h2>
+                <p>
+                    This Agreement shall be governed by and construed in accordance with the laws of England and Wales. Any dispute
+                    arising under or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts
+                    located in England and Wales.
+                </p>
+
+                <h2>9. Amendments to this Agreement</h2>
+                <p>
+                    We may modify this Agreement at any time by updating this page. Continued use of the Website following any changes
+                    constitutes your acceptance of the updated terms. We recommend reviewing this page periodically to stay informed
+                    of your rights and obligations.
+                </p>
+
+                <h2>10. Website-Specific Terms</h2>
+                <p>
+                    This Agreement applies specifically to the XPDevs website, located at <a href="https://xpdevs.github.io/">https://xpdevs.github.io/</a>.
+                    It also applies to any related content, features, subdomains, or updates released by XPDevs unless explicitly excluded.
+                    Any updates, bug fixes, or enhancements to the Website are considered part of the Website and governed by this Agreement.
+                </p>
+
+                <h2>Contact</h2>
+                <p>
+                    If you have any questions about this Agreement or the Website, you may contact XPDevs through the contact methods
+                    listed on the Website.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agreement checkbox and button -->
+    <div class="agreement">
+        <input type="checkbox" id="agree-checkbox" />
+        <label for="agree-checkbox">I have read and agree to the Rules and EULA.</label>
+        <button id="save-btn" disabled>Save</button>
     </div>
 
     <!-- Footer -->
@@ -154,5 +371,33 @@
             <p>&copy; 2025 XPDevs. All rights reserved. XPDevs operates under the jurisdiction of the United Kingdom.</p>
         </div>
     </footer>
+
+    <script>
+   const checkbox = document.getElementById('agree-checkbox');
+const saveBtn = document.getElementById('save-btn');
+const modal = document.getElementById('confirmation-modal');
+
+checkbox.addEventListener('change', () => {
+  saveBtn.disabled = !checkbox.checked;
+});
+
+saveBtn.addEventListener('click', () => {
+  if (!checkbox.checked) return;
+
+  // Show the modal
+  modal.classList.add('show');
+
+  // After 3 seconds, hide the modal and redirect
+  setTimeout(() => {
+    modal.classList.remove('show');
+
+    // Wait for animation to finish before redirect
+    setTimeout(() => {
+      window.location.href = 'https://xpdevs.github.io/home';
+    }, 500); // match transition duration
+  }, 3000);
+});
+
+    </script>
 </body>
 </html>
