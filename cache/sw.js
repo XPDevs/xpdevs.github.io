@@ -2,7 +2,30 @@ const CACHE_NAME = 'xpdevs-cache-v1';
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/home'
+  '/indexb.html',
+  '/home.html',
+  '/1.html',
+  '/Doors.html',
+  '/ExamOS.html',
+  '/Games.html',
+  '/NexCOM.html',
+  '/NexIDE.html',
+  '/Server.html',
+  '/Software.html',
+  '/Trans.html',
+  '/beta.html',
+  '/devs.html',
+  '/exe2msi.html',
+  '/feedback.html',
+  '/prodcut.html',
+  '/rules.html',
+  '/favicon.ico',
+  '/rss.xml',
+  '/cache/',
+  '/download/',
+  '/images/',
+  '/news/',
+  // Add any other folders or files you want to cache
 ];
 
 self.addEventListener('install', event => {
