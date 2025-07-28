@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Loading...</title>
+  <script>
+    const path = window.location.pathname.toLowerCase();
+    if (path !== '/' && path !== '/index.html') {
+      window.location.href = '/home';
+    }
+  </script>
   <link rel="prefetch" href="home" as="document">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
