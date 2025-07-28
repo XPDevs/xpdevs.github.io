@@ -4,14 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Loading...</title>
+
   <script>
+    // XPDevs info console block - put at top of main JS script
+    (() => {
+      const xpdevsInfo = {
+        productName: "DoorsOS",
+        version: "v1.2.3",
+        kernel: "NexShell (custom-built kernel)",
+        developer: "XPDevs (James Turner)",
+        website: "https://xpdevs.github.io/"
+      };
+
+      console.log(
+        `%c${xpdevsInfo.productName} %c${xpdevsInfo.version}`,
+        "color: #1E90FF; font-weight: bold; font-size: 18px;",
+        "color: #32CD32; font-weight: bold; font-size: 18px;"
+      );
+
+      console.log(
+        `%cKernel: %c${xpdevsInfo.kernel}`,
+        "color: #1E90FF; font-weight: bold;",
+        "color: #FFA500;"
+      );
+
+      console.log(
+        `%cDeveloper: %c${xpdevsInfo.developer}`,
+        "color: #1E90FF; font-weight: bold;",
+        "color: #FFFFFF; background: #000000; padding: 2px 4px; border-radius: 3px;"
+      );
+
+      console.log(
+        `%cWebsite: %c${xpdevsInfo.website}`,
+        "color: #1E90FF; font-weight: bold;",
+        "color: #00CED1; text-decoration: underline;"
+      );
+    })();
+
     const path = window.location.pathname.toLowerCase();
     if (path !== '/' && path !== '/index.html') {
       window.location.href = '/home';
     }
   </script>
+
   <link rel="prefetch" href="home" as="document">
   <style>
+    /* Your existing styles */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
     body {
