@@ -177,41 +177,15 @@
   </style>
 
   <script>
-    // Service Worker Blob with Logging
-    const swBlob = new Blob([`
-      self.addEventListener('install', event => {
-        console.log("Caching started...");
-        event.waitUntil(
-          caches.open('xpdevs-cache-v1').then(cache => {
-            return cache.addAll(['home']).then(() => {
-              console.log("Caching complete.");
-            }).catch(err => {
-              console.warn("Caching failed:", err);
-            });
-          }).catch(err => {
-            console.warn("Failed to open cache:", err);
-          })
-        );
-      });
-
-      self.addEventListener('fetch', event => {
-        event.respondWith(
-          caches.match(event.request).then(response => {
-            return response || fetch(event.request);
-          }).catch(err => {
-            console.warn("Fetch failed:", err);
-            return fetch(event.request);
-          })
-        );
-      });
-    `], { type: 'application/javascript' });
-
-    const swBlobURL = URL.createObjectURL(swBlob);
-
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register(swBlobURL).catch(err => {
-        console.warn("Service worker registration failed:", err);
-      });
+      console.log("Starting service worker registration...");
+      navigator.serviceWorker.register('/cache/sw.js')
+        .then(reg => {
+          console.log("✅ Service worker registered successfully:", reg);
+        })
+        .catch(err => {
+          console.warn("❌ Service worker registration failed:", err);
+        });
     }
 
     window.onload = function () {
