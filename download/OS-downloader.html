@@ -19,7 +19,7 @@
       border: 1px solid #ffeeba;
       color: #856404;
       padding: 15px;
-      border-radius: 6px;
+      border-radius: 12px; /* Increased rounding for modern feel */
       margin-bottom: 30px;
       font-size: 0.95em;
     }
@@ -32,7 +32,7 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 8px;
       transition: background-color 0.2s ease;
     }
 
@@ -46,8 +46,9 @@
     }
 
     h2 {
-      margin-top: 2em;
-      font-size: 1.6em;
+      margin-top: 1.5em;
+      font-size: 1.4em;
+      color: #333;
     }
 
     ul {
@@ -58,8 +59,16 @@
     li {
       background: #e0e0e0;
       margin: 10px 0;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 15px;
+      border-radius: 12px; /* Modern rounded corners */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .build-info {
+      font-size: 0.85em;
+      color: #555;
     }
 
     a {
@@ -76,14 +85,24 @@
 <body>
 
   <div class="banner">
-    ⚠️ Some browsers or antivirus software may incorrectly flag our ISO downloads as threats. These are <strong>false positives</strong>.
-    XPDevs is committed to providing safe and accessible operating systems, and we are working to ensure all downloads are smooth and trusted.
+    ⚠️ Some browsers or antivirus software may incorrectly flag our downloads as threats. These are <strong>false positives</strong>.
+    XPDevs is committed to providing safe and accessible systems.
     <br />
     <a class="contact-button" href="https://xpdevs.github.io/home.html#contact">Report an Issue</a>
   </div>
 
   <h1>OS Downloader</h1>
-  <p>All ISOs include UK keyboard layout support</p>
+  <p>All downloads include UK keyboard layout support</p>
+
+  <h2>DoorsOS (Latest Build)</h2>
+  <ul>
+    <li>
+      <div>
+        <a href="https://xpdevs.github.io/download/DoorsOS-2601261104.iso" download>Download Build 2601261104</a>
+        <div class="build-info">Released: 21 Jan 2026 at 11:04</div>
+      </div>
+    </li>
+  </ul>
 
   <h2>DoorsOS Dev</h2>
   <ul>
