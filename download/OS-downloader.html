@@ -1,118 +1,400 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OS Downloader</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f7f7f7;
-      color: #222;
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Downloader</title>
+    <style>
+        /* Premium Minimalism - Apple Inspired Design */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
 
-    .banner {
-      background-color: #fff3cd;
-      border: 1px solid #ffeeba;
-      color: #856404;
-      padding: 15px;
-      border-radius: 12px; /* Increased rounding for modern feel */
-      margin-bottom: 30px;
-      font-size: 0.95em;
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .contact-button {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #0057b7;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
-    }
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-top: 0;
+        }
+        h1 { font-size: 48px; line-height: 1.08349; }
+        h2 { font-size: 40px; line-height: 1.1; }
+        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
 
-    .contact-button:hover {
-      background-color: #0041a3;
-    }
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 0.2em;
-    }
+        /* Header */
+        header {
+            background-color: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
 
-    h2 {
-      margin-top: 1.5em;
-      font-size: 1.4em;
-      color: #333;
-    }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 24px;
+        }
+        nav ul li a {
+            color: var(--text-primary);
+            font-size: 12px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-width: 180px;
+            box-shadow: var(--shadow-modal);
+            border-radius: 12px;
+            z-index: 1000;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            text-align: left;
+            opacity: 1;
+        }
+        .dropdown-content a:hover {
+            background-color: #f5f5f7;
+            color: var(--accent-color);
+        }
 
-    li {
-      background: #e0e0e0;
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 12px; /* Modern rounded corners */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* Footer */
+        footer {
+            background-color: #f5f5f7;
+            color: #424245;
+            padding: 40px 0;
+            font-size: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
 
-    .build-info {
-      font-size: 0.85em;
-      color: #555;
-    }
+        .footer-col {
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 20px;
+        }
 
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      color: #0057b7;
-    }
+        .footer-col h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 9px;
+            letter-spacing: -0.01em;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 9px;
+        }
+
+        .footer-col ul li a {
+            color: #424245;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            text-decoration: underline;
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid #d2d2d7;
+            color: #86868b;
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .legal-links li { margin-right: 10px; position: relative; }
+        .legal-links li:not(:last-child)::after {
+            content: "|";
+            margin-left: 10px;
+            color: #d2d2d7;
+        }
+        .legal-links a { color: #424245; text-decoration: none; }
+        .legal-links a:hover { text-decoration: underline; }
+        
+        .locale { float: right; }
+        
+        @media (max-width: 768px) {
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            /* Mobile Header & Layout */
+            header { height: auto; padding: 10px 0; position: relative; }
+            header .container { flex-direction: column; gap: 15px; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            nav ul { width: max-content; padding: 0 10px; }
+            .locale { float: none; margin-top: 10px; }
+        }
+
+        /* Specific styles for Downloader */
+        .banner {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .contact-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 980px;
+            transition: background-color 0.2s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #0041a3;
+            text-decoration: none;
+        }
+
+        .download-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .download-item {
+            background: var(--card-bg);
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .build-info {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        .download-link {
+            font-weight: 600;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="banner">
-    ⚠️ Some browsers or antivirus software may incorrectly flag our downloads as threats. These are <strong>false positives</strong>.
-    XPDevs is committed to providing safe and accessible systems.
-    <br />
-    <a class="contact-button" href="https://xpdevs.github.io/home.html#contact">Report an Issue</a>
-  </div>
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="../index.html" style="text-decoration: none;">
+            <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
+        </a>
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="../index.html#about">About Us</a></li>
+                <li><a href="../index.html#sneak-peek">Sneak Peek</a></li>
+                <li class="dropdown">
+                    <a href="#" style="cursor: default;">Download ▾</a>
+                    <div class="dropdown-content">
+                        <a href="../Doors.html">DoorsOS</a>
+                        <a href="../ExamOS.html">ExamOS</a>
+                        <a href="OS-downloader.html">All Downloads</a>
+                    </div>
+                </li>
+                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="../Doors.html">DoorsOS</a></li>
+                <li><a href="../ExamOS.html">ExamOS</a></li>
+                <li><a href="../rules.html">Rules</a></li>
+                <li><a href="../beta.html">Become a Beta tester now</a></li>
+                <li><a href="../kernel.html">Our kernel</a></li>
+                <li><a href="../feedback.html">Give your feedback</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-  <h1>OS Downloader</h1>
-  <p>All downloads include UK keyboard layout support</p>
+<div class="container" style="padding-top: 60px; padding-bottom: 60px;">
+    <div class="banner">
+        ⚠️ Some browsers or antivirus software may incorrectly flag our downloads as threats. These are <strong>false positives</strong>.
+        XPDevs is committed to providing safe and accessible systems.
+        <br />
+        <a class="contact-button" href="https://xpdevs.github.io/home.html#contact">Report an Issue</a>
+    </div>
 
-  <h2>DoorsOS (Latest Build)</h2>
-  <ul>
-    <li>
-      <div>
-        <a href="https://xpdevs.github.io/download/DoorsOS-JN2101261104.iso" download>Download Build 2101261104</a>
-        <div class="build-info">Released: 21 Jan 2026 at 11:04</div>
-      </div>
-    </li>
-  </ul>
+    <h1>OS Downloader</h1>
+    <p>All downloads include UK keyboard layout support</p>
 
-  <h2>DoorsOS Dev</h2>
-  <ul>
-    <li><a href="https://xpdevs.github.io/download/DoorsOS-dev-enGB.iso" download>Download DoorsOS Dev (ISO)</a></li>
-  </ul>
+    <h2>DoorsOS (Latest Build)</h2>
+    <ul class="download-list">
+        <li class="download-item">
+            <div>
+                <a class="download-link" href="https://xpdevs.github.io/download/DoorsOS-JN2101261104.iso" download>Download Build 2101261104</a>
+                <div class="build-info">Released: 21 Jan 2026 at 11:04</div>
+            </div>
+        </li>
+    </ul>
 
-  <h2>ExamOS</h2>
-  <ul>
-    <li><a href="https://xpdevs.github.io/download/ExamOS.iso" download>Download ExamOS (ISO)</a></li>
-  </ul>
+    <h2>DoorsOS Dev</h2>
+    <ul class="download-list">
+        <li class="download-item"><a class="download-link" href="https://xpdevs.github.io/download/DoorsOS-dev-enGB.iso" download>Download DoorsOS Dev (ISO)</a></li>
+    </ul>
+
+    <h2>ExamOS</h2>
+    <ul class="download-list">
+        <li class="download-item"><a class="download-link" href="https://xpdevs.github.io/download/ExamOS.iso" download>Download ExamOS (ISO)</a></li>
+    </ul>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="../Doors.html">DoorsOS</a></li>
+                    <li><a href="../ExamOS.html">ExamOS</a></li>
+                    <li><a href="../kernel.html">Our Kernel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="../signup.html">Sign Up</a></li>
+                    <li><a href="../beta.html">Beta Program</a></li>
+                    <li><a href="../feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="../rules.html">Rules & EULA</a></li>
+                    <li><a href="OS-downloader.html">All Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About XPDevs</h3>
+                <ul>
+                    <li><a href="../index.html#about">About Us</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+            <div class="footer-legal">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span>Copyright &copy; 2025 XPDevs. All rights reserved.</span>
+                    <ul class="legal-links">
+                        <li><a href="../rules.html">Privacy Policy</a></li>
+                        <li><a href="../rules.html">Terms of Use</a></li>
+                        <li><a href="../rules.html">Legal</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <span class="locale">United Kingdom</span>
+            </div>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
