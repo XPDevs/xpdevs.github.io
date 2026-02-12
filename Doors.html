@@ -1,99 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="https://xpdevs.github.io/favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPDevs - DoorsOS</title>
     <style>
-        html, body {
-            height: 100%;
+        /* Premium Minimalism - Apple Inspired Design */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-top: 0;
+        }
+        h1 { font-size: 48px; line-height: 1.08349; }
+        h2 { font-size: 40px; line-height: 1.1; }
+        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* Header */
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
+            background-color: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            height: 48px;
+            display: flex;
+            align-items: center;
         }
-
-        header h1 {
-            margin: 0;
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
+        header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
 
         nav ul {
             list-style-type: none;
-            margin: 10px 0 0 0;
+            margin: 0;
             padding: 0;
+            display: flex;
+            gap: 24px;
         }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
         nav ul li a {
-            color: #fff;
+            color: var(--text-primary);
+            font-size: 12px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-width: 180px;
+            box-shadow: var(--shadow-modal);
+            border-radius: 12px;
+            z-index: 1000;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 8px 16px;
             text-decoration: none;
-            font-weight: bold;
+            display: block;
+            font-size: 13px;
+            text-align: left;
+            opacity: 1;
+        }
+        .dropdown-content a:hover {
+            background-color: #f5f5f7;
+            color: var(--accent-color);
         }
 
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            flex: 1;
+        /* Sections */
+        section { padding: 100px 0; }
+        
+        .hero-center {
+            text-align: center;
+            padding: 120px 0 60px;
+        }
+        .hero-center h1 { font-size: 64px; margin-bottom: 20px; }
+        
+        /* Cards & Features */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            margin-bottom: 40px;
         }
 
-        .product {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 10px;
-            display: inline-block;
-            width: 200px;
-        }
-
-        .product h3 {
-            margin-top: 0;
-        }
-
-        .product p {
-            margin-bottom: 0;
-        }
-
+        /* Buttons */
         .btn {
-            background-color: #007bff;
+            background-color: var(--accent-color);
             color: #fff;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            text-decoration: none;
+            border-radius: 980px; /* Pill shape */
+            font-size: 15px;
+            font-weight: 500;
             display: inline-block;
             margin-top: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
         }
-
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #0077ed;
+            transform: scale(1.02);
+            text-decoration: none;
         }
 
-        .sneak-peek {
-            background-color: #f4f4f4;
-            padding: 50px 0;
-            text-align: center;
-        }
-
-        .sneak-peek h2 {
-            margin-bottom: 20px;
-        }
-
-        .sneak-peek p {
-            color: #666;
-        }
-
+        /* Sneak Peek Grid */
         .sneak-grid {
             display: flex;
             justify-content: center;
@@ -101,183 +168,344 @@
             flex-wrap: wrap;
             margin-top: 20px;
         }
-
         .sneak-grid div {
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            background: #fff;
+            transition: transform 0.3s ease;
         }
-
+        .sneak-grid div:hover {
+            transform: scale(1.02);
+        }
         .sneak-grid img {
             transition: transform 0.3s ease;
             cursor: zoom-in;
             display: block;
             width: 280px;
             height: 160px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
-
-        .sneak-grid img:hover {
-            transform: scale(1.5);
-            position: relative;
-            z-index: 10;
-        }
-
         .sneak-grid figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #555;
+            padding: 15px;
+            font-size: 13px;
+            color: var(--text-secondary);
             text-align: center;
+            background: #fff;
         }
 
-        .about-section {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 30px;
-            margin: 40px auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .about-section h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
-            border-bottom: 2px solid #007bff;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .about-section p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #444;
-            margin-bottom: 15px;
-        }
-
+        /* Footer */
         footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
+            background-color: #f5f5f7;
+            color: #424245;
+            padding: 40px 0;
+            font-size: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
         }
 
-        /* Image Modal */
+        .footer-col {
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 9px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 9px;
+        }
+
+        .footer-col ul li a {
+            color: #424245;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            text-decoration: underline;
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid #d2d2d7;
+            color: #86868b;
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .legal-links li { margin-right: 10px; position: relative; }
+        .legal-links li:not(:last-child)::after {
+            content: "|";
+            margin-left: 10px;
+            color: #d2d2d7;
+        }
+        .legal-links a { color: #424245; text-decoration: none; }
+        .legal-links a:hover { text-decoration: underline; }
+        
+        .locale { float: right; }
+        
+        @media (max-width: 768px) {
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            /* Mobile Header & Layout */
+            header { height: auto; padding: 10px 0; position: relative; }
+            header .container { flex-direction: column; gap: 15px; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            nav ul { width: max-content; padding: 0 10px; }
+            
+            /* Typography & Spacing */
+            .hero-center h1 { font-size: 42px; }
+            .hero-center { padding: 60px 0 40px; }
+            
+            /* Feature Card Mobile Overrides */
+            .feature-card-image { height: 250px !important; }
+            .feature-card-content { padding: 30px !important; }
+            .locale { float: none; margin-top: 10px; }
+        }
+
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            text-align: center;
-            padding-top: 60px;
+            background-color: rgba(50,50,50,0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
-
         .modal-content {
+            background-color: #fff;
+            margin: 10vh auto;
+            padding: 40px;
+            border: none;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            border-radius: 24px;
+            box-shadow: var(--shadow-modal);
+            text-align: center;
+        }
+        .close {
+            color: #86868b;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close:hover { color: #1d1d1f; }
+
+        /* Image Modal Specifics */
+        #imageModal .modal-content {
             background-color: transparent;
             border: none;
+            box-shadow: none;
             margin: 5% auto;
             padding: 0;
             max-width: 90%;
-            text-align: center;
-            position: relative;
+            max-height: 90%;
         }
-
-        .modal-content img {
+        #imageModal img {
             max-width: 100%;
             max-height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-
-        .modal-content figcaption {
-            color: #fff;
-            font-style: italic;
+        #imageModal figcaption {
+            color: #fff; /* Keep white for image modal overlay */
             margin-top: 10px;
+            font-weight: 500;
         }
 
-        #imageModalClose {
-            color: white;
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
+
+<!-- New Image Preview Modal -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="imageModalClose">&times;</span>
+        <figure>
+            <img id="modalImage" src="" alt="">
+            <figcaption id="modalCaption"></figcaption>
+        </figure>
+    </div>
+</div>
+
     <!-- Header -->
     <header>
         <div class="container">
-            <h1>XPDevs - DoorsOS</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="download/OS-downloader.html">DoorsOS developer build</a></li>
-                </ul>
-            </nav>
+            <a href="index.html" style="text-decoration: none;">
+                <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
+            </a>
+            <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#sneak-peek">Sneak Peek</a></li>
+                <li class="dropdown">
+                    <a href="#" style="cursor: default;">Download ▾</a>
+                    <div class="dropdown-content">
+                        <a href="Doors">DoorsOS</a>
+                        <a href="ExamOS">ExamOS</a>
+                        <a href="download/DoorsOS-dev.iso">DoorsOS Developer Build</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="Doors">DoorsOS</a></li>
+                <li><a href="ExamOS">ExamOS</a></li>
+                <li><a href="rules">Rules</a></li>
+                <li><a href="beta">Become a Beta tester now</a></li>
+                <li><a href="kernel">Our kernel</a></li>
+                <li><a href="feedback">Give your feedback</a></li>
+            </ul>
+        </nav>
         </div>
     </header>
 
-    <!-- About Section -->
-    <main class="container">
-        <section id="doorsos" class="about">
-            <div class="container">
-                <h2>About DoorsOS</h2>
-                <p><strong>DoorsOS</strong> is XPDevs’ flagship operating system, developed from the ground up to redefine simplicity, speed, and accessibility in computing. It is designed for users of all experience levels — from students and hobbyists to developers and professionals.</p>
-                <p>Unlike traditional systems, DoorsOS eliminates unnecessary bloat and focuses on performance, clarity, and control. Each build is optimised to run smoothly on low-end hardware while still delivering a full-featured experience, with a minimal footprint and clean interface.</p>
-                <p>With the transition to a bootable ISO format powered by our custom-built kernel, NexShell, DoorsOS has entered a new era of development. The system supports native shell commands, custom programs, and low-level enhancements — all developed in-house.</p>
-                <p>At XPDevs, we believe in empowering users through innovation. DoorsOS reflects that mission: efficient, open, and evolving — software built for real use, not just for show.</p>
-                <p>DoorsOS isn’t just an alternative OS — it’s a statement. Join us in building something smarter.</p>
-            </div>
-        </section>
-    </main>
+<div class="hero-center">
+    <h1>DoorsOS</h1>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        Redefining simplicity, speed, and accessibility in computing.
+    </p>
+</div>
+
+<!-- About DoorsOS Section -->
+<section id="doorsos" class="about">
+   <div class="container">
+    <h2>About DoorsOS</h2>
+    <p><strong>DoorsOS</strong> is XPDevs’ flagship operating system, developed from the ground up to redefine simplicity, speed, and accessibility in computing. It is designed for users of all experience levels — from students and hobbyists to developers and professionals.</p>
+    <p>Unlike traditional systems, DoorsOS eliminates unnecessary bloat and focuses on performance, clarity, and control. Each build is optimised to run smoothly on low-end hardware while still delivering a full-featured experience, with a minimal footprint and clean interface.</p>
+    <p>With the transition to a bootable ISO format powered by our custom-built kernel, NexShell, DoorsOS has entered a new era of development. The system supports native shell commands, custom programs, and low-level enhancements — all developed in-house.</p>
+    <p>At XPDevs, we believe in empowering users through innovation. DoorsOS reflects that mission: efficient, open, and evolving — software built for real use, not just for show.</p>
+    <p>DoorsOS isn’t just an alternative OS — it’s a statement. Join us in building something smarter.</p>
+</div>
+</section>
 
     <!-- Sneak Peek Section -->
     <section id="sneak-peek" class="sneak-peek">
         <div class="container">
             <h2>Latest DoorsOS build</h2>
-            <p>Our latest DoorsOS build for download</p>
-            <p>This is a developer build</p>
+            <p>Our latest DoorsOS build for download. This is a developer build.</p>
             <div class="sneak-grid">
                 <div>
-                    <img src="images/main-screen.jpg" alt="NexShell Main Screen" />
+                    <img src="images/main-screen.jpg" alt="NexShell Main Screen" width="280" height="160" />
                     <figcaption>DoorsOS NexShell main screen (text mode)</figcaption>
                 </div>
                 <div>
-                    <img src="images/boot-screen.jpg" alt="NexShell Boot Screen" />
+                    <img src="images/boot-screen.jpg" alt="NexShell Boot Screen" width="280" height="160" />
                     <figcaption>DoorsOS NexShell boot screen</figcaption>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 XPDevs. All rights reserved.</p>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="Doors.html">DoorsOS</a></li>
+                    <li><a href="ExamOS.html">ExamOS</a></li>
+                    <li><a href="kernel.html">Our Kernel</a></li>
+                    <li><a href="web.html">EXE to MSI Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="beta.html">Beta Program</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="rules.html">Rules & EULA</a></li>
+                    <li><a href="rss.xml">News (RSS)</a></li>
+                    <li><a href="download/OS-downloader.html">Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About XPDevs</h3>
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                </ul>
+            </div>
         </div>
-    </footer>
-
-    <!-- Image Preview Modal -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="" />
-            <figcaption id="modalCaption"></figcaption>
-            <span id="imageModalClose">&times;</span>
+        
+        <div class="footer-bottom">
+            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+            <div class="footer-legal">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span>Copyright &copy; 2025 XPDevs. All rights reserved.</span>
+                    <ul class="legal-links">
+                        <li><a href="rules.html">Privacy Policy</a></li>
+                        <li><a href="rules.html">Terms of Use</a></li>
+                        <li><a href="rules.html">Legal</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <span class="locale">United Kingdom</span>
+            </div>
         </div>
     </div>
+</footer>
 
     <script>
+    // New modal for image preview
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const modalCaption = document.getElementById('modalCaption');
         const imageModalClose = document.getElementById('imageModalClose');
 
+        // Open modal on sneak peek image click
         document.querySelectorAll('.sneak-grid img').forEach(img => {
             img.addEventListener('click', () => {
                 modalImage.src = img.src;
@@ -287,10 +515,12 @@
             });
         });
 
+    // Close modal on X click
         imageModalClose.onclick = () => {
             imageModal.style.display = "none";
         };
 
+    // Close modal on clicking outside modal content
         window.addEventListener('click', (event) => {
             if (event.target == imageModal) {
                 imageModal.style.display = "none";
