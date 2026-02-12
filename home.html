@@ -7,120 +7,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPDevs Home page</title>
     <style>
-        /* Existing modal styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black background with opacity */
+        /* Premium Minimalism - Apple Inspired Design */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 700px;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-
-        /* Additional styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             margin: 0;
             padding: 0;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-top: 0;
+        }
+        h1 { font-size: 48px; line-height: 1.08349; }
+        h2 { font-size: 40px; line-height: 1.1; }
+        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* Header */
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+            background-color: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            height: 48px;
+            display: flex;
+            align-items: center;
         }
-        header h1 {
-            margin: 0;
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
+        header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
+
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
+            display: flex;
+            gap: 24px;
         }
         nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
+            color: var(--text-primary);
+            font-size: 12px;
+            opacity: 0.8;
+            font-weight: 400;
         }
-        .hero {
-            background-image: url('hero-image.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            padding: 100px 0;
+        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        
+        .hero-center {
             text-align: center;
+            padding: 120px 0 60px;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
+        .hero-center h1 { font-size: 64px; margin-bottom: 20px; }
+        
+        /* Cards & Features */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            margin-bottom: 40px;
         }
-        .products {
-            padding: 50px 0;
-            text-align: center;
-        }
-        .product {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin: 10px;
-            display: inline-block;
-            width: 200px;
-        }
-        .product h3 {
-            margin-top: 0;
-        }
-        .product p {
-            margin-bottom: 0;
-        }
+
+        /* Buttons */
         .btn {
-            background-color: #007bff;
+            background-color: var(--accent-color);
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 5px;
-            text-decoration: none;
+            border-radius: 980px; /* Pill shape */
+            font-size: 15px;
+            font-weight: 500;
             display: inline-block;
             margin-top: 20px;
             cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
         }
         .btn:hover {
-            background-color: #0056b3;
-        }
-        .sneak-peek {
-            background-color: #f4f4f4;
+            background-color: #0077ed;
+            transform: scale(1.02);
+            text-decoration: none;
         }
 
+        /* Sneak Peek Grid */
         .sneak-grid {
             display: flex;
             justify-content: center;
@@ -128,99 +133,194 @@
             flex-wrap: wrap;
             margin-top: 20px;
         }
-
-        /* Container for each image to keep overflow hidden for zoom */
         .sneak-grid div {
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            background: #fff;
+            transition: transform 0.3s ease;
         }
-
-        /* Images style with transition and fixed size */
+        .sneak-grid div:hover {
+            transform: scale(1.02);
+        }
         .sneak-grid img {
             transition: transform 0.3s ease;
             cursor: zoom-in;
             display: block;
             width: 280px;
             height: 160px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
-
-        /* Zoom effect on hover */
-        .sneak-grid img:hover {
-            transform: scale(1.5);
-            position: relative;
-            z-index: 10;
-        }
-
         .sneak-grid figcaption {
-            margin-top: 10px;
-            font-style: italic;
-            color: #555;
+            padding: 15px;
+            font-size: 13px;
+            color: var(--text-secondary);
             text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
+            background: #fff;
         }
 
-        /* Styles for image modal */
+        /* Footer */
+        footer {
+            background-color: #f5f5f7;
+            color: #424245;
+            padding: 40px 0;
+            font-size: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 9px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 9px;
+        }
+
+        .footer-col ul li a {
+            color: #424245;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            text-decoration: underline;
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid #d2d2d7;
+            color: #86868b;
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .legal-links li { margin-right: 10px; position: relative; }
+        .legal-links li:not(:last-child)::after {
+            content: "|";
+            margin-left: 10px;
+            color: #d2d2d7;
+        }
+        .legal-links a { color: #424245; text-decoration: none; }
+        .legal-links a:hover { text-decoration: underline; }
+        
+        .locale { float: right; }
+        
+        @media (max-width: 768px) {
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(50,50,50,0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10vh auto;
+            padding: 40px;
+            border: none;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            border-radius: 24px;
+            box-shadow: var(--shadow-modal);
+            text-align: center;
+        }
+        .close {
+            color: #86868b;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close:hover { color: #1d1d1f; }
+
+        /* Image Modal Specifics */
         #imageModal .modal-content {
             background-color: transparent;
             border: none;
+            box-shadow: none;
             margin: 5% auto;
             padding: 0;
             max-width: 90%;
             max-height: 90%;
-            text-align: center;
         }
-
         #imageModal img {
             max-width: 100%;
             max-height: 80vh;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
-
         #imageModal figcaption {
-            color: #fff;
-            font-style: italic;
+            color: #fff; /* Keep white for image modal overlay */
             margin-top: 10px;
+            font-weight: 500;
         }
 
-        /* Educational Service Promotion Section */
-        #education-promo {
-            background-image: url('images/exam-students.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 80px 20px;
-            color: white;
-            text-align: center;
-            position: relative;
-            border-bottom: 3px solid #007bff;
-        }
-        #education-promo > div {
-            background: rgba(0, 0, 0, 0.6);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px 20px;
-            border-radius: 8px;
-        }
     </style>
 </head>
 <body>
 <!-- Modal HTML -->
-<div id="myModal" class="modal" style="display:block; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
-  <div class="modal-content" style="position:relative; max-width:500px; margin:5% auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.3);">
+<div id="myModal" class="modal" style="display:block;">
+  <div class="modal-content">
 
     <!-- Page indicator -->
-    <div id="pageIndicator" style="position:absolute; top:10px; left:15px; font-weight:bold; font-family:sans-serif;">1/3</div>
+    <div id="pageIndicator" style="position:absolute; top:25px; left:30px; font-weight:600; color:#86868b; font-size:14px;">1/3</div>
 
     <!-- Close button -->
-    <span class="close" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:22px;">&times;</span>
+    <span class="close">&times;</span>
 
-<div id="modalPages" style="min-height:220px; position:relative; overflow:hidden;">
+<div id="modalPages" style="min-height:280px; position:relative; overflow:hidden; margin-top: 20px;">
   <!-- Page 1 -->
   <div class="page" id="page1" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:1; pointer-events:auto; transition: opacity 0.4s ease;">
     <h2>Developer Build Available</h2>
@@ -233,14 +333,14 @@
     <h2>Introducing ExamOS</h2>
     <p><strong>ExamOS</strong> is a secure operating system developed by XPDevs specifically for educational institutions to safely manage and conduct exams.</p>
     <p>It is designed with exam security, simplicity, and performance in mind, helping schools prevent cheating and data loss.</p>
-    <p><a href="ExamOS.html">Learn more about ExamOS</a></p>
+    <p><a href="ExamOS.html" class="btn" style="margin-top:10px;">Learn more about ExamOS</a></p>
   </div>
 
   <!-- Page 3: Website design moved here -->
   <div class="page" id="page3" style="position:absolute; top:0; left:0; right:0; bottom:0; opacity:0; pointer-events:none; transition: opacity 0.4s ease;">
     <h2>New website design</h2>
     <p>A new design for the XPDevs website is forthcoming. Some changes may already be visible. Completion is expected within a few months.</p>
-    <p><a href="feedback.html">Give your feedback on the website design</a></p>
+    <p><a href="feedback.html" class="btn" style="margin-top:10px;">Give Feedback</a></p>
   </div>
 </div>
 
@@ -248,21 +348,19 @@
     <!-- Navigation button -->
     <button id="navButton" style="
         position:absolute;
-        bottom:15px;
-        right:15px;
-        width:40px;
-        height:40px;
+        bottom:30px;
+        right:30px;
+        width:44px;
+        height:44px;
         border-radius:50%;
-        background-color:#fff;
-        border:1px solid #ddd;
-        font-size:18px;
+        background-color:#f5f5f7;
+        border:none;
+        font-size:20px;
         cursor:pointer;
-        padding:0;
         display:flex;
         align-items:center;
         justify-content:center;
-        box-shadow:0 1px 3px rgba(0,0,0,0.1);
-        overflow:hidden;
+        transition: background 0.2s;
       ">
       <span id="arrow" style="
         display:inline-block;
@@ -375,7 +473,6 @@
 <header>
     <div class="container">
         <h1>Home</h1>
-        <br>
         <!-- Navigation -->
         <nav>
             <ul>
@@ -393,38 +490,28 @@
     </div>
 </header>
 
-<section id="education-promo" style="display: flex; flex-wrap: wrap; align-items: center; padding: 40px 20px; border-bottom: 3px solid #007bff; gap: 20px;">
-  <!-- Left side: Full size image -->
-  <div style="flex: 1 1 400px; max-width: 600px;">
-    <img src="images/exam-students.jpg" alt="Students taking exams" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);" />
-  </div>
-
-  <!-- Right side: Text box -->
-  <div style="flex: 1 1 300px; background: rgba(0,0,0,0.6); color: white; padding: 30px 20px; border-radius: 8px; max-width: 400px;">
-    <h2>XPDevs Educational Service</h2>
-    <p style="font-size: 1.2em; margin: 15px 0;">
-      Introducing <strong>ExamOS</strong>, an operating system designed specifically for educational institutes to securely manage exams.
-    </p>
-    <a href="ExamOS.html" class="btn" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold;">
-      Learn More
-    </a>
-  </div>
-</section>
-
-<center>
+<div class="hero-center">
     <h1>Welcome to XPDevs</h1>
-</center>
-
-<!-- About Us Section -->
-<section id="about" class="about">
-   <div class="container">
-    <h2>About XPDevs</h2>
-    <p>I'm the developer behind XPDevs — a project dedicated to creating innovative, accessible, and powerful operating systems. My goal is to design software that runs efficiently, simplifies tasks, and enhances the user experience across a wide range of devices.</p>
-    <p>Everything at XPDevs is built by me, from the kernel up. I use the latest tools and technologies to ensure that each release is stable, secure, and tailored for real-world use. My work is driven by a passion for computing and a desire to make technology more approachable for everyone.</p>
-    <p>I also provide resources and documentation to help users get the most out of my operating systems. Whether you're exploring DoorsOS for the first time or deploying it in a serious environment, I'm here to support your journey.</p>
-    <p>XPDevs is more than just software — it's a vision for a better, simpler, and more open tech future, crafted by one person with a commitment to excellence.</p>
-    <p>Thank you for being part of this journey. Let’s build something amazing together.</p>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        Creating innovative, accessible, and powerful operating systems.
+    </p>
 </div>
+
+<section id="education-promo">
+    <div class="container">
+        <div class="feature-card" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div style="flex: 1 1 400px; height: 400px;">
+                <img src="images/exam-students.jpg" alt="Students taking exams" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div style="flex: 1 1 400px; padding: 60px;">
+                <h2>XPDevs Educational Service</h2>
+                <p style="margin: 20px 0;">
+                    Introducing <strong>ExamOS</strong>, an operating system designed specifically for educational institutes to securely manage exams.
+                </p>
+                <a href="ExamOS.html" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Sneak Peek Section -->
@@ -445,6 +532,29 @@
     </div>
 </section>
 
+<!-- Announcement -->
+<section id="news" style="padding-top: 0;">
+    <div class="container" style="text-align: center;">
+        <h2>Announcement from XPDevs</h2>
+        <p style="max-width: 700px; margin: 0 auto 20px;">At XPDevs, we are excited to announce a major overhaul of DoorsOS.</p>
+        <p style="max-width: 700px; margin: 0 auto 20px;">We have decided to completely refound the Doors Operating System. This means that the old batch file–based versions will no longer be developed, and future releases will focus solely on bootable ISO versions.</p>
+        <p style="max-width: 700px; margin: 0 auto 20px;">Additionally, DoorsOS&reg; (powered by NexShell) will adopt a new versioning system starting from version 1. Technically, this new version 1 will be the fourth iteration of DoorsOS&reg; (powered by NexShell), marking a fresh start for the OS.</p>
+        <p style="max-width: 700px; margin: 0 auto;">We appreciate your continued support as we work towards making DoorsOS more powerful and accessible than ever.</p>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="about">
+   <div class="container">
+    <h2>About XPDevs</h2>
+    <p>I'm the developer behind XPDevs — a project dedicated to creating innovative, accessible, and powerful operating systems. My goal is to design software that runs efficiently, simplifies tasks, and enhances the user experience across a wide range of devices.</p>
+    <p>Everything at XPDevs is built by me, from the kernel up. I use the latest tools and technologies to ensure that each release is stable, secure, and tailored for real-world use. My work is driven by a passion for computing and a desire to make technology more approachable for everyone.</p>
+    <p>I also provide resources and documentation to help users get the most out of my operating systems. Whether you're exploring DoorsOS for the first time or deploying it in a serious environment, I'm here to support your journey.</p>
+    <p>XPDevs is more than just software — it's a vision for a better, simpler, and more open tech future, crafted by one person with a commitment to excellence.</p>
+    <p>Thank you for being part of this journey. Let’s build something amazing together.</p>
+</div>
+</section>
+
 <!-- Contact Section -->
 <section id="contact" class="contact">
     <div class="container">
@@ -454,17 +564,61 @@
     </div>
 </section>
 
-<!-- Announcement -->
-<h1>Announcement from XPDevs</h1>
-<p>At XPDevs, we are excited to announce a major overhaul of DoorsOS.</p>
-<p>We have decided to completely refound the Doors Operating System. This means that the old batch file–based versions will no longer be developed, and future releases will focus solely on bootable ISO versions.</p>
-<p>Additionally, DoorsOS&reg; (powered by NexShell) will adopt a new versioning system starting from version 1. Technically, this new version 1 will be the fourth iteration of DoorsOS&reg; (powered by NexShell), marking a fresh start for the OS.</p>
-<p>We appreciate your continued support as we work towards making DoorsOS more powerful and accessible than ever.</p>
-
 <!-- Footer -->
 <footer>
     <div class="container">
-        <p>&copy; 2025 XPDevs. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="Doors.html">DoorsOS</a></li>
+                    <li><a href="ExamOS.html">ExamOS</a></li>
+                    <li><a href="kernel.html">Our Kernel</a></li>
+                    <li><a href="web.html">EXE to MSI Converter</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="signup.html">Sign Up</a></li>
+                    <li><a href="beta.html">Beta Program</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="rules.html">Rules & EULA</a></li>
+                    <li><a href="rss.xml">News (RSS)</a></li>
+                    <li><a href="download/OS-downloader.html">Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About XPDevs</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+            <div class="footer-legal">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span>Copyright &copy; 2025 XPDevs. All rights reserved.</span>
+                    <ul class="legal-links">
+                        <li><a href="rules.html">Privacy Policy</a></li>
+                        <li><a href="rules.html">Terms of Use</a></li>
+                        <li><a href="rules.html">Legal</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <span class="locale">United Kingdom</span>
+            </div>
+        </div>
     </div>
 </footer>
 
