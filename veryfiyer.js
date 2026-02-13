@@ -29,8 +29,7 @@ const Gatekeeper = {
             @keyframes gk-fadein { from { opacity: 0; } to { opacity: 1; } }
 
             #gk-overlay {
-                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(255, 255, 255, 0.95); 
+                width: 100%;
                 display: flex; align-items: center; justify-content: center;
                 z-index: 9999; font-family: Roboto, helvetica, arial, sans-serif;
                 animation: gk-fadein 0.3s ease-out;
@@ -105,6 +104,9 @@ const Gatekeeper = {
     },
 
     createOverlay: function(callback) {
+        const target = document.getElementById('gk-target') || document.body;
+        if (target.id === 'gk-target') target.innerHTML = '';
+
         const overlay = document.createElement('div');
         overlay.id = 'gk-overlay';
 
@@ -176,7 +178,7 @@ const Gatekeeper = {
         };
 
         overlay.appendChild(anchor);
-        document.body.appendChild(overlay);
+        target.appendChild(overlay);
     }
 };
 
