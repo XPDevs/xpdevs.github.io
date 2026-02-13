@@ -1,106 +1,182 @@
 /* XPDevs Gatekeeper System 
    Architect: James Turner
+   Updated: Identity Verification (reCAPTCHA Style)
 */
 
 const Gatekeeper = {
+    movements: 0,
+    verified: false,
+
     init: function(onSuccessCallback) {
+        this.movements = 0;
+        this.verified = false;
+        this.injectStyles();
         this.createOverlay(onSuccessCallback);
+        
+        // Track mouse movements for "bot detection"
+        document.addEventListener('mousemove', () => {
+            this.movements++;
+        });
+    },
+
+    injectStyles: function() {
+        if (document.getElementById('gk-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'gk-styles';
+        style.innerHTML = `
+            @keyframes rc-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            @keyframes draw-check { to { stroke-dashoffset: 0; } }
+            @keyframes gk-fadein { from { opacity: 0; } to { opacity: 1; } }
+
+            #gk-overlay {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(255, 255, 255, 0.95); 
+                display: flex; align-items: center; justify-content: center;
+                z-index: 9999; font-family: Roboto, helvetica, arial, sans-serif;
+                animation: gk-fadein 0.3s ease-out;
+            }
+
+            .rc-anchor {
+                background: #f9f9f9;
+                border: 1px solid #d3d3d3;
+                color: #000;
+                width: 304px;
+                height: 78px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 12px;
+                border-radius: 3px;
+                box-shadow: 0 0 4px 1px rgba(0,0,0,0.08);
+                cursor: pointer;
+                user-select: none;
+                position: relative;
+                transition: opacity 0.4s ease;
+            }
+            .rc-anchor:hover { border: 1px solid #b2b2b2; }
+
+            .rc-content { display: flex; align-items: center; gap: 12px; }
+
+            .rc-checkbox-container { width: 28px; height: 28px; position: relative; background: #fff; border-radius: 2px; }
+            .rc-checkbox {
+                width: 100%; height: 100%; border: 2px solid #c1c1c1; border-radius: 2px;
+                background: #fff; transition: border-color 0.2s;
+            }
+            .rc-anchor:hover .rc-checkbox { border-color: #b2b2b2; }
+
+            .rc-spinner {
+                display: none; width: 24px; height: 24px;
+                border: 3px solid #4d90fe; border-right-color: transparent;
+                border-radius: 50%; position: absolute; top: 2px; left: 2px;
+                animation: rc-spin 0.6s linear infinite;
+            }
+
+            .rc-checkmark {
+                display: none; position: absolute; top: -5px; left: -2px; width: 38px; height: 38px;
+            }
+            .checkmark-path {
+                stroke: #00964b; stroke-width: 4; stroke-dasharray: 48; stroke-dashoffset: 48;
+                fill: none; animation: draw-check 0.4s ease-in-out forwards;
+            }
+
+            .rc-label { font-size: 14px; color: #000; font-weight: 400; }
+
+            .rc-brand { display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.5; }
+            .rc-logo {
+                width: 32px; height: 32px;
+                background: url('https://www.gstatic.com/recaptcha/api2/logo_48.png');
+                background-size: contain; background-repeat: no-repeat;
+            }
+            .rc-policy { font-size: 10px; color: #555; margin-top: 4px; line-height: 1.2; text-align: center; }
+
+            /* State Classes */
+            .processing .rc-checkbox { display: none; }
+            .processing .rc-spinner { display: block; }
+            
+            .success .rc-checkbox { display: none; }
+            .success .rc-spinner { display: none; }
+            .success .rc-checkmark { display: block; }
+
+            .gk-trap-layer {
+                position: absolute; opacity: 0; top: 0; left: 0; height: 0; width: 0; z-index: -1; overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
     },
 
     createOverlay: function(callback) {
-        // Create Overlay Container
         const overlay = document.createElement('div');
         overlay.id = 'gk-overlay';
-        overlay.style = `
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 9999; font-family: sans-serif;
+
+        // Trap Field
+        const trapLayer = document.createElement('div');
+        trapLayer.className = 'gk-trap-layer';
+        trapLayer.innerHTML = `
+            <label for="secondary_email_check">Please leave this field empty</label>
+            <input type="text" id="secondary_email_check" name="secondary_email_check" tabindex="-1" autocomplete="off">
         `;
+        overlay.appendChild(trapLayer);
 
-        // Create the Rounded Card
-        const card = document.createElement('div');
-        card.style = `
-            background: #1e1e1e; padding: 30px; border-radius: 25px;
-            width: 320px; text-align: center; color: white;
-            border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        `;
-        card.innerHTML = `<h3 style="margin-bottom: 20px;">Security Verification</h3>`;
-
-        // THE HONEYPOT (Invisible to humans)
-        const honeyPot = document.createElement('input');
-        honeyPot.type = 'text';
-        honeyPot.id = 'gk-hp';
-        honeyPot.style = 'display:none !important;'; 
-        honeyPot.autocomplete = 'off';
-        card.appendChild(honeyPot);
-
-        // THE SLIDER TRACK
-        const track = document.createElement('div');
-        track.style = `
-            width: 100%; height: 50px; background: #333; 
-            border-radius: 50px; position: relative; overflow: hidden;
-        `;
-
-        // THE SLIDER HANDLE
-        const handle = document.createElement('div');
-        handle.style = `
-            width: 60px; height: 100%; background: #fff; 
-            border-radius: 50px; cursor: pointer; position: absolute;
-            left: 0; top: 0; display: flex; align-items: center; 
-            justify-content: center; color: #000; font-weight: bold;
-            transition: background 0.3s;
-        `;
-        handle.innerHTML = '→';
-
-        const trackText = document.createElement('span');
-        trackText.innerText = "Slide to Verify";
-        trackText.style = "position: absolute; width: 100%; left: 0; line-height: 50px; color: #888; pointer-events: none;";
+        // Anchor Box
+        const anchor = document.createElement('div');
+        anchor.className = 'rc-anchor';
+        anchor.id = 'gk-anchor';
         
-        track.appendChild(trackText);
-        track.appendChild(handle);
-        card.appendChild(track);
-        overlay.appendChild(card);
-        document.body.appendChild(overlay);
+        anchor.innerHTML = `
+            <div class="rc-content">
+                <div class="rc-checkbox-container">
+                    <div class="rc-checkbox"></div>
+                    <div class="rc-spinner"></div>
+                    <svg class="rc-checkmark" viewBox="0 0 52 52">
+                        <path class="checkmark-path" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+                <span class="rc-label">I'm not a robot</span>
+            </div>
+            <div class="rc-brand">
+                <div class="rc-logo"></div>
+                <div class="rc-policy">reCAPTCHA<br>Privacy - Terms</div>
+            </div>
+        `;
 
-        // SLIDER LOGIC
-        let isDragging = false;
-        const startDrag = () => { isDragging = true; };
-        const endDrag = () => { isDragging = false; };
-
-        const moveDrag = (e) => {
-            if (!isDragging) return;
-            let x = (e.touches ? e.touches[0].clientX : e.clientX) - track.getBoundingClientRect().left;
-            let maxX = track.clientWidth - handle.clientWidth;
+        // Click Handler
+        anchor.onclick = () => {
+            if (this.verified) return;
             
-            if (x < 0) x = 0;
-            if (x > maxX) {
-                x = maxX;
-                this.validate(callback);
-                isDragging = false;
+            const trapField = document.getElementById('secondary_email_check');
+            if (trapField.value !== "") {
+                window.location.reload();
+                return;
             }
-            handle.style.left = x + 'px';
+
+            this.verified = true;
+            anchor.classList.add('processing');
+
+            setTimeout(() => {
+                // Check movements (simple bot check)
+                if (this.movements > 1 && trapField.value === "") {
+                    anchor.classList.remove('processing');
+                    anchor.classList.add('success');
+                    anchor.style.cursor = 'default';
+                    
+                    // Success sequence
+                    setTimeout(() => {
+                        overlay.style.transition = 'opacity 0.4s ease';
+                        overlay.style.opacity = '0';
+                        setTimeout(() => {
+                            overlay.remove();
+                            if (callback) callback();
+                        }, 400);
+                    }, 1000);
+                } else {
+                    // Failed check
+                    window.location.reload();
+                }
+            }, 1500); // Fake processing delay
         };
 
-        handle.addEventListener('mousedown', startDrag);
-        handle.addEventListener('touchstart', startDrag);
-        window.addEventListener('mousemove', moveDrag);
-        window.addEventListener('touchmove', moveDrag);
-        window.addEventListener('mouseup', endDrag);
-        window.addEventListener('touchend', endDrag);
-    },
-
-    validate: function(callback) {
-        const hp = document.getElementById('gk-hp').value;
-        if (hp === "") {
-            // Human verified!
-            document.getElementById('gk-overlay').remove();
-            if (callback) callback();
-        } else {
-            // Bot detected
-            alert("System Error: Access Denied.");
-            location.reload(); 
-        }
+        overlay.appendChild(anchor);
+        document.body.appendChild(overlay);
     }
 };
 
