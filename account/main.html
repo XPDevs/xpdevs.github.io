@@ -320,6 +320,111 @@
             background: #e5e5e7;
             text-decoration: none;
         }
+        
+        /* Sidebar Layout */
+        .account-layout {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            align-items: flex-start;
+        }
+        .account-sidebar {
+            flex: 0 0 240px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow-soft);
+        }
+        .account-content {
+            flex: 1;
+            min-width: 0; /* Prevent flex overflow */
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        .sidebar-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-primary);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: #f5f5f7;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .content-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            font-size: 15px;
+            box-sizing: border-box;
+            font-family: inherit;
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .badge-blue { background: #e5f1ff; color: #0071e3; }
+        .badge-green { background: #e6f9e6; color: #1da82b; }
+        
+        @media (max-width: 768px) {
+            .account-layout { flex-direction: column; }
+            .account-sidebar { width: 100%; box-sizing: border-box; display: flex; overflow-x: auto; padding: 10px; gap: 10px; }
+            .sidebar-menu { display: flex; gap: 10px; width: max-content; }
+            .sidebar-menu li { margin: 0; }
+            .sidebar-menu a { white-space: nowrap; }
+        }
     </style>
 </head>
 <body>
@@ -358,52 +463,117 @@
         </div>
     </header>
 
-    <div class="container" style="padding: 100px 0; min-height: 60vh;">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h1>My Account</h1>
-            <div id="profile-info" style="margin-top: 30px;">
-                <!-- Populated by JS -->
-            </div>
-        </div>
+    <div class="container" style="padding: 60px 22px; min-height: 60vh;">
+        <h1>Account Settings</h1>
+        
+        <div class="account-layout">
+            <aside class="account-sidebar">
+                <ul class="sidebar-menu">
+                    <li><a onclick="switchTab('overview')" id="nav-overview" class="active">Overview</a></li>
+                    <li><a onclick="switchTab('profile')" id="nav-profile">Profile</a></li>
+                    <li><a onclick="switchTab('downloads')" id="nav-downloads">My Downloads</a></li>
+                    <li><a onclick="switchTab('beta')" id="nav-beta">Beta Program</a></li>
+                    <li><a onclick="switchTab('security')" id="nav-security">Security</a></li>
+                    <li><a onclick="signOut()" style="color: #ff3b30;">Sign Out</a></li>
+                </ul>
+            </aside>
+            
+            <main class="account-content">
+                <!-- Overview Tab -->
+                <div id="tab-overview" class="tab-content">
+                    <div class="content-card">
+                        <div class="profile-header">
+                            <img id="overview-avatar" src="" alt="Profile" class="profile-avatar">
+                            <div>
+                                <h2 id="overview-name" style="margin: 0; font-size: 24px;"></h2>
+                                <p id="overview-email" style="margin: 5px 0 0; color: var(--text-secondary);"></p>
+                                <span class="badge badge-blue">XPDevs Member</span>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="dashboard-grid">
-            <div class="dashboard-card">
-                <h3>Beta Program</h3>
-                <p>Manage your participation in the XPDevs Beta Program. Get early access to new features and provide feedback.</p>
-                <a href="../beta.html" class="card-link">Manage Beta Status &rarr;</a>
-            </div>
-            <div class="dashboard-card">
-                <h3>Support & Feedback</h3>
-                <p>Need help with DoorsOS or ExamOS? Submit a support ticket or give us feedback on our products.</p>
-                <a href="../feedback.html" class="card-link">Get Support &rarr;</a>
-            </div>
-            <div class="dashboard-card">
-                <h3>Security</h3>
-                <p>Update your password, manage two-factor authentication, and review recent login activity.</p>
-                <a href="#" onclick="alert('Security settings are currently managed by your organization administrator.'); return false;" class="card-link">Manage Security &rarr;</a>
-            </div>
-        </div>
-
-        <h2 class="section-title">Exclusive Downloads</h2>
-        <div class="download-list">
-            <div class="download-item">
-                <div class="download-info">
-                    <h4>DoorsOS Developer Build</h4>
-                    <span>Version 1.0 (Dev) &bull; ISO &bull; 1.2 GB</span>
+                    <div class="dashboard-grid" style="margin-top: 0;">
+                        <div class="dashboard-card">
+                            <h3>Beta Status</h3>
+                            <p>You are currently not enrolled in any active beta programs.</p>
+                            <a onclick="switchTab('beta')" class="card-link" style="cursor: pointer;">Join Beta &rarr;</a>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>Support</h3>
+                            <p>Have an issue? View your support tickets or submit a new one.</p>
+                            <a href="https://xpdevs.github.io/feedback" class="card-link">Get Help &rarr;</a>
+                        </div>
+                    </div>
                 </div>
-                <a href="../download/DoorsOS-dev.iso" class="download-btn">Download</a>
-            </div>
-            <div class="download-item">
-                <div class="download-info">
-                    <h4>NexShell Kernel Documentation</h4>
-                    <span>Reference Manual &bull; PDF &bull; 5 MB</span>
-                </div>
-                <a href="#" class="download-btn">Download</a>
-            </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 60px;">
-            <button onclick="signOut()" class="btn" style="background-color: #ff3b30;">Sign Out</button>
+                <!-- Profile Tab -->
+                <div id="tab-profile" class="tab-content" style="display: none;">
+                    <div class="content-card">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="profile-name-input" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="profile-email-input" class="form-control" disabled style="background: #f5f5f7; color: #86868b;">
+                        </div>
+                        <div class="form-group">
+                            <label>Organization / School</label>
+                            <input type="text" class="form-control" placeholder="Optional">
+                        </div>
+                        <button class="btn" onclick="alert('Profile updated successfully!')">Save Changes</button>
+                    </div>
+                </div>
+
+                <!-- Downloads Tab -->
+                <div id="tab-downloads" class="tab-content" style="display: none;">
+                    <div class="content-card">
+                        <h3>Exclusive Downloads</h3>
+                        <p style="margin-bottom: 20px;">Access developer builds and documentation available to your account.</p>
+                        <div class="download-list" style="box-shadow: none; border: 1px solid #eee;">
+                            <div class="download-item">
+                                <div class="download-info">
+                                    <h4>DoorsOS Developer Build</h4>
+                                    <span>Version 1.0 (Dev) &bull; ISO &bull; 1.2 GB</span>
+                                </div>
+                                <a href="https://xpdevs.github.io/download/DoorsOS-dev.iso" class="download-btn">Download</a>
+                            </div>
+                            <div class="download-item">
+                                <div class="download-info">
+                                    <h4>NexShell Kernel Documentation</h4>
+                                    <span>Reference Manual &bull; PDF &bull; 5 MB</span>
+                                </div>
+                                <a href="#" class="download-btn">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beta Tab -->
+                <div id="tab-beta" class="tab-content" style="display: none;">
+                    <div class="content-card">
+                        <h3>Beta Program Participation</h3>
+                        <p>Join the XPDevs Beta Program to test upcoming releases of DoorsOS and ExamOS.</p>
+                        <div style="background: #f5f5f7; padding: 20px; border-radius: 12px; margin-top: 20px;">
+                            <h4 style="margin-top: 0;">Current Status: Inactive</h4>
+                            <p style="font-size: 14px;">You are not currently enrolled in any beta tracks.</p>
+                            <a href="https://xpdevs.github.io/beta" class="btn" style="margin-top: 10px;">Apply for Beta Access</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Tab -->
+                <div id="tab-security" class="tab-content" style="display: none;">
+                    <div class="content-card">
+                        <h3>Security Settings</h3>
+                        <p>Manage your password and security preferences.</p>
+                        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+                        <p><strong>Password</strong><br>Last changed: Never</p>
+                        <button class="btn" style="background-color: #f5f5f7; color: #1d1d1f; border: 1px solid #d2d2d7;" onclick="alert('Please contact support to reset your password if you used Google Sign-In.')">Change Password</button>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
 
@@ -470,20 +640,36 @@
             window.location.href = 'https://xpdevs.github.io/account/signin';
         } else {
             const userInfo = JSON.parse(localStorage.getItem('xpdevs_user_info'));
-            const profileDiv = document.getElementById('profile-info');
             if (userInfo) {
-                profileDiv.innerHTML = `
-                    <img src="${userInfo.picture}" alt="Profile" style="border-radius: 50%; width: 100px; height: 100px; margin-bottom: 20px;">
-                    <h2>Welcome, ${userInfo.name}</h2>
-                    <p>${userInfo.email}</p>
-                `;
+                // Populate Overview
+                document.getElementById('overview-avatar').src = userInfo.picture || 'https://xpdevs.github.io/images/account/user-icon.png';
+                document.getElementById('overview-name').textContent = userInfo.name || 'User';
+                document.getElementById('overview-email').textContent = userInfo.email;
+
+                // Populate Profile Form
+                document.getElementById('profile-name-input').value = userInfo.name || '';
+                document.getElementById('profile-email-input').value = userInfo.email;
             }
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.style.display = 'none');
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabName).style.display = 'block';
+            
+            // Update sidebar active state
+            const links = document.querySelectorAll('.sidebar-menu a');
+            links.forEach(link => link.classList.remove('active'));
+            document.getElementById('nav-' + tabName).classList.add('active');
         }
 
         function signOut() {
             localStorage.removeItem('xpdevs_user_token');
             localStorage.removeItem('xpdevs_user_info');
-            window.location.href = 'https://xpdevs.github.io/account/signin';
+            window.location.href = 'https://xpdevs.github.io/';
         }
     </script>
 </body>
