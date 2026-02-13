@@ -295,6 +295,26 @@
             .feature-card-content { padding: 30px !important; }
             .locale { float: none; margin-top: 10px; }
         }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 15px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #d2d2d7;
+        }
+        th {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        td {
+            color: var(--text-secondary);
+        }
 
     </style>
 </head>
@@ -336,17 +356,239 @@
     </header>
 
 <div class="hero-center">
-    <h1>XPDevs AI</h1>
+    <h1>Genesis-AI</h1>
     <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
-        Intelligent solutions for a smarter future.
+        An experimental, web-based artificial intelligence platform created by XPDevs.
     </p>
+    <a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a>
 </div>
 
 <section>
     <div class="container">
-        <h2>Our Vision for AI</h2>
-        <p>At XPDevs, we are integrating advanced AI capabilities into our operating systems to enhance user experience and productivity.</p>
-        <!-- Add more content here as needed -->
+        <h2>Introduction</h2>
+        <p>Genesis-AI is an experimental, web-based artificial intelligence platform created by XPDevs. It represents a new approach to lightweight AI design — replacing traditional machine learning models with a custom binary format and human-readable JSON files that define the AI’s core behavior.</p>
+        <p>While its foundation is a lightweight, rule-based system, it also integrates dynamic features like on-demand image generation, text/image analysis, and real-time Wikipedia lookups, all running locally in your browser.</p>
+        <p>Unlike other systems that require users to install software, manage APIs, or process data on remote servers, Genesis-AI runs entirely within the web browser. Users simply visit the website and begin interacting instantly, with no downloads, no setup, and no external dependencies.</p>
+        <p>This project exists to explore how far simplicity can go — proving that AI-like systems can be built using structured logic, static content, and an accessible web interface.</p>
+
+        <h2>Project Goals</h2>
+        <p>The purpose of Genesis-AI is to:</p>
+        <ul>
+            <li>Demonstrate that AI behavior can be simulated using transparent, open JSON structures.</li>
+            <li>Provide a fast and secure user experience by eliminating the need for cloud-based computation for core chat.</li>
+            <li>Encourage experimentation and learning by keeping all logic readable and modifiable.</li>
+            <li>Promote digital safety and privacy by ensuring all processing occurs locally in the browser.</li>
+            <li>Inspire future developers to build simple, efficient tools that remain understandable to everyone.</li>
+        </ul>
+
+        <h2>Experimental Notice</h2>
+        <p>Genesis-AI is experimental. Because it uses a structured response system rather than a large language model for its core chat, it may not always:</p>
+        <ul>
+            <li>Understand complex or ambiguous sentences.</li>
+            <li>Generate contextually consistent replies.</li>
+            <li>Maintain deep conversational memory.</li>
+        </ul>
+        <p>It is designed primarily for demonstration, testing, and creative experimentation — not production-level use. Users are encouraged to explore its logic, test boundaries, and contribute ideas for improvement.</p>
+
+        <h2>How It Works</h2>
+        <p>Genesis-AI functions entirely on client-side code, meaning:</p>
+        <ul>
+            <li>When a user visits the website, the browser loads the HTML, CSS, and JavaScript files.</li>
+            <li>The AI “model” (called a modal) is primarily a custom, compressed binary file (.bin) for maximum performance. This binary is decoded in the browser.</li>
+            <li>The system also supports human-readable JSON files, which are ideal for creating and testing custom modals.</li>
+            <li>The modal contains predefined data, including:
+                <ul>
+                    <li>Keywords, questions, and responses.</li>
+                    <li>Contextual triggers.</li>
+                    <li>Personality or tone parameters.</li>
+                </ul>
+            </li>
+        </ul>
+        <p>The JavaScript engine decodes the modal, performs advanced pattern matching against user input, and can combine multiple relevant responses. It also recognizes special commands (prefixed with @) to trigger advanced modules like image generation or analysis. For general knowledge questions, it can query Wikipedia and summarize the results, providing a much broader knowledge base than the static modal alone. This method removes the need for neural processing for core chat while keeping every behavior transparent to the public.</p>
+
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Web-Based & Serverless:</strong> Runs entirely inside the browser — no installation, no servers for core chat.</li>
+            <li><strong>Instant Access:</strong> Visit the website and start chatting immediately with no setup.</li>
+            <li><strong>Binary & JSON Modals:</strong> AI behavior is defined in a high-performance binary format or editable JSON.</li>
+            <li><strong>On-Demand Image Generation:</strong> Create images from text prompts using the @img command.</li>
+            <li><strong>AI Content Detection:</strong> Analyze text (@txtauth) or uploaded images (@ImgAuth) to detect signatures of AI generation.</li>
+            <li><strong>Wikipedia Integration:</strong> Automatically fetches and summarizes Wikipedia articles to answer a wide range of questions.</li>
+            <li><strong>Advanced Chat Management:</strong> Create, rename, delete, and pin conversations.</li>
+            <li><strong>Shareable Conversations:</strong> Generate unique, shareable links for your chat sessions.</li>
+            <li><strong>Stop Generation:</strong> Instantly interrupt the AI's response generation with a click.</li>
+            <li><strong>Image Uploads:</strong> Upload images directly into the chat for analysis.</li>
+            <li><strong>Lightweight Performance:</strong> Loads in seconds and responds instantly.</li>
+            <li><strong>Tiered Safety System:</strong> Detects unsafe messages and applies a tiered ban system for repeat violations.</li>
+            <li><strong>Privacy by Design:</strong> No user messages are stored, logged, or transmitted.</li>
+            <li><strong>Customizable Themes:</strong> Switch between Light and Dark modes, or enable Auto-Theming based on the time of day.</li>
+            <li><strong>Text-to-Speech:</strong> Listen to the AI's responses with a single click.</li>
+            <li><strong>Built-in Calculator:</strong> Solves mathematical expressions directly in the chat.</li>
+            <li><strong>Cross-Platform & Mobile Friendly:</strong> Works on all modern desktop and mobile browsers.</li>
+            <li><strong>Robust Error Handling:</strong> Provides clear messages for load issues and safety violations.</li>
+        </ul>
+
+        <h2>Special Commands</h2>
+        <p>Genesis-AI supports special commands prefixed with @ to unlock advanced functionality.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Example</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@img</td>
+                    <td>@img a futuristic city at sunset</td>
+                    <td>Generates a 1024x1024 image based on the provided text prompt.</td>
+                </tr>
+                <tr>
+                    <td>@ImgAuth</td>
+                    <td>@ImgAuth (with an image uploaded)</td>
+                    <td>Analyzes the uploaded image to determine if it was generated by AI.</td>
+                </tr>
+                <tr>
+                    <td>@txtauth</td>
+                    <td>@txtauth This text seems very formal...</td>
+                    <td>Analyzes the provided text for patterns common in AI-generated content.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To use these, simply type the command into the chat box. For @ImgAuth, you must first upload an image using the attachment button.</p>
+
+        <h2>Appearance and Interface</h2>
+        <p>Genesis-AI provides a clean, minimal interface built for focus and accessibility. The chat layout adapts dynamically, offering:</p>
+        <ul>
+            <li><strong>Theme Toggle:</strong> A visible switch between Light Mode and Dark Mode for user comfort.</li>
+            <li><strong>Auto-Theming:</strong> An option to automatically sync the theme with the time of day.</li>
+            <li><strong>Text Emphasis:</strong> Responses are displayed in clearly readable text, maintaining accessibility standards.</li>
+            <li><strong>Adaptive Layout:</strong> Automatically adjusts spacing and scaling for clarity on desktop screens.</li>
+            <li><strong>Message Actions:</strong> Easily copy or listen to AI responses using integrated buttons.</li>
+        </ul>
+        <p>This design approach reflects XPDevs’ principle of simplicity — removing unnecessary clutter and keeping interactions smooth, readable, and human.</p>
+
+        <h2>Using Genesis-AI</h2>
+        <p>There is no setup required. To access Genesis-AI, simply open the official website:</p>
+        <p><a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a></p>
+        <p>Once the page loads:</p>
+        <ul>
+            <li>You’ll see the main Genesis-AI interface.</li>
+            <li>Type your message or question into the chat box.</li>
+            <li>Genesis-AI will respond using its logic.</li>
+        </ul>
+        <p>If a response cannot be generated, an appropriate error message will appear (see below). Because everything is handled in-browser, you can close or refresh the page at any time without data loss or security risk.</p>
+
+        <h2>Architecture Overview</h2>
+        <p>Genesis-AI is structured around a three-layer design:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Frontend (UI)</td>
+                    <td>HTML/CSS layout built for responsiveness and simplicity.</td>
+                </tr>
+                <tr>
+                    <td>Logic Engine</td>
+                    <td>JavaScript handler that decodes modals, manages state, and selects appropriate responses.</td>
+                </tr>
+                <tr>
+                    <td>Model (Modal)</td>
+                    <td>Compressed binary (.bin) or JSON files that define the AI's knowledge base and responses.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>This structure separates presentation, logic, and data, allowing developers to update each component independently without breaking the overall system.</p>
+
+        <h2>AI Model (Modal) Structure</h2>
+        <p>While the primary distribution format is a compressed binary (.bin) for performance, the source of this binary is a human-readable JSON file. This allows developers to easily define and extend the AI's behavior. A simplified example might look like:</p>
+        <pre style="background: #f5f5f7; padding: 15px; border-radius: 12px; overflow-x: auto;"><code>{
+  "ver": "Genesis-SPT-1.0",
+  "hello": "Hello there! How can I help you today?",
+  "who are you": "I'm Genesis-AI, an experimental web-based intelligence by XPDevs."
+}</code></pre>
+        <p>When a user sends input, the system checks for matching keys or patterns in the JSON and returns the corresponding value. If none are found, the fallback handler displays a general error message.</p>
+        <p>This makes Genesis-AI easily expandable — developers can create new modals (such as Genesis-SPT-2.0) by editing or extending these files.</p>
+
+        <h2>Error Messages</h2>
+        <p>Genesis-AI includes built-in feedback for specific conditions. These messages help users understand what has gone wrong and how to fix it.</p>
+        
+        <h3>1. AI Safety Violation</h3>
+        <p><strong>Message:</strong> “This message violates AI safety and use policies. Please try again.”</p>
+        <p><strong>Meaning:</strong> Triggered when the user’s input contains a banned or unsafe term. Genesis-AI automatically deletes the unsafe input and blocks the response to maintain a safe environment.</p>
+        <p><strong>Suggested Action:</strong> Avoid sending restricted or unsafe content. Continue chatting normally after the alert.</p>
+
+        <h3>2. Processing Failure</h3>
+        <p><strong>Message:</strong> “I’m not quite sure I follow. Could you give me a bit more detail?”</p>
+        <p><strong>Meaning:</strong> A general fallback message shown when Genesis-AI cannot find a valid response or understand the input. This is the most common error message during normal use.</p>
+        <p><strong>Suggested Action:</strong> Try rephrasing the question or simplifying your message.</p>
+
+        <h3>Error Summary Table</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Error Message</th>
+                    <th>Meaning</th>
+                    <th>Suggested Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>This message violates AI safety and use policies.</td>
+                    <td>Unsafe or banned input detected.</td>
+                    <td>Remove restricted words and retry.</td>
+                </tr>
+                <tr>
+                    <td>I’m not quite sure I follow. Could you give me a bit more detail?</td>
+                    <td>The AI couldn’t generate a response.</td>
+                    <td>Rephrase or simplify your message.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Data and Privacy</h2>
+        <p>Genesis-AI prioritizes privacy:</p>
+        <ul>
+            <li>No chat logs or user data are stored or shared.</li>
+            <li>Every interaction occurs locally within your browser session.</li>
+            <li>No external databases, trackers, or analytics are used.</li>
+        </ul>
+        <p>This ensures a completely private and ephemeral experience.</p>
+
+        <h2>Security and Safety</h2>
+        <p>XPDevs implements multiple layers of content safety:</p>
+        <ul>
+            <li>Restricted word detection to block unsafe input.</li>
+            <li>Automatic message deletion for policy violations.</li>
+            <li>No external scripts that can access chat data.</li>
+        </ul>
+        <p>These precautions help maintain a responsible, safe, and transparent AI environment.</p>
+
+        <h2>Design Philosophy</h2>
+        <p>Genesis-AI follows three principles that define XPDevs software design:</p>
+        <ul>
+            <li><strong>Clarity:</strong> Everything visible should be understandable at a glance.</li>
+            <li><strong>Control:</strong> Users should remain in full control of their data and interactions.</li>
+            <li><strong>Simplicity:</strong> Every component exists only if it improves the experience.</li>
+        </ul>
+        <p>These ideas shape both the interface and the technology behind Genesis-AI.</p>
+
+        <h2>Terms and Policies</h2>
+        <p>By using Genesis-AI, you agree to the following official documents:</p>
+        <ul>
+            <li><a href="https://xpdevs.github.io/rules">Terms of Service</a></li>
+            <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+        </ul>
+        <p>These policies explain how Genesis-AI operates, including acceptable use, safety rules, and privacy standards.</p>
+
+        <h2>Contact</h2>
+        <p>For information, suggestions, or inquiries: Visit the XPDevs official website for updates, contact options, and related projects.</p>
     </div>
 </section>
 
