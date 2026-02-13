@@ -205,6 +205,66 @@
         .legal-links a:hover { text-decoration: underline; }
         
         .locale { float: right; }
+
+        /* Sign-in Form */
+        .signin-form {
+            max-width: 380px;
+            margin: 0 auto 30px;
+        }
+        .signin-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            font-size: 17px;
+            box-sizing: border-box;
+            background-color: #fff;
+            font-family: inherit;
+        }
+        .signin-form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2);
+        }
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #0077ed;
+        }
+        .error-box {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: rgba(210, 4, 4, 0.08);
+            border: 1px solid rgba(210, 4, 4, 0.2);
+            text-align: left;
+        }
+        .error-box p { margin: 0 0 10px 0; color: var(--text-primary); }
+        .support-btn {
+            background: #e5e5e7;
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .support-btn:hover { background: #dcdce2; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -245,9 +305,18 @@
 
     <div class="container" style="padding: 100px 0; text-align: center; min-height: 60vh;">
         <h1>Sign In</h1>
-        <p style="margin-bottom: 40px;">Sign in with your Google account to access your XPDevs profile.</p>
+        <p style="margin-bottom: 40px;">Sign in with your XPDevs ID or continue with Google.</p>
         
-        <div style="display: flex; justify-content: center;">
+        <div class="signin-form">
+            <input type="text" id="xpdevs-id" placeholder="XPDevs ID">
+            <input type="password" id="xpdevs-password" placeholder="Password">
+            <button type="button" onclick="handleXpdevsSignIn()" class="btn">Sign In</button>
+            <div id="error-message" class="error-box"></div>
+        </div>
+
+        <p style="color: var(--text-secondary); margin: 30px 0;">or</p>
+
+        <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
             <div id="g_id_onload"
                  data-client_id="243159738325-feq9jnd1sulm3tdpq7nq1b2vtoltu6r3.apps.googleusercontent.com"
                  data-context="signin"
@@ -324,6 +393,16 @@
     </footer>
 
     <script>
+        function handleXpdevsSignIn() {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.innerHTML = `
+                <p style="font-weight: 600;">There was an error signing in.</p>
+                <p style="font-size: 15px; color: var(--text-secondary);">Please continue with Google. If there are any issues, please contact support.</p>
+                <a href="mailto:xpdevs.github.io.com@gmail.com" class="support-btn">Contact Support</a>
+            `;
+            errorDiv.style.display = 'block';
+        }
+
         function handleCredentialResponse(response) {
             // Decode JWT
             const responsePayload = decodeJwtResponse(response.credential);
@@ -333,7 +412,7 @@
             localStorage.setItem('xpdevs_user_info', JSON.stringify(responsePayload));
             
             // Redirect
-            window.location.href = 'https://xpdevs.github.io/account/main';
+            window.location.href = 'https://xpdevs.github.io/main';
         }
 
         function decodeJwtResponse(token) {
@@ -347,7 +426,7 @@
         
         // Check if already signed in
         if(localStorage.getItem('xpdevs_user_token')) {
-            window.location.href = 'https://xpdevs.github.io/account/main';
+            window.location.href = 'https://xpdevs.github.io/main';
         }
     </script>
 </body>
