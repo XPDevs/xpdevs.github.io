@@ -333,7 +333,7 @@
             localStorage.setItem('xpdevs_user_info', JSON.stringify(responsePayload));
             
             // Redirect
-            window.location.href = 'main.html';
+            window.location.href = 'https://xpdevs.github.io/account/main';
         }
 
         function decodeJwtResponse(token) {
@@ -347,7 +347,7 @@
         
         // Check if already signed in
         if(localStorage.getItem('xpdevs_user_token')) {
-            window.location.href = 'main.html';
+            window.location.href = 'https://xpdevs.github.io/account/main';
         }
     </script>
 </body>
