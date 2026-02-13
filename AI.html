@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs - AI</title>
+    <style>
+        /* Premium Minimalism - Apple Inspired Design */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.005em;
+            margin-top: 0;
+        }
+        h1 { font-size: 48px; line-height: 1.08349; }
+        h2 { font-size: 40px; line-height: 1.1; }
+        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 24px;
+        }
+        nav ul li a {
+            color: var(--text-primary);
+            font-size: 12px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.95);
+            min-width: 180px;
+            box-shadow: var(--shadow-modal);
+            border-radius: 12px;
+            z-index: 1000;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            text-align: left;
+            opacity: 1;
+        }
+        .dropdown-content a:hover {
+            background-color: #f5f5f7;
+            color: var(--accent-color);
+        }
+
+        /* Sections */
+        section { padding: 100px 0; }
+        
+        .hero-center {
+            text-align: center;
+            padding: 120px 0 60px;
+        }
+        .hero-center h1 { font-size: 64px; margin-bottom: 20px; }
+        
+        /* Cards & Features */
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 980px; /* Pill shape */
+            font-size: 15px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #0077ed;
+            transform: scale(1.02);
+            text-decoration: none;
+        }
+
+        /* Sneak Peek Grid */
+        .sneak-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .sneak-grid div {
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        .sneak-grid div:hover {
+            transform: scale(1.02);
+        }
+        .sneak-grid img {
+            transition: transform 0.3s ease;
+            display: block;
+            width: 280px;
+            height: 160px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        .sneak-grid figcaption {
+            padding: 15px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            background: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f5f5f7;
+            color: #424245;
+            padding: 40px 0;
+            font-size: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0 0 9px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 9px;
+        }
+
+        .footer-col ul li a {
+            color: #424245;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            text-decoration: underline;
+            color: #1d1d1f;
+        }
+
+        .footer-bottom {
+            margin-top: 34px;
+            padding-top: 20px;
+            border-top: 1px solid #d2d2d7;
+            color: #86868b;
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .legal-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .legal-links li { margin-right: 10px; position: relative; }
+        .legal-links li:not(:last-child)::after {
+            content: "|";
+            margin-left: 10px;
+            color: #d2d2d7;
+        }
+        .legal-links a { color: #424245; text-decoration: none; }
+        .legal-links a:hover { text-decoration: underline; }
+        
+        .locale { float: right; }
+        
+        @media (max-width: 768px) {
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            /* Mobile Header & Layout */
+            header { height: auto; padding: 10px 0; position: relative; }
+            header .container { flex-direction: column; gap: 15px; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            nav ul { width: max-content; padding: 0 10px; }
+            
+            /* Typography & Spacing */
+            .hero-center h1 { font-size: 42px; }
+            .hero-center { padding: 60px 0 40px; }
+            
+            /* Feature Card Mobile Overrides */
+            .feature-card-image { height: 250px !important; }
+            .feature-card-content { padding: 30px !important; }
+            .locale { float: none; margin-top: 10px; }
+        }
+
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+        <div class="container">
+            <a href="https://xpdevs.github.io/" style="text-decoration: none;">
+                <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
+            </a>
+            <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                <li><a href="https://xpdevs.github.io/#sneak-peek">Sneak Peek</a></li>
+                <li class="dropdown">
+                    <a href="#" style="cursor: default;">Download ▾</a>
+                    <div class="dropdown-content">
+                        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+                        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+                        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+                    </div>
+                </li>
+                <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+                <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
+                <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
+                <li><a href="https://xpdevs.github.io/feedback">Give your feedback</a></li>
+            </ul>
+        </nav>
+        
+        <a href="account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
+            <img src="images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+        </a>
+        </div>
+    </header>
+
+<div class="hero-center">
+    <h1>XPDevs AI</h1>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        Intelligent solutions for a smarter future.
+    </p>
+</div>
+
+<section>
+    <div class="container">
+        <h2>Our Vision for AI</h2>
+        <p>At XPDevs, we are integrating advanced AI capabilities into our operating systems to enhance user experience and productivity.</p>
+        <!-- Add more content here as needed -->
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                    <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+                    <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+                    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+                    <li><a href="https://xpdevs.github.io/OS-downloader">All Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About XPDevs</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+            <div class="footer-legal">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                    <ul class="legal-links">
+                        <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+                        <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+                        <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <span class="locale">United Kingdom</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
