@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPDevs - Sign In</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="../veryfiyer.js"></script>
     <style>
         /* Premium Minimalism - Apple Inspired Design */
         :root {
@@ -326,15 +327,17 @@
 
     <script>
         function handleCredentialResponse(response) {
-            // Decode JWT
-            const responsePayload = decodeJwtResponse(response.credential);
-            
-            // Store info
-            localStorage.setItem('xpdevs_user_token', response.credential);
-            localStorage.setItem('xpdevs_user_info', JSON.stringify(responsePayload));
-            
-            // Redirect
-            window.location.href = 'https://xpdevs.github.io/account/main';
+            verifyer(function() {
+                // Decode JWT
+                const responsePayload = decodeJwtResponse(response.credential);
+                
+                // Store info
+                localStorage.setItem('xpdevs_user_token', response.credential);
+                localStorage.setItem('xpdevs_user_info', JSON.stringify(responsePayload));
+                
+                // Redirect
+                window.location.href = 'https://xpdevs.github.io/account/main';
+            });
         }
 
         function decodeJwtResponse(token) {
