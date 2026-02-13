@@ -352,8 +352,8 @@
                 </ul>
             </nav>
             
-            <a href="main.html" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
-                <img src="../images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+            <a href="https://xpdevs.github.io/account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
+                <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
             </a>
         </div>
     </header>
@@ -422,7 +422,7 @@
                 <div class="footer-col">
                     <h3>Account</h3>
                     <ul>
-                        <li><a href="https://xpdevs.github.io/signup">Sign Up</a></li>
+                        <li><a href="https://xpdevs.github.io/account/signin">Sign In</a></li>
                         <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
                         <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
                     </ul>
@@ -467,7 +467,7 @@
         // Check auth
         const token = localStorage.getItem('xpdevs_user_token');
         if (!token) {
-            window.location.href = 'signin.html';
+            window.location.href = 'https://xpdevs.github.io/account/signin';
         } else {
             const userInfo = JSON.parse(localStorage.getItem('xpdevs_user_info'));
             const profileDiv = document.getElementById('profile-info');
@@ -483,7 +483,7 @@
         function signOut() {
             localStorage.removeItem('xpdevs_user_token');
             localStorage.removeItem('xpdevs_user_info');
-            window.location.href = '../index.html';
+            window.location.href = 'https://xpdevs.github.io/account/signin';
         }
     </script>
 </body>
