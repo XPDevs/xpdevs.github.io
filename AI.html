@@ -325,7 +325,7 @@
             overflow: hidden;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-modal);
-            background: #000;
+            background: var(--card-bg);
         }
         .carousel-track {
             display: flex;
@@ -341,17 +341,10 @@
             display: block;
         }
         .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: #fff;
+            padding: 15px 20px;
+            color: var(--text-secondary);
             text-align: center;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 500;
             box-sizing: border-box;
         }
@@ -379,6 +372,19 @@
         }
         .carousel-btn.prev { left: 20px; }
         .carousel-btn.next { right: 20px; }
+
+        /* Toggle Buttons */
+        .toggle-btn {
+            min-width: 160px;
+            margin-top: 0;
+        }
+        .toggle-btn.inactive {
+            background-color: #e5e5e5;
+            color: var(--text-primary);
+        }
+        .toggle-btn.inactive:hover {
+            background-color: #d1d1d6;
+        }
     </style>
 </head>
 <body>
@@ -419,11 +425,16 @@
     </header>
 
 <div class="hero-center">
-    <h1>Genesis-AI</h1>
-    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+    <h1 id="hero-title">Genesis-AI</h1>
+    <p id="hero-desc" style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
         An experimental, web-based artificial intelligence platform created by XPDevs.
     </p>
     
+    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
+        <button class="btn toggle-btn" id="btn-genesis" onclick="setCarousel('genesis')">Genesis-AI</button>
+        <button class="btn toggle-btn inactive" id="btn-studio" onclick="setCarousel('studio')">Genesis AI Studio</button>
+    </div>
+
     <div class="container">
         <div class="carousel-container">
             <div class="carousel-track" id="track"></div>
@@ -434,7 +445,7 @@
 </div>
 
 <section>
-    <div class="container">
+    <div class="container" id="genesis-content">
         <h2>Intelligence. Private. Instant.</h2>
         <p>Genesis-AI reimagines artificial intelligence as a purely local experience. It runs entirely in your browser, leveraging a custom logic engine to deliver immediate responses, creative tools, and analysis—without your data ever leaving your device.</p>
 
@@ -487,6 +498,61 @@
                 To use Genesis-AI, you must sign in. You can choose to enter a guest name or login with your Google account. By accessing the platform, you agree to our <a href="https://xpdevs.github.io/Genesis-AI/legal/terms-of-service">Terms of Service</a> and <a href="https://xpdevs.github.io/Genesis-AI/legal/privacy-policy">Privacy Policy</a>.
             </p>
             <a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a>
+        </div>
+    </div>
+    <div class="container" id="studio-content" style="display: none;">
+        <h2>Studio. Unleashed.</h2>
+        <p>Genesis AI Studio provides a dedicated environment for content creation and analysis. Optimized for larger screens and deeper workflows, running entirely locally.</p>
+
+        <div class="feature-card" style="margin-top: 40px; padding: 40px;">
+            <h3>Workspace for Creators.</h3>
+            <p style="margin-top: 15px; color: var(--text-secondary);">Designed for power users. Studio offers expanded controls for image generation, text analysis, and system management without leaving your browser.</p>
+        </div>
+
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+             <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
+                <h3>Advanced Controls.</h3>
+                <p style="margin-top: 15px; color: var(--text-secondary);">Fine-tune your generation parameters. Adjust steps, guidance scales, and seed values for precise results.</p>
+             </div>
+             <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
+                <h3>Asset Management.</h3>
+                <p style="margin-top: 15px; color: var(--text-secondary);">Organize your generated content. View, compare, and export your creations with ease.</p>
+             </div>
+        </div>
+
+        <div style="margin-top: 60px;">
+            <h2>Professional Grade.</h2>
+            <p>Studio builds upon the core Genesis-AI engine but unlocks additional interfaces for granular control over the AI's behavior and output.</p>
+        </div>
+
+        <div style="margin-top: 80px;">
+            <h2 style="text-align: center; margin-bottom: 60px;">Expanded Capabilities.</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Project Management</h3>
+                    <p>Keep your chats and generations organized in dedicated project spaces.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Batch Processing</h3>
+                    <p>Generate multiple variations of images or text analyses in a single queue.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Deep Inspection</h3>
+                    <p>Analyze token probabilities and generation metadata for deeper insights.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Export Tools</h3>
+                    <p>Export your data in JSON, PNG, or raw text formats for external use.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-card" style="margin-top: 80px; padding: 40px; text-align: center;">
+            <h3>Access Required</h3>
+            <p style="margin-top: 15px; color: var(--text-secondary); max-width: 700px; margin-left: auto; margin-right: auto;">
+                To use Genesis AI Studio, you must sign in. By accessing the platform, you agree to our <a href="https://xpdevs.github.io/Genesis-AI/legal/terms-of-service">Terms of Service</a> and <a href="https://xpdevs.github.io/Genesis-AI/legal/privacy-policy">Privacy Policy</a>.
+            </p>
+            <a href="https://xpdevs.github.io/Genesis-AI/Studio" class="btn">Launch Studio</a>
         </div>
     </div>
 </section>
@@ -550,20 +616,51 @@
 
 <script>
     const track = document.getElementById('track');
-    const slidesData = [
-        { src: 'images/Genesis-AI/homepage.png', text: 'Start your journey with a clean, focused interface.' },
-        { src: 'images/Genesis-AI/settings.png', text: 'Tailor Genesis-AI to your preferences.' },
-        { src: 'images/Genesis-AI/account.png', text: 'Securely manage your personal profile.' },
-        { src: 'images/Genesis-AI/message.png', text: 'Experience private, intelligent conversations.' }
+    const btnGenesis = document.getElementById('btn-genesis');
+    const btnStudio = document.getElementById('btn-studio');
+    const heroTitle = document.getElementById('hero-title');
+    const heroDesc = document.getElementById('hero-desc');
+    const genesisContent = document.getElementById('genesis-content');
+    const studioContent = document.getElementById('studio-content');
+
+    const genesisFiles = [
+        { file: 'homepage.png', text: 'Start your journey with a clean, focused interface.' },
+        { file: 'settings.png', text: 'Tailor Genesis-AI to your preferences.' },
+        { file: 'account.png', text: 'Securely manage your personal profile.' },
+        { file: 'message.png', text: 'Experience private, intelligent conversations.' }
     ];
 
-    // Clone first and last for infinite loop
-    const allSlides = [slidesData[slidesData.length - 1], ...slidesData, slidesData[0]];
+    const studioFiles = [
+        { file: 'API.png', text: 'Create and manage your API keys.' },
+        { file: 'homepage.png', text: 'Your main dashboard will all your information at a quick glance.' },
+        { file: 'playground.png', text: 'Test prompts and parameters in real-time.' },
+        { file: 'status.png', text: 'Check if any of the Genesis AI websites are down.' },
+        { file: 'usage.png', text: 'Track resource consumption and quotas.' },
+        { file: 'batch.png', text: 'Process multiple generation tasks efficiently.' },
+        { file: 'models.png', text: 'Select and configure specialized AI models.' },
+        { file: 'settings.png', text: 'Customize your Studio environment.' },
+        { file: 'tuned.png', text: 'Fine-tune models for specific use cases.' }
+    ];
+
+    let currentFiles = genesisFiles;
+    let currentPath = 'https://xpdevs.github.io/images/Genesis-AI/';
+    let allSlides = [];
     
     let currentIndex = 1;
     let isTransitioning = false;
     const intervalTime = 5000;
     let slideInterval;
+
+    function initSlides() {
+        const slidesData = currentFiles.map(item => ({
+            src: currentPath + item.file,
+            text: item.text
+        }));
+        // Clone first and last for infinite loop
+        allSlides = [slidesData[slidesData.length - 1], ...slidesData, slidesData[0]];
+        currentIndex = 1;
+        renderSlides();
+    }
 
     function renderSlides() {
         track.innerHTML = allSlides.map(slide => `
@@ -611,7 +708,33 @@
         startTimer();
     }
 
-    renderSlides();
+    function setCarousel(type) {
+        if (type === 'genesis') {
+            currentPath = 'https://xpdevs.github.io/images/Genesis-AI/';
+            currentFiles = genesisFiles;
+            btnGenesis.classList.remove('inactive');
+            btnStudio.classList.add('inactive');
+            
+            heroTitle.textContent = 'Genesis-AI';
+            heroDesc.textContent = 'An experimental, web-based artificial intelligence platform created by XPDevs.';
+            genesisContent.style.display = 'block';
+            studioContent.style.display = 'none';
+        } else {
+            currentPath = 'https://xpdevs.github.io/images/Genesis-AI/Studio/';
+            currentFiles = studioFiles;
+            btnStudio.classList.remove('inactive');
+            btnGenesis.classList.add('inactive');
+
+            heroTitle.textContent = 'Genesis AI Studio';
+            heroDesc.textContent = 'A professional suite of generative tools running locally in your browser.';
+            genesisContent.style.display = 'none';
+            studioContent.style.display = 'block';
+        }
+        initSlides();
+        resetTimer();
+    }
+
+    initSlides();
     startTimer();
 </script>
 </body>
