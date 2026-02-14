@@ -316,6 +316,69 @@
             color: var(--text-secondary);
         }
 
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 60px auto 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-modal);
+            background: #000;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            box-sizing: border-box;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
     </style>
 </head>
 <body>
@@ -360,238 +423,71 @@
     <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
         An experimental, web-based artificial intelligence platform created by XPDevs.
     </p>
-    <a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a>
-    <div class="container" style="margin-top: 60px;">
-        <img src="images/Genesis-AI/homepage.png" alt="Genesis-AI Homepage" style="width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow-modal);">
+    
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel-track" id="track"></div>
+            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+        </div>
     </div>
 </div>
 
 <section>
     <div class="container">
-        <h2>Introduction</h2>
-        <p>Genesis-AI is an experimental, web-based artificial intelligence platform created by XPDevs. It represents a new approach to lightweight AI design — replacing traditional machine learning models with a custom binary format and human-readable JSON files that define the AI’s core behavior.</p>
-        <p>While its foundation is a lightweight, rule-based system, it also integrates dynamic features like on-demand image generation, text/image analysis, and real-time Wikipedia lookups, all running locally in your browser.</p>
-        <p>Unlike other systems that require users to install software, manage APIs, or process data on remote servers, Genesis-AI runs entirely within the web browser. Users simply visit the website and begin interacting instantly, with no downloads, no setup, and no external dependencies.</p>
-        <p>This project exists to explore how far simplicity can go — proving that AI-like systems can be built using structured logic, static content, and an accessible web interface.</p>
+        <h2>Intelligence. Private. Instant.</h2>
+        <p>Genesis-AI reimagines artificial intelligence as a purely local experience. It runs entirely in your browser, leveraging a custom logic engine to deliver immediate responses, creative tools, and analysis—without your data ever leaving your device.</p>
 
-        <h2>Project Goals</h2>
-        <p>The purpose of Genesis-AI is to:</p>
-        <ul>
-            <li>Demonstrate that AI behavior can be simulated using transparent, open JSON structures.</li>
-            <li>Provide a fast and secure user experience by eliminating the need for cloud-based computation for core chat.</li>
-            <li>Encourage experimentation and learning by keeping all logic readable and modifiable.</li>
-            <li>Promote digital safety and privacy by ensuring all processing occurs locally in the browser.</li>
-            <li>Inspire future developers to build simple, efficient tools that remain understandable to everyone.</li>
-        </ul>
+        <div class="feature-card" style="margin-top: 40px; padding: 40px;">
+            <h3>Privacy first. And second.</h3>
+            <p style="margin-top: 15px; color: var(--text-secondary);">Traditional AI relies on the cloud. Genesis-AI relies on your browser. With no backend servers processing your chats, your conversations remain 100% private. It’s all JavaScript and local binaries, running right where you are.</p>
+        </div>
 
-        <h2>Experimental Notice</h2>
-        <p>Genesis-AI is experimental. Because it uses a structured response system rather than a large language model for its core chat, it may not always:</p>
-        <ul>
-            <li>Understand complex or ambiguous sentences.</li>
-            <li>Generate contextually consistent replies.</li>
-            <li>Maintain deep conversational memory.</li>
-        </ul>
-        <p>It is designed primarily for demonstration, testing, and creative experimentation — not production-level use. Users are encouraged to explore its logic, test boundaries, and contribute ideas for improvement.</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+             <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
+                <h3>Ready when you are.</h3>
+                <p style="margin-top: 15px; color: var(--text-secondary);">No sign-ups. No downloads. No installation. Just visit the site and start exploring. It’s the fastest way to interact with experimental AI.</p>
+             </div>
+             <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
+                <h3>Create. Analyze. Explore.</h3>
+                <p style="margin-top: 15px; color: var(--text-secondary);">Generate images from text prompts instantly. Analyze content for AI signatures. Fetch real-time summaries. Powerful utilities in a lightweight interface.</p>
+             </div>
+        </div>
 
-        <h2>How It Works</h2>
-        <p>Genesis-AI functions entirely on client-side code, meaning:</p>
-        <ul>
-            <li>When a user visits the website, the browser loads the HTML, CSS, and JavaScript files.</li>
-            <li>The AI “model” (called a modal) is primarily a custom, compressed binary file (.bin) for maximum performance. This binary is decoded in the browser.</li>
-            <li>The system also supports human-readable JSON files, which are ideal for creating and testing custom modals.</li>
-            <li>The modal contains predefined data, including:
-                <ul>
-                    <li>Keywords, questions, and responses.</li>
-                    <li>Contextual triggers.</li>
-                    <li>Personality or tone parameters.</li>
-                </ul>
-            </li>
-        </ul>
-        <p>The JavaScript engine decodes the modal, performs advanced pattern matching against user input, and can combine multiple relevant responses. It also recognizes special commands (prefixed with @) to trigger advanced modules like image generation or analysis. For general knowledge questions, it can query Wikipedia and summarize the results, providing a much broader knowledge base than the static modal alone. This method removes the need for neural processing for core chat while keeping every behavior transparent to the public.</p>
+        <div style="margin-top: 60px;">
+            <h2>Transparent by design.</h2>
+            <p>Built as a proof of concept, Genesis-AI moves away from black-box neural networks. It uses structured response systems and pattern matching, offering a unique, transparent alternative for experimentation. While it may not maintain deep conversational context, it offers complete privacy and utility.</p>
+        </div>
 
-        <h2>Features</h2>
-        <ul>
-            <li><strong>Web-Based & Serverless:</strong> Runs entirely inside the browser — no installation, no servers for core chat.</li>
-            <li><strong>Instant Access:</strong> Visit the website and start chatting immediately with no setup.</li>
-            <li><strong>Binary & JSON Modals:</strong> AI behavior is defined in a high-performance binary format or editable JSON.</li>
-            <li><strong>On-Demand Image Generation:</strong> Create images from text prompts using the @img command.</li>
-            <li><strong>AI Content Detection:</strong> Analyze text (@txtauth) or uploaded images (@ImgAuth) to detect signatures of AI generation.</li>
-            <li><strong>Wikipedia Integration:</strong> Automatically fetches and summarizes Wikipedia articles to answer a wide range of questions.</li>
-            <li><strong>Advanced Chat Management:</strong> Create, rename, delete, and pin conversations.</li>
-            <li><strong>Shareable Conversations:</strong> Generate unique, shareable links for your chat sessions.</li>
-            <li><strong>Stop Generation:</strong> Instantly interrupt the AI's response generation with a click.</li>
-            <li><strong>Image Uploads:</strong> Upload images directly into the chat for analysis.</li>
-            <li><strong>Lightweight Performance:</strong> Loads in seconds and responds instantly.</li>
-            <li><strong>Tiered Safety System:</strong> Detects unsafe messages and applies a tiered ban system for repeat violations.</li>
-            <li><strong>Privacy by Design:</strong> No user messages are stored, logged, or transmitted.</li>
-            <li><strong>Customizable Themes:</strong> Switch between Light and Dark modes, or enable Auto-Theming based on the time of day.</li>
-            <li><strong>Text-to-Speech:</strong> Listen to the AI's responses with a single click.</li>
-            <li><strong>Built-in Calculator:</strong> Solves mathematical expressions directly in the chat.</li>
-            <li><strong>Cross-Platform & Mobile Friendly:</strong> Works on all modern desktop and mobile browsers.</li>
-            <li><strong>Robust Error Handling:</strong> Provides clear messages for load issues and safety violations.</li>
-        </ul>
+        <div style="margin-top: 80px;">
+            <h2 style="text-align: center; margin-bottom: 60px;">Power in your browser.</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Natural Language</h3>
+                    <p>Engage in fluid conversations. Genesis-AI processes language locally, understanding context and nuance without sending keystrokes to a server.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Visual Generation</h3>
+                    <p>Turn text into art. The integrated diffusion pipeline generates high-quality images directly on your device, giving you creative freedom instantly.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Content Analysis</h3>
+                    <p>Detect AI-generated content. Upload images or paste text to analyze patterns and determine their origin with our detection algorithms.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Knowledge Retrieval</h3>
+                    <p>Stay informed. When local logic isn't enough, Genesis-AI securely fetches summaries from Wikipedia to answer general knowledge questions.</p>
+                </div>
+            </div>
+        </div>
 
-        <h2>Special Commands</h2>
-        <p>Genesis-AI supports special commands prefixed with @ to unlock advanced functionality.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Command</th>
-                    <th>Example</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@img</td>
-                    <td>@img a futuristic city at sunset</td>
-                    <td>Generates a 1024x1024 image based on the provided text prompt.</td>
-                </tr>
-                <tr>
-                    <td>@ImgAuth</td>
-                    <td>@ImgAuth (with an image uploaded)</td>
-                    <td>Analyzes the uploaded image to determine if it was generated by AI.</td>
-                </tr>
-                <tr>
-                    <td>@txtauth</td>
-                    <td>@txtauth This text seems very formal...</td>
-                    <td>Analyzes the provided text for patterns common in AI-generated content.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>To use these, simply type the command into the chat box. For @ImgAuth, you must first upload an image using the attachment button.</p>
-
-        <h2>Appearance and Interface</h2>
-        <p>Genesis-AI provides a clean, minimal interface built for focus and accessibility. The chat layout adapts dynamically, offering:</p>
-        <ul>
-            <li><strong>Theme Toggle:</strong> A visible switch between Light Mode and Dark Mode for user comfort.</li>
-            <li><strong>Auto-Theming:</strong> An option to automatically sync the theme with the time of day.</li>
-            <li><strong>Text Emphasis:</strong> Responses are displayed in clearly readable text, maintaining accessibility standards.</li>
-            <li><strong>Adaptive Layout:</strong> Automatically adjusts spacing and scaling for clarity on desktop screens.</li>
-            <li><strong>Message Actions:</strong> Easily copy or listen to AI responses using integrated buttons.</li>
-        </ul>
-        <p>This design approach reflects XPDevs’ principle of simplicity — removing unnecessary clutter and keeping interactions smooth, readable, and human.</p>
-
-        <h2>Using Genesis-AI</h2>
-        <p>There is no setup required. To access Genesis-AI, simply open the official website:</p>
-        <p><a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a></p>
-        <p>Once the page loads:</p>
-        <ul>
-            <li>You’ll see the main Genesis-AI interface.</li>
-            <li>Type your message or question into the chat box.</li>
-            <li>Genesis-AI will respond using its logic.</li>
-        </ul>
-        <p>If a response cannot be generated, an appropriate error message will appear (see below). Because everything is handled in-browser, you can close or refresh the page at any time without data loss or security risk.</p>
-
-        <h2>Architecture Overview</h2>
-        <p>Genesis-AI is structured around a three-layer design:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Layer</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Frontend (UI)</td>
-                    <td>HTML/CSS layout built for responsiveness and simplicity.</td>
-                </tr>
-                <tr>
-                    <td>Logic Engine</td>
-                    <td>JavaScript handler that decodes modals, manages state, and selects appropriate responses.</td>
-                </tr>
-                <tr>
-                    <td>Model (Modal)</td>
-                    <td>Compressed binary (.bin) or JSON files that define the AI's knowledge base and responses.</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>This structure separates presentation, logic, and data, allowing developers to update each component independently without breaking the overall system.</p>
-
-        <h2>AI Model (Modal) Structure</h2>
-        <p>While the primary distribution format is a compressed binary (.bin) for performance, the source of this binary is a human-readable JSON file. This allows developers to easily define and extend the AI's behavior. A simplified example might look like:</p>
-        <pre style="background: #f5f5f7; padding: 15px; border-radius: 12px; overflow-x: auto;"><code>{
-  "ver": "Genesis-SPT-1.0",
-  "hello": "Hello there! How can I help you today?",
-  "who are you": "I'm Genesis-AI, an experimental web-based intelligence by XPDevs."
-}</code></pre>
-        <p>When a user sends input, the system checks for matching keys or patterns in the JSON and returns the corresponding value. If none are found, the fallback handler displays a general error message.</p>
-        <p>This makes Genesis-AI easily expandable — developers can create new modals (such as Genesis-SPT-2.0) by editing or extending these files.</p>
-
-        <h2>Error Messages</h2>
-        <p>Genesis-AI includes built-in feedback for specific conditions. These messages help users understand what has gone wrong and how to fix it.</p>
-        
-        <h3>1. AI Safety Violation</h3>
-        <p><strong>Message:</strong> “This message violates AI safety and use policies. Please try again.”</p>
-        <p><strong>Meaning:</strong> Triggered when the user’s input contains a banned or unsafe term. Genesis-AI automatically deletes the unsafe input and blocks the response to maintain a safe environment.</p>
-        <p><strong>Suggested Action:</strong> Avoid sending restricted or unsafe content. Continue chatting normally after the alert.</p>
-
-        <h3>2. Processing Failure</h3>
-        <p><strong>Message:</strong> “I’m not quite sure I follow. Could you give me a bit more detail?”</p>
-        <p><strong>Meaning:</strong> A general fallback message shown when Genesis-AI cannot find a valid response or understand the input. This is the most common error message during normal use.</p>
-        <p><strong>Suggested Action:</strong> Try rephrasing the question or simplifying your message.</p>
-
-        <h3>Error Summary Table</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Error Message</th>
-                    <th>Meaning</th>
-                    <th>Suggested Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>This message violates AI safety and use policies.</td>
-                    <td>Unsafe or banned input detected.</td>
-                    <td>Remove restricted words and retry.</td>
-                </tr>
-                <tr>
-                    <td>I’m not quite sure I follow. Could you give me a bit more detail?</td>
-                    <td>The AI couldn’t generate a response.</td>
-                    <td>Rephrase or simplify your message.</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>Data and Privacy</h2>
-        <p>Genesis-AI prioritizes privacy:</p>
-        <ul>
-            <li>No chat logs or user data are stored or shared.</li>
-            <li>Every interaction occurs locally within your browser session.</li>
-            <li>No external databases, trackers, or analytics are used.</li>
-        </ul>
-        <p>This ensures a completely private and ephemeral experience.</p>
-
-        <h2>Security and Safety</h2>
-        <p>XPDevs implements multiple layers of content safety:</p>
-        <ul>
-            <li>Restricted word detection to block unsafe input.</li>
-            <li>Automatic message deletion for policy violations.</li>
-            <li>No external scripts that can access chat data.</li>
-        </ul>
-        <p>These precautions help maintain a responsible, safe, and transparent AI environment.</p>
-
-        <h2>Design Philosophy</h2>
-        <p>Genesis-AI follows three principles that define XPDevs software design:</p>
-        <ul>
-            <li><strong>Clarity:</strong> Everything visible should be understandable at a glance.</li>
-            <li><strong>Control:</strong> Users should remain in full control of their data and interactions.</li>
-            <li><strong>Simplicity:</strong> Every component exists only if it improves the experience.</li>
-        </ul>
-        <p>These ideas shape both the interface and the technology behind Genesis-AI.</p>
-
-        <h2>Terms and Policies</h2>
-        <p>By using Genesis-AI, you agree to the following official documents:</p>
-        <ul>
-            <li><a href="https://xpdevs.github.io/rules">Terms of Service</a></li>
-            <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
-        </ul>
-        <p>These policies explain how Genesis-AI operates, including acceptable use, safety rules, and privacy standards.</p>
-
-        <h2>Contact</h2>
-        <p>For information, suggestions, or inquiries: Visit the XPDevs official website for updates, contact options, and related projects.</p>
+        <div class="feature-card" style="margin-top: 80px; padding: 40px; text-align: center;">
+            <h3>Access Required</h3>
+            <p style="margin-top: 15px; color: var(--text-secondary); max-width: 700px; margin-left: auto; margin-right: auto;">
+                To use Genesis-AI, you must sign in. You can choose to enter a guest name or login with your Google account. By accessing the platform, you agree to our <a href="https://xpdevs.github.io/Genesis-AI/legal/terms-of-service">Terms of Service</a> and <a href="https://xpdevs.github.io/Genesis-AI/legal/privacy-policy">Privacy Policy</a>.
+            </p>
+            <a href="https://xpdevs.github.io/Genesis-AI" class="btn">Launch Genesis-AI</a>
+        </div>
     </div>
 </section>
 
@@ -652,5 +548,71 @@
     </div>
 </footer>
 
+<script>
+    const track = document.getElementById('track');
+    const slidesData = [
+        { src: 'images/Genesis-AI/homepage.png', text: 'Start your journey with a clean, focused interface.' },
+        { src: 'images/Genesis-AI/settings.png', text: 'Tailor Genesis-AI to your preferences.' },
+        { src: 'images/Genesis-AI/account.png', text: 'Securely manage your personal profile.' },
+        { src: 'images/Genesis-AI/message.png', text: 'Experience private, intelligent conversations.' }
+    ];
+
+    // Clone first and last for infinite loop
+    const allSlides = [slidesData[slidesData.length - 1], ...slidesData, slidesData[0]];
+    
+    let currentIndex = 1;
+    let isTransitioning = false;
+    const intervalTime = 5000;
+    let slideInterval;
+
+    function renderSlides() {
+        track.innerHTML = allSlides.map(slide => `
+            <div class="carousel-slide">
+                <img src="${slide.src}" alt="${slide.text}">
+                <div class="carousel-caption">${slide.text}</div>
+            </div>
+        `).join('');
+        updatePosition(false);
+    }
+
+    function updatePosition(transition = true) {
+        track.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function moveSlide(direction) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex += direction;
+        updatePosition(true);
+        resetTimer();
+    }
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        if (currentIndex === 0) {
+            currentIndex = allSlides.length - 2;
+            updatePosition(false);
+        } else if (currentIndex === allSlides.length - 1) {
+            currentIndex = 1;
+            updatePosition(false);
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
+    document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
+
+    function startTimer() {
+        slideInterval = setInterval(() => moveSlide(1), intervalTime);
+    }
+
+    function resetTimer() {
+        clearInterval(slideInterval);
+        startTimer();
+    }
+
+    renderSlides();
+    startTimer();
+</script>
 </body>
 </html>
