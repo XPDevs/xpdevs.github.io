@@ -296,6 +296,63 @@
             .locale { float: none; margin-top: 10px; }
         }
 
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 40px auto 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-modal);
+            background: var(--card-bg);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .carousel-caption {
+            padding: 15px 20px;
+            color: var(--text-secondary);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            box-sizing: border-box;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+
     </style>
 </head>
 <body>
@@ -359,20 +416,32 @@
     </div>
 </section>
 
+<section id="ai-promo" style="padding-top: 0;">
+    <div class="container">
+        <div class="feature-card" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div class="feature-card-image" style="flex: 1 1 400px; height: 400px;">
+                <img src="https://xpdevs.github.io/images/Genesis-AI/homepage.png" alt="Genesis AI" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="feature-card-content" style="flex: 1 1 400px; padding: 60px;">
+                <h2>Genesis-AI</h2>
+                <p style="margin: 20px 0;">
+                    An experimental, web-based artificial intelligence platform created by XPDevs.
+                </p>
+                <a href="AI.html" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Sneak Peek Section -->
 <section id="sneak-peek" class="sneak-peek">
     <div class="container">
         <h2>Sneak Peek at Our Latest Project</h2>
         <p>Be the first to see what Software we are developing</p>
-        <div class="sneak-grid">
-            <div>
-                <img src="images/main-screen.jpg" alt="NexShell Main Screen" width="280" height="160" />
-                <figcaption>DoorsOS NexShell main screen (text mode)</figcaption>
-            </div>
-            <div>
-                <img src="images/boot-screen.jpg" alt="NexShell Boot Screen" width="280" height="160" />
-                <figcaption>DoorsOS NexShell boot screen</figcaption>
-            </div>
+        <div class="carousel-container">
+            <div class="carousel-track" id="track"></div>
+            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
         </div>
     </div>
 </section>
@@ -381,10 +450,8 @@
 <section id="news" style="padding-top: 0;">
     <div class="container" style="text-align: center;">
         <h2>Announcement from XPDevs</h2>
-        <p style="max-width: 700px; margin: 0 auto 20px;">At XPDevs, we are excited to announce a major overhaul of DoorsOS.</p>
-        <p style="max-width: 700px; margin: 0 auto 20px;">We have decided to completely refound the Doors Operating System. This means that the old batch file–based versions will no longer be developed, and future releases will focus solely on bootable ISO versions.</p>
-        <p style="max-width: 700px; margin: 0 auto 20px;">Additionally, DoorsOS&reg; (powered by NexShell) will adopt a new versioning system starting from version 1. Technically, this new version 1 will be the fourth iteration of DoorsOS&reg; (powered by NexShell), marking a fresh start for the OS.</p>
-        <p style="max-width: 700px; margin: 0 auto;">We appreciate your continued support as we work towards making DoorsOS more powerful and accessible than ever.</p>
+        <p style="max-width: 700px; margin: 0 auto 20px;">We are currently dedicating significant resources and effort into the development of Genesis AI and Genesis AI Studio to bring you a powerful, local AI experience.</p>
+        <p style="max-width: 700px; margin: 0 auto;">In other news, the latest DoorsOS build (2101261104) now introduces experimental mouse cursor support. Please note that this feature is still in early development and may be buggy as we continue to refine it.</p>
     </div>
 </section>
 
@@ -392,11 +459,11 @@
 <section id="about" class="about">
    <div class="container">
     <h2>About XPDevs</h2>
-    <p>I'm the developer behind XPDevs — a project dedicated to creating innovative, accessible, and powerful operating systems. My goal is to design software that runs efficiently, simplifies tasks, and enhances the user experience across a wide range of devices.</p>
-    <p>Everything at XPDevs is built by me, from the kernel up. I use the latest tools and technologies to ensure that each release is stable, secure, and tailored for real-world use. My work is driven by a passion for computing and a desire to make technology more approachable for everyone.</p>
-    <p>I also provide resources and documentation to help users get the most out of my operating systems. Whether you're exploring DoorsOS for the first time or deploying it in a serious environment, I'm here to support your journey.</p>
-    <p>XPDevs is more than just software — it's a vision for a better, simpler, and more open tech future, crafted by one person with a commitment to excellence.</p>
-    <p>Thank you for being part of this journey. Let’s build something amazing together.</p>
+    <p>I am the developer behind XPDevs. I started this project to build operating systems that are fast, simple, and respect the user.</p>
+    <p>Everything here is built by me, starting from the kernel. I avoid unnecessary complexity to ensure the code is efficient and secure. I do this because I am passionate about computing and want to make technology open and understandable.</p>
+    <p>I also want to ensure you can effectively use what I build. That is why I dedicate time to documentation and support. Whether you are testing DoorsOS or using it for daily tasks, I am here to help.</p>
+    <p>XPDevs is my vision for what technology should be. Simple, open, and built with care.</p>
+    <p>Thank you for checking out my work.</p>
 </div>
 </section>
 
@@ -466,5 +533,77 @@
     </div>
 </footer>
 
+<script>
+    const track = document.getElementById('track');
+    
+    const slides = [
+        { src: 'images/main-screen.jpg', text: 'DoorsOS NexShell main screen (text mode)' },
+        { src: 'images/boot-screen.jpg', text: 'DoorsOS NexShell boot screen' },
+        { src: 'https://xpdevs.github.io/images/Genesis-AI/homepage.png', text: 'Genesis AI Homepage' },
+        { src: 'https://xpdevs.github.io/images/Genesis-AI/Studio/homepage.png', text: 'Genesis AI Studio Homepage' }
+    ];
+
+    let allSlides = [];
+    let currentIndex = 1;
+    let isTransitioning = false;
+    const intervalTime = 5000;
+    let slideInterval;
+
+    function initSlides() {
+        // Clone first and last for infinite loop
+        allSlides = [slides[slides.length - 1], ...slides, slides[0]];
+        currentIndex = 1;
+        renderSlides();
+    }
+
+    function renderSlides() {
+        track.innerHTML = allSlides.map(slide => `
+            <div class="carousel-slide">
+                <img src="${slide.src}" alt="${slide.text}">
+                <div class="carousel-caption">${slide.text}</div>
+            </div>
+        `).join('');
+        updatePosition(false);
+    }
+
+    function updatePosition(transition = true) {
+        track.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function moveSlide(direction) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex += direction;
+        updatePosition(true);
+        resetTimer();
+    }
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        if (currentIndex === 0) {
+            currentIndex = allSlides.length - 2;
+            updatePosition(false);
+        } else if (currentIndex === allSlides.length - 1) {
+            currentIndex = 1;
+            updatePosition(false);
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
+    document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
+
+    function startTimer() {
+        slideInterval = setInterval(() => moveSlide(1), intervalTime);
+    }
+
+    function resetTimer() {
+        clearInterval(slideInterval);
+        startTimer();
+    }
+
+    initSlides();
+    startTimer();
+</script>
 </body>
 </html>
