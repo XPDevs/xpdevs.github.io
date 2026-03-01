@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs - NexShell Error Reference</title>
+    <style>
+        /* Inherited Styles from index.html */
+        :root {
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #0071e3;
+            --card-bg: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --border-radius: 20px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.005em; margin-top: 0; }
+        h1 { font-size: 48px; line-height: 1.08349; }
+        h2 { font-size: 40px; line-height: 1.1; }
+        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
+        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .container { max-width: 980px; margin: 0 auto; padding: 0 22px; }
+
+        /* Header */
+        header {
+            background-color: var(--glass-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            height: 48px;
+            display: flex;
+            align-items: center;
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        
+        nav ul { list-style-type: none; margin: 0; padding: 0; display: flex; gap: 24px; }
+        nav ul li a { color: var(--text-primary); font-size: 12px; opacity: 0.8; font-weight: 400; }
+        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
+
+        /* Dropdown */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; background-color: rgba(255, 255, 255, 0.95);
+            min-width: 180px; box-shadow: var(--shadow-modal); border-radius: 12px;
+            z-index: 1000; top: 100%; left: 50%; transform: translateX(-50%);
+            padding: 8px 0; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a {
+            color: var(--text-primary); padding: 8px 16px; text-decoration: none;
+            display: block; font-size: 13px; text-align: left; opacity: 1;
+        }
+        .dropdown-content a:hover { background-color: #f5f5f7; color: var(--accent-color); }
+
+        /* Footer */
+        footer { background-color: #f5f5f7; color: #424245; padding: 40px 0; font-size: 12px; }
+        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 980px; margin: 0 auto; }
+        .footer-col { flex: 1; min-width: 150px; margin-bottom: 20px; }
+        .footer-col h3 { font-size: 12px; font-weight: 600; color: #1d1d1f; margin: 0 0 9px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 9px; }
+        .footer-col ul li a { color: #424245; text-decoration: none; transition: color 0.2s; }
+        .footer-col ul li a:hover { text-decoration: underline; color: #1d1d1f; }
+        .footer-bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid #d2d2d7; color: #86868b; }
+        .footer-legal { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; }
+        .legal-links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; }
+        .legal-links li { margin-right: 10px; position: relative; }
+        .legal-links li:not(:last-child)::after { content: "|"; margin-left: 10px; color: #d2d2d7; }
+        .legal-links a { color: #424245; text-decoration: none; }
+        .locale { float: right; }
+
+        /* Page Specific Styles */
+        .hero-center { text-align: center; padding: 80px 0 40px; }
+        .hero-center h1 { font-size: 56px; margin-bottom: 15px; }
+        
+        .search-wrapper {
+            max-width: 580px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            padding: 18px 24px 18px 50px;
+            font-size: 17px;
+            border: none;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            outline: none;
+            box-sizing: border-box;
+            transition: box-shadow 0.2s;
+        }
+        .search-input:focus {
+            box-shadow: 0 6px 20px rgba(0,113,227,0.15);
+        }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #86868b;
+            width: 18px;
+            height: 18px;
+        }
+
+        .results-grid {
+            display: grid;
+            gap: 30px;
+            padding-bottom: 80px;
+        }
+
+        .error-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .error-card:hover { transform: translateY(-2px); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .error-badge {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: "SF Mono", monospace;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 15px 0 10px;
+        }
+        .card-desc {
+            font-size: 17px;
+            color: #1d1d1f;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .card-action {
+            background: #fbfbfd;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .action-icon {
+            color: #0071e3;
+            font-size: 20px;
+        }
+        .action-text {
+            font-size: 15px;
+            color: #424245;
+        }
+
+        /* Detail View Styles */
+        .detail-view {
+            display: none;
+            padding-top: 20px;
+            padding-bottom: 80px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .back-link {
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+        .back-link:hover { text-decoration: underline; }
+        
+        .detail-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .detail-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+        
+        .tech-card {
+            background: #1d1d1f;
+            color: #f5f5f7;
+        }
+        .tech-card h3 { color: #fff; }
+        .tech-card p { color: #86868b; }
+        
+        .console-output {
+            font-family: "SF Mono", monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e5e5e7;
+            white-space: pre-wrap;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-center h1 { font-size: 40px; }
+            .error-card { padding: 25px; }
+            header .container { flex-direction: column; gap: 15px; }
+            nav { width: 100%; overflow-x: auto; }
+            nav ul { width: max-content; padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="https://xpdevs.github.io/" style="text-decoration: none;">
+                <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                    <li><a href="https://xpdevs.github.io/#sneak-peek">Sneak Peek</a></li>
+                    <li class="dropdown">
+                        <a href="#" style="cursor: default;">Download ▾</a>
+                        <div class="dropdown-content">
+                            <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+                            <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+                            <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+                        </div>
+                    </li>
+                    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+                    <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
+                    <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
+                    <li><a href="https://xpdevs.github.io/feedback">Give your feedback</a></li>
+                </ul>
+            </nav>
+            <a href="https://xpdevs.github.io/account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
+                <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero-center">
+        <div class="container">
+            <h1>NexShell Error Reference</h1>
+            <p style="max-width: 600px; margin: 15px auto 0;">
+                Identify and resolve NexShell kernel events.
+            </p>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="container">
+        <div class="search-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by code (e.g., 0x4E530000) or name...">
+        </div>
+
+        <div id="resultsGrid" class="results-grid">
+            <!-- Content injected via JS -->
+        </div>
+        <div id="noResults" class="no-results">
+            <p>No error codes found matching your search.</p>
+        </div>
+    </div>
+
+    <!-- Detail View -->
+    <div id="detailView" class="container detail-view">
+        <a onclick="closeDetail()" class="back-link">← Back to Search</a>
+        
+        <div class="detail-header">
+            <span id="detailCode" class="error-badge" style="font-size: 15px; padding: 8px 16px;"></span>
+            <h1 id="detailTitle" style="margin-top: 20px; margin-bottom: 15px;"></h1>
+            <p id="detailSimple" style="font-size: 24px; line-height: 1.4; color: #1d1d1f;"></p>
+        </div>
+
+        <div class="detail-card">
+            <h3>What you can do</h3>
+            <p id="detailAction" style="margin-top: 10px; color: #1d1d1f;"></p>
+        </div>
+
+        <div class="detail-card tech-card">
+            <h3>Technical Information</h3>
+            <p>Advanced diagnostics for advanced users.</p>
+            <div class="console-output" id="detailAdvanced"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Account</h3>
+                    <ul>
+                        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+                        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+                        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+                        <li><a href="https://xpdevs.github.io/OS-downloader">All Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>About XPDevs</h3>
+                    <ul>
+                        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+                <div class="footer-legal">
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                        <ul class="legal-links">
+                            <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+                            <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+                            <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+                            <li><a href="#">Site Map</a></li>
+                        </ul>
+                    </div>
+                    <span class="locale">United Kingdom</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const errorCodes = [
+            { code: "0x4E530000", id: 0, name: "Division by zero", simple: "The application attempted a calculation that isn't possible.", action: "Restart the application.", advanced: "Exception 0 (DE). The DIV or IDIV instruction was executed with a divisor of 0." },
+            { code: "0x4E530001", id: 1, name: "Debug exception", simple: "The system encountered a diagnostic checkpoint.", action: "If you are not a developer, restart your device.", advanced: "Exception 1 (DB). Reserved for hardware debug registers (DR0-DR7)." },
+            { code: "0x4E530002", id: 2, name: "Nonmaskable interrupt", simple: "A hardware component reported a critical error.", action: "Restart your computer. Check hardware if persistent.", advanced: "Interrupt 2 (NMI). Hardware interrupt that cannot be masked. Often indicates memory parity errors." },
+            { code: "0x4E530003", id: 3, name: "Breakpoint", simple: "The software paused for inspection.", action: "Restart the application.", advanced: "Exception 3 (BP). Caused by INT 3 instruction. Used for software debugging." },
+            { code: "0x4E530004", id: 4, name: "Overflow", simple: "A calculation result was too large to handle.", action: "Retry the operation.", advanced: "Exception 4 (OF). INTO instruction executed with Overflow Flag set." },
+            { code: "0x4E530005", id: 5, name: "Bounds check", simple: "The software tried to access data outside allowed limits.", action: "Restart the application.", advanced: "Exception 5 (BR). BOUND instruction detected operand outside specified range." },
+            { code: "0x4E530006", id: 6, name: "Invalid instruction", simple: "The processor received an unrecognizable command.", action: "Update or reinstall the application.", advanced: "Exception 6 (UD). Execution of invalid or undefined opcode." },
+            { code: "0x4E530007", id: 7, name: "Coprocessor error", simple: "There was an issue with the math processor.", action: "Restart your device.", advanced: "Exception 7 (NM). Device Not Available. FPU context switch or emulation issue." },
+            { code: "0x4E530008", id: 8, name: "Double fault", simple: "The system encountered a second error while handling the first.", action: "Restart required.", advanced: "Exception 8 (DF). Exception during exception handling. Often leads to shutdown." },
+            { code: "0x4E530009", id: 9, name: "Coprocessor overrun", simple: "The math processor was overwhelmed.", action: "Restart the application.", advanced: "Exception 9. Legacy 387 coprocessor segment overrun." },
+            { code: "0x4E53000A", id: 10, name: "Invalid task", simple: "The system tried to switch to an invalid task.", action: "Restart your computer.", advanced: "Exception 10 (TS). Invalid Task State Segment (TSS) during task switch." },
+            { code: "0x4E53000B", id: 11, name: "Segment not present", simple: "The system tried to access missing memory segments.", action: "Restart the application.", advanced: "Exception 11 (NP). Segment present bit is clear." },
+            { code: "0x4E53000C", id: 12, name: "Stack exception", simple: "The software ran out of working memory space.", action: "Close other apps and retry.", advanced: "Exception 12 (SS). Stack-Segment Fault. Stack limit violation." },
+            { code: "0x4E53000D", id: 13, name: "General protection fault", simple: "The software attempted a restricted action.", action: "Restart the application.", advanced: "Exception 13 (GP). General protection violation (e.g., privilege level mismatch)." },
+            { code: "0x4E53000E", id: 14, name: "Page fault", simple: "The system couldn't find required data in memory.", action: "Usually self-correcting. Restart if app crashes.", advanced: "Exception 14 (PF). Page not present or access violation in paging structure." },
+            { code: "0x4E53000F", id: 15, name: "Unknown", simple: "An unexpected error occurred.", action: "Restart your device.", advanced: "Exception 15. Reserved or unknown vector." },
+            { code: "0x4E530010", id: 16, name: "Coprocessor error", simple: "A floating-point calculation error occurred.", action: "Restart the application.", advanced: "Exception 16 (MF). x87 FPU Floating-Point Error." }
+        ];
+
+        const resultsGrid = document.getElementById('resultsGrid');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const detailView = document.getElementById('detailView');
+        const heroSection = document.querySelector('.hero-center');
+        const searchWrapper = document.querySelector('.search-wrapper');
+
+        function renderErrors(errors) {
+            resultsGrid.innerHTML = '';
+            if (errors.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+            noResults.style.display = 'none';
+
+            errors.forEach(error => {
+                const card = document.createElement('div');
+                card.className = 'error-card';
+                card.onclick = () => openDetail(error);
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="error-badge">${error.code}</span>
+                        <span class="error-badge" style="background: transparent; border: 1px solid #d2d2d7; color: #86868b;">ID: ${error.id}</span>
+                    </div>
+                    <h2 class="card-title">${error.name}</h2>
+                    <p class="card-desc">${error.simple}</p>
+                    <div class="card-action">
+                        <span class="action-icon">ⓘ</span>
+                        <span class="action-text">${error.action}</span>
+                    </div>
+                `;
+                resultsGrid.appendChild(card);
+            });
+        }
+
+        function openDetail(error) {
+            // Populate Data
+            document.getElementById('detailCode').textContent = error.code;
+            document.getElementById('detailTitle').textContent = error.name;
+            document.getElementById('detailSimple').textContent = error.simple;
+            document.getElementById('detailAction').textContent = error.action;
+            
+            // Format Advanced Info
+            const techInfo = `The NexShell kernel architecture employs a sophisticated interrupt dispatch mechanism to handle processor exceptions and hardware events. When a ${error.name} event occurs, the Central Processing Unit (CPU) immediately suspends the current execution thread and triggers interrupt vector ${error.id}. This vector serves as a direct signal to the kernel's core interrupt subsystem, indicating that a critical system event has occurred which requires immediate supervisory intervention to maintain system stability and data integrity.
+
+Upon receiving the interrupt signal, the kernel consults its internal static dispatch table, which maps low-level hardware vectors to specific high-level exception handlers. This mapping process translates the raw hardware signal into the internal exception code ${error.code}, allowing the operating system to categorize the nature of the fault. This abstraction layer is crucial for distinguishing between routine hardware requests and critical processor faults, ensuring that the system applies the correct diagnostic logic to the specific type of error encountered.
+
+For faults involving memory access violations or segmentation errors, the kernel performs a deep-dive analysis of the processor's control registers. Specifically, it queries Control Register 2 (CR2) to identify the exact virtual address that triggered the fault. The memory management subsystem then cross-references this address against the valid stack and data segments allocated to the active process. This rigorous check determines whether the fault was caused by a legitimate resource request that can be paged in, or a violation of privilege levels that threatens the stability of the kernel itself.
+
+If the kernel determines that the error is unrecoverable and poses a risk to the system's operational integrity, it initiates a 'Kernel Panic' sequence. This is a protective measure designed to prevent data corruption by immediately halting all processing. Visually, this state is communicated to the user through the 'DoorsOS Panic Palette,' which switches the VGA console to a high-contrast red background with white text. Simultaneously, the system generates a comprehensive process dump, capturing the state of all registers and the stack at the exact moment of failure for post-mortem analysis.
+
+In the final stage of the error handling routine, the system enters a secure halt state. To ensure that no further instructions are executed which could propagate corrupted data to persistent storage, the kernel enters a tight polling loop. It continuously monitors the keyboard controller's I/O ports (specifically 0x64 and 0x60) waiting exclusively for a hardware reset command. This effectively freezes the machine in time, preserving the on-screen diagnostic information and the specific STOP code ${error.code} until the user manually initiates a reboot sequence.
+
+Technical Context:
+${error.advanced}`;
+            document.getElementById('detailAdvanced').textContent = techInfo;
+
+            // Switch Views
+            heroSection.style.display = 'none';
+            searchWrapper.style.display = 'none';
+            resultsGrid.style.display = 'none';
+            noResults.style.display = 'none';
+            detailView.style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function closeDetail() {
+            detailView.style.display = 'none';
+            heroSection.style.display = 'block';
+            searchWrapper.style.display = 'block';
+            resultsGrid.style.display = 'grid';
+            // Re-run filter to show correct state
+            filterErrors(searchInput.value);
+        }
+
+        function filterErrors(query) {
+            const lowerQuery = query.toLowerCase();
+            const filtered = errorCodes.filter(error => 
+                error.code.toLowerCase().includes(lowerQuery) || 
+                error.name.toLowerCase().includes(lowerQuery) ||
+                error.id.toString() === lowerQuery
+            );
+            renderErrors(filtered);
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            filterErrors(e.target.value);
+        });
+
+        // Initial render
+        renderErrors(errorCodes);
+    </script>
+</body>
+</html>
