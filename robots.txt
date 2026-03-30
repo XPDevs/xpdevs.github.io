@@ -1,0 +1,8 @@
+# robots.txt for xpdevs.github.io
+# Allow all crawlers full access
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://xpdevs.github.io/sitemap.xml
