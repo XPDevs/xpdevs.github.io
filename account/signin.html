@@ -206,6 +206,18 @@
         .legal-links a:hover { text-decoration: underline; }
         
         .locale { float: right; }
+        
+        @media (max-width: 768px) {
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            /* Mobile Header & Layout */
+            header { height: auto; padding: 10px 0; position: relative; }
+            header .container { flex-direction: column; gap: 15px; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            nav ul { width: max-content; padding: 0 10px; }
+            .locale { float: none; margin-top: 10px; }
+        }
 
     </style>
 </head>
@@ -220,7 +232,7 @@
             <nav>
                 <ul>
                     <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
-                    <li><a href="https://xpdevs.github.io/#sneak-peek">Sneak Peek</a></li>
+                    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
                     <li class="dropdown">
                         <a href="#" style="cursor: default;">Download ▾</a>
                         <div class="dropdown-content">
@@ -232,6 +244,7 @@
                     <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
                     <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
                     <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
                     <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
                     <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
                     <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
@@ -279,13 +292,14 @@
                     <ul>
                         <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
                         <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
                         <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Account</h3>
                     <ul>
-                        <li><a href="https://xpdevs.github.io/account/signin">Sign In</a></li>
+                        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
                         <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
                         <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
                     </ul>

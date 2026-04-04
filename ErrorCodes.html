@@ -250,47 +250,58 @@
         }
 
         @media (max-width: 768px) {
-            .hero-center h1 { font-size: 40px; }
-            .error-card { padding: 25px; }
+            .footer-col { flex-basis: 50%; }
+            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            /* Mobile Header & Layout */
+            header { height: auto; padding: 10px 0; position: relative; }
             header .container { flex-direction: column; gap: 15px; }
-            nav { width: 100%; overflow-x: auto; }
+            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
             nav ul { width: max-content; padding: 0 10px; }
+            
+            /* Typography & Spacing */
+            .hero-center h1 { font-size: 42px; }
+            .hero-center { padding: 60px 0 40px; }
+            
+            .locale { float: none; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
 
     <!-- Header -->
-    <header>
+<header>
         <div class="container">
             <a href="https://xpdevs.github.io/" style="text-decoration: none;">
                 <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
             </a>
-            <nav>
-                <ul>
-                    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
-                    <li><a href="https://xpdevs.github.io/#sneak-peek">Sneak Peek</a></li>
-                    <li class="dropdown">
-                        <a href="#" style="cursor: default;">Download ▾</a>
-                        <div class="dropdown-content">
-                            <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
-                            <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
-                            <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
-                        </div>
-                    </li>
-                    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
-                    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
-                    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
-                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
-                    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
-                    <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
-                    <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
-                    <li><a href="https://xpdevs.github.io/feedback">Give your feedback</a></li>
-                </ul>
-            </nav>
-            <a href="https://xpdevs.github.io/account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
-                <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
-            </a>
+            <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+                <li class="dropdown">
+                    <a href="#" style="cursor: default;">Download ▾</a>
+                    <div class="dropdown-content">
+                        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+                        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+                        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+                    </div>
+                </li>
+                <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+                <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
+                <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
+                <li><a href="https://xpdevs.github.io/feedback">Give your feedback</a></li>
+            </ul>
+        </nav>
+        
+        <a href="https://xpdevs.github.io/account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
+            <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+        </a>
         </div>
     </header>
 
@@ -344,61 +355,61 @@
     </div>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Explore</h3>
-                    <ul>
-                        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
-                        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
-                        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
-                        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Account</h3>
-                    <ul>
-                        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
-                        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
-                        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
-                        <li><a href="https://xpdevs.github.io/OS-downloader">All Downloads</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>About XPDevs</h3>
-                    <ul>
-                        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
-                        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
-                        <li><a href="https://github.com/XPDevs">GitHub</a></li>
-                        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
-                    </ul>
-                </div>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+                    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+                    <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+                </ul>
             </div>
-            
-            <div class="footer-bottom">
-                <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
-                <div class="footer-legal">
-                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
-                        <ul class="legal-links">
-                            <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
-                            <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
-                            <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
-                            <li><a href="#">Site Map</a></li>
-                        </ul>
-                    </div>
-                    <span class="locale">United Kingdom</span>
-                </div>
+            <div class="footer-col">
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+                    <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+                    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+                    <li><a href="https://xpdevs.github.io/OS-downloader">All Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About XPDevs</h3>
+                <ul>
+                    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+                    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <div class="footer-bottom">
+            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
+            <div class="footer-legal">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                    <ul class="legal-links">
+                        <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+                        <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+                        <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <span class="locale">United Kingdom</span>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <script>
         const errorCodes = [
