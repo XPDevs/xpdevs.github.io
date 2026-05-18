@@ -71,6 +71,35 @@
         }
         header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+        .hamburger:hover { background: rgba(0,0,0,0.05); }
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .hamburger span + span { margin-top: 5px; }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         nav ul {
             list-style-type: none;
             margin: 0;
@@ -231,9 +260,50 @@
             
             /* Mobile Header & Layout */
             header { height: auto; padding: 10px 0; position: relative; }
-            header .container { flex-direction: column; gap: 15px; }
-            nav { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            nav ul { width: max-content; padding: 0 10px; }
+            header .container { flex-direction: row; gap: 10px; flex-wrap: wrap; }
+            
+            /* Hamburger visible on mobile */
+            .hamburger { display: flex; }
+            
+            nav#mainNav {
+                display: none;
+                width: 100%;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                background: var(--card-bg);
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                padding: 8px 0;
+                max-height: 70vh;
+                order: 3;
+            }
+            nav#mainNav.open { display: block; }
+            nav#mainNav ul {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                gap: 0;
+            }
+            nav#mainNav ul li { width: 100%; }
+            nav#mainNav ul li a {
+                display: block;
+                padding: 12px 16px;
+                font-size: 14px;
+                opacity: 1;
+                border-radius: 8px;
+            }
+            nav#mainNav ul li a:hover { background: rgba(0,0,0,0.05); }
+            nav#mainNav .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0 0 0 16px;
+                background: transparent;
+                backdrop-filter: none;
+            }
+            
+            #user-icon-link { margin-left: auto !important; }
             .locale { float: none; margin-top: 10px; }
         }
 
@@ -446,8 +516,13 @@
             <a href="https://xpdevs.github.io/" style="text-decoration: none;">
                 <img src="https://xpdevs.github.io/logo/logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
             </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <!-- Navigation -->
-            <nav>
+            <nav id="mainNav">
                 <ul>
                     <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
                     <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
@@ -648,6 +723,21 @@
     </footer>
 
     <script>
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('mainNav');
+        if (hamburger && mainNav) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mainNav.classList.toggle('open');
+            });
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !mainNav.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    mainNav.classList.remove('open');
+                }
+            });
+        }
+
         // Check auth
         const token = localStorage.getItem('xpdevs_user_token');
         if (!token) {
