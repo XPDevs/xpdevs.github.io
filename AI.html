@@ -5,378 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPDevs - AI</title>
+    <link rel="stylesheet" href="assets/css/design.css">
     <style>
-        /* Premium Minimalism - Apple Inspired Design */
-        :root {
-            --bg-color: #f5f5f7;
-            --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --accent-color: #0071e3;
-            --card-bg: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.72);
-            --border-radius: 20px;
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --shadow-modal: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            line-height: 1.47059;
-            font-weight: 400;
-            letter-spacing: -0.022em;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: -0.005em;
-            margin-top: 0;
-        }
-        h1 { font-size: 48px; line-height: 1.08349; }
-        h2 { font-size: 40px; line-height: 1.1; }
-        p { font-size: 17px; line-height: 1.47059; color: var(--text-secondary); }
-        a { text-decoration: none; color: var(--accent-color); transition: color 0.2s ease; }
-        a:hover { text-decoration: underline; }
-
-        /* Layout */
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 22px;
-        }
-
-        /* Header */
-        header {
-            background-color: var(--glass-bg);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            height: 48px;
-            display: flex;
-            align-items: center;
-        }
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        header h1 { font-size: 20px; margin: 0; color: var(--text-primary); }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 6px;
-            transition: background 0.2s ease;
-        }
-        .hamburger:hover { background: rgba(0,0,0,0.05); }
-        .hamburger span {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-        .hamburger span + span { margin-top: 5px; }
-        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 24px;
-        }
-        nav ul li a {
-            color: var(--text-primary);
-            font-size: 12px;
-            opacity: 0.8;
-            font-weight: 400;
-        }
-        nav ul li a:hover { opacity: 1; color: var(--accent-color); text-decoration: none; }
-
-        /* Dropdown */
-        .dropdown {
-            position: relative;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.95);
-            min-width: 180px;
-            box-shadow: var(--shadow-modal);
-            border-radius: 12px;
-            z-index: 1000;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 8px 0;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .dropdown-content a {
-            color: var(--text-primary);
-            padding: 8px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 13px;
-            text-align: left;
-            opacity: 1;
-        }
-        .dropdown-content a:hover {
-            background-color: #f5f5f7;
-            color: var(--accent-color);
-        }
-
-        /* Sections */
-        section { padding: 100px 0; }
-        
-        .hero-center {
-            text-align: center;
-            padding: 120px 0 60px;
-        }
-        .hero-center h1 { font-size: 64px; margin-bottom: 20px; }
-        
-        /* Cards & Features */
         .feature-card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
+            background: var(--content-bg);
+            border-radius: var(--radius-4xl);
+            box-shadow: var(--shadow-modal);
             overflow: hidden;
             margin-bottom: 40px;
         }
-
-        /* Buttons */
-        .btn {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 980px; /* Pill shape */
-            font-size: 15px;
-            font-weight: 500;
-            display: inline-block;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: #0077ed;
-            transform: scale(1.02);
-            text-decoration: none;
-        }
-
-        /* Sneak Peek Grid */
-        .sneak-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .sneak-grid div {
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            background: #fff;
-            transition: transform 0.3s ease;
-        }
-        .sneak-grid div:hover {
-            transform: scale(1.02);
-        }
-        .sneak-grid img {
-            transition: transform 0.3s ease;
-            display: block;
-            width: 280px;
-            height: 160px;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-        }
-        .sneak-grid figcaption {
-            padding: 15px;
-            font-size: 13px;
-            color: var(--text-secondary);
-            text-align: center;
-            background: #fff;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #f5f5f7;
-            color: #424245;
-            padding: 40px 0;
-            font-size: 12px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .footer-col {
-            flex: 1;
-            min-width: 150px;
-            margin-bottom: 20px;
-        }
-
-        .footer-col h3 {
-            font-size: 12px;
-            font-weight: 600;
-            color: #1d1d1f;
-            margin: 0 0 9px;
-            letter-spacing: -0.01em;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 9px;
-        }
-
-        .footer-col ul li a {
-            color: #424245;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-col ul li a:hover {
-            text-decoration: underline;
-            color: #1d1d1f;
-        }
-
-        .footer-bottom {
-            margin-top: 34px;
-            padding-top: 20px;
-            border-top: 1px solid #d2d2d7;
-            color: #86868b;
-        }
-
-        .footer-legal {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .legal-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .legal-links li { margin-right: 10px; position: relative; }
-        .legal-links li:not(:last-child)::after {
-            content: "|";
-            margin-left: 10px;
-            color: #d2d2d7;
-        }
-        .legal-links a { color: #424245; text-decoration: none; }
-        .legal-links a:hover { text-decoration: underline; }
-        
-        .locale { float: right; }
-        
-        @media (max-width: 768px) {
-            .footer-col { flex-basis: 50%; }
-            .footer-legal { flex-direction: column; align-items: flex-start; gap: 10px; }
-            
-            /* Mobile Header & Layout */
-            header { height: auto; padding: 10px 0; position: relative; }
-            header .container { flex-direction: row; gap: 10px; flex-wrap: wrap; }
-            
-            /* Hamburger visible on mobile */
-            .hamburger { display: flex; }
-            
-            /* Navigation becomes toggleable overlay */
-            nav#mainNav {
-                display: none;
-                width: 100%;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                background: var(--card-bg);
-                border-radius: 12px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                padding: 8px 0;
-                max-height: 70vh;
-                order: 3;
-            }
-            nav#mainNav.open { display: block; }
-            nav#mainNav ul {
-                flex-direction: column;
-                width: 100%;
-                padding: 0;
-                gap: 0;
-            }
-            nav#mainNav ul li { width: 100%; }
-            nav#mainNav ul li a {
-                display: block;
-                padding: 12px 16px;
-                font-size: 14px;
-                opacity: 1;
-                border-radius: 8px;
-            }
-            nav#mainNav ul li a:hover { background: rgba(0,0,0,0.05); }
-            nav#mainNav .dropdown-content {
-                position: static;
-                transform: none;
-                box-shadow: none;
-                border-radius: 0;
-                padding: 0 0 0 16px;
-                background: transparent;
-                backdrop-filter: none;
-            }
-            
-            #user-icon-link { margin-left: auto !important; }
-            
-            /* Typography & Spacing */
-            .hero-center h1 { font-size: 42px; }
-            .hero-center { padding: 60px 0 40px; }
-            
-            /* Feature Card Mobile Overrides */
-            .feature-card-image { height: 250px !important; }
-            .feature-card-content { padding: 30px !important; }
-            .locale { float: none; margin-top: 10px; }
-            
-            /* Carousel mobile */
-            .carousel-btn { width: 32px; height: 32px; font-size: 18px; }
-            .carousel-btn.prev { left: 8px; }
-            .carousel-btn.next { right: 8px; }
-            .carousel-caption { font-size: 12px; padding: 12px 16px; }
-            
-            /* Toggle buttons mobile */
-            .toggle-btn { min-width: 120px; padding: 10px 16px; font-size: 13px; }
-        }
-        
-        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -386,26 +23,25 @@
         th, td {
             text-align: left;
             padding: 12px;
-            border-bottom: 1px solid #d2d2d7;
+            border-bottom: 1px solid var(--border);
         }
         th {
             font-weight: 600;
-            color: var(--text-primary);
+            color: var(--text);
         }
         td {
-            color: var(--text-secondary);
+            color: var(--text);
+            opacity: 0.7;
         }
-
-        /* Carousel Styles */
         .carousel-container {
             position: relative;
             width: 100%;
             max-width: 100%;
             margin: 60px auto 0;
             overflow: hidden;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius-4xl);
             box-shadow: var(--shadow-modal);
-            background: var(--card-bg);
+            background: var(--content-bg);
         }
         .carousel-track {
             display: flex;
@@ -422,17 +58,18 @@
         }
         .carousel-caption {
             padding: 15px 20px;
-            color: var(--text-secondary);
+            color: var(--text);
             text-align: center;
             font-size: 13px;
             font-weight: 500;
             box-sizing: border-box;
+            opacity: 0.7;
         }
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0,0,0,0.3);
             backdrop-filter: blur(5px);
             border: none;
             color: #fff;
@@ -448,66 +85,82 @@
             z-index: 10;
         }
         .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(0,0,0,0.5);
         }
         .carousel-btn.prev { left: 20px; }
         .carousel-btn.next { right: 20px; }
-
-        /* Toggle Buttons */
         .toggle-btn {
             min-width: 160px;
             margin-top: 0;
         }
         .toggle-btn.inactive {
             background-color: #e5e5e5;
-            color: var(--text-primary);
+            color: var(--text);
         }
         .toggle-btn.inactive:hover {
             background-color: #d1d1d6;
         }
+        @media (max-width: 768px) {
+            .carousel-btn { width: 32px; height: 32px; font-size: 18px; }
+            .carousel-btn.prev { left: 8px; }
+            .carousel-btn.next { right: 8px; }
+            .carousel-caption { font-size: 12px; padding: 12px 16px; }
+            .toggle-btn { min-width: 120px; padding: 10px 16px; font-size: 13px; }
+            .feature-card-image { height: 250px !important; }
+            .feature-card-content { padding: 30px !important; }
+        }
     </style>
 </head>
 <body>
-<!-- Header -->
-<header>
-        <div class="container">
-            <a href="https://xpdevs.github.io/" style="text-decoration: none;">
-                <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="height: 45px; vertical-align: middle;">
-            </a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <!-- Navigation -->
-        <nav id="mainNav">
-            <ul>
-                <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
-                <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
-                <li class="dropdown">
-                    <a href="#" style="cursor: default;">Download ▾</a>
-                    <div class="dropdown-content">
-                        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
-                        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
-                        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
-                    </div>
-                </li>
-                <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
-                <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
-                <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
-                <li><a href="https://xpdevs.github.io/AI">AI</a></li>
-                <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
-                <li><a href="https://xpdevs.github.io/beta">Become a Beta tester now</a></li>
-                <li><a href="https://xpdevs.github.io/kernel">Our kernel</a></li>
-                <li><a href="https://xpdevs.github.io/feedback">Give your feedback</a></li>
-            </ul>
-        </nav>
-        
-        <a href="https://xpdevs.github.io/account/signin" id="user-icon-link" style="margin-left: 20px; display: flex; align-items: center;">
-            <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
-        </a>
-        </div>
-    </header>
+<nav class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://xpdevs.github.io/">
+    <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width:100px;height:100px;">
+    </a>
+  </div>
+  <div class="topbar-center">
+    <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
+    <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Download ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+      </div>
+    </div>
+    <a href="https://xpdevs.github.io/Doors" class="topbar-link">DoorsOS</a>
+    <a href="https://xpdevs.github.io/ExamOS" class="topbar-link">ExamOS</a>
+    <a href="https://xpdevs.github.io/AI" class="topbar-link">AI</a>
+    <a href="https://xpdevs.github.io/rules" class="topbar-link">Rules</a>
+    <a href="https://xpdevs.github.io/beta" class="topbar-link">Beta</a>
+    <a href="https://xpdevs.github.io/kernel" class="topbar-link">Kernel</a>
+    <a href="https://xpdevs.github.io/feedback" class="topbar-link">Feedback</a>
+  </div>
+  <div class="topbar-actions">
+    <a href="https://xpdevs.github.io/account/signin">
+      <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height:20px;width:20px;opacity:0.8;">
+    </a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+    <li><a href="https://xpdevs.github.io/beta">Beta</a></li>
+    <li><a href="https://xpdevs.github.io/kernel">Kernel</a></li>
+    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+    <li><a href="https://xpdevs.github.io/download/OS-downloader">Downloads</a></li>
+  </ul>
+</div>
 
 <div class="hero-center">
     <h1 id="hero-title">Genesis-AI</h1>
@@ -536,13 +189,13 @@
 
         <div class="feature-card" style="margin-top: 40px; padding: 40px;">
             <h3>Privacy first. And second.</h3>
-            <p style="margin-top: 15px; color: var(--text-secondary);">Traditional AI relies on the cloud. Genesis-AI relies on your browser. With no backend servers processing your chats, your conversations remain 100% private. It’s all JavaScript and local binaries, running right where you are.</p>
+            <p style="margin-top: 15px; color: var(--text-secondary);">Traditional AI relies on the cloud. Genesis-AI relies on your browser. With no backend servers processing your chats, your conversations remain 100% private. It's all JavaScript and local binaries, running right where you are.</p>
         </div>
 
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
              <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
                 <h3>Ready when you are.</h3>
-                <p style="margin-top: 15px; color: var(--text-secondary);">No sign-ups. No downloads. No installation. Just visit the site and start exploring. It’s the fastest way to interact with experimental AI.</p>
+                <p style="margin-top: 15px; color: var(--text-secondary);">No sign-ups. No downloads. No installation. Just visit the site and start exploring. It's the fastest way to interact with experimental AI.</p>
              </div>
              <div class="feature-card" style="flex: 1; min-width: 300px; padding: 40px; margin-bottom: 0;">
                 <h3>Create. Analyze. Explore.</h3>
@@ -642,80 +295,60 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3>Explore</h3>
-                <ul>
-                    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
-                    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
-                    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
-                    <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Account</h3>
-                <ul>
-                    <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
-                    <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
-                    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
-                    <li><a href="https://xpdevs.github.io/OS-downloader">All Downloads</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>About XPDevs</h3>
-                <ul>
-                    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
-                    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
-                    <li><a href="https://github.com/XPDevs">GitHub</a></li>
-                    <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p style="margin-bottom: 10px;">More ways to connect: <a href="https://github.com/XPDevs">Visit our GitHub</a> or <a href="mailto:xpdevsclient@gmail.com">email us</a>.</p>
-            <div class="footer-legal">
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
-                    <ul class="legal-links">
-                        <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
-                        <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
-                        <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
-                        <li><a href="#">Site Map</a></li>
-                    </ul>
-                </div>
-                <span class="locale">United Kingdom</span>
-            </div>
-        </div>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h3>Account</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+        <li><a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>About XPDevs</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+        <ul class="legal-links">
+          <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+          <li><a href="sitemap.xml">Site Map</a></li>
+        </ul>
+      </div>
+      <span>United Kingdom</span>
+    </div>
+  </div>
 </footer>
 
+<script src="assets/js/scripts.js"></script>
 <script>
-    // Mobile hamburger menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const mainNav = document.getElementById('mainNav');
-    if (hamburger && mainNav) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mainNav.classList.toggle('open');
-        });
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !mainNav.contains(e.target)) {
-                hamburger.classList.remove('active');
-                mainNav.classList.remove('open');
-            }
-        });
-    }
-
     const track = document.getElementById('track');
     const btnGenesis = document.getElementById('btn-genesis');
     const btnStudio = document.getElementById('btn-studio');
