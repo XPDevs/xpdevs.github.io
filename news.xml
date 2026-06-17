@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
 <title>XPDevs Official Feed</title>
 <link>https://xpdevs.github.io/AI.html</link>
 <description>Latest updates on neural networks, 3D engines, and independent web software from XPDevs.</description>
 <language>en</language>
 <lastBuildDate>Wed, 17 Jun 2026 15:00:00 GMT</lastBuildDate>
+<image>
+<url>https://xpdevs.github.io/images/Genesis-AI/homepage.png</url>
+<title>XPDevs Official Feed</title>
+<link>https://xpdevs.github.io/AI.html</link>
+</image>
 <item>
 <title>Genesis 5.5-Flash Released</title>
 <link>https://xpdevs.github.io/AI.html</link>
 <guid isPermaLink="false">genesis-5-5-flash</guid>
 <description>Genesis 5.5-Flash is officially live, scaling up to over 525,000 parameters from the 45,000 parameters of the 5.0 model. This version delivers significantly greater knowledge capacity and superior performance compared to all previous models, dramatically optimizing sequence training data flow.</description>
 <pubDate>Wed, 17 Jun 2026 12:00:00 GMT</pubDate>
+<media:thumbnail url="https://xpdevs.github.io/images/Genesis-AI/homepage.png"/>
 </item>
 </channel>
 </rss>
