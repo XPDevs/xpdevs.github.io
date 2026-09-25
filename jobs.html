@@ -141,6 +141,134 @@
             line-height: 1.6;
         }
 
+        .faq-list {
+            max-width: 820px;
+            margin: 40px auto 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item summary {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 21px 42px 21px 0;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 650;
+            cursor: pointer;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 400;
+            transform: translateY(-50%);
+        }
+
+        .faq-item[open] summary::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-answer {
+            max-width: 740px;
+            padding: 0 42px 21px 0;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .privacy-card {
+            max-width: 820px;
+            margin: 40px auto 0;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .privacy-card > p {
+            margin: 0 0 22px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .privacy-item {
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            background: var(--input-bg);
+        }
+
+        .privacy-item strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .privacy-item p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .career-contact-card {
+            max-width: 820px;
+            margin: 40px auto 0;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .career-contact-card h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+        }
+
+        .career-contact-card p {
+            max-width: 650px;
+            margin: 0 auto 22px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-actions .btn-secondary {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
         .jobs-toolbar {
             display: grid;
             grid-template-columns: minmax(240px, 1.4fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) auto;
@@ -755,6 +883,7 @@
             .process-list,
             .commitment-grid,
             .application-guidance,
+            .privacy-grid,
             .application-form {
                 grid-template-columns: 1fr;
             }
@@ -949,7 +1078,7 @@
                 <button class="clear-jobs" id="clearJobs" type="button">Clear filters</button>
             </div>
 
-            <div class="jobs-status" id="jobsStatus" aria-live="polite">Showing 14 open positions</div>
+            <div class="jobs-status" id="jobsStatus" aria-live="polite">Showing 14 open positions. Last updated 25 September 2026.</div>
 
             <div class="jobs-grid" id="jobsGrid">
                 <article class="job-card" data-job="kernel" data-department="Engineering" data-level="Senior">
@@ -1285,6 +1414,31 @@
         </div>
     </section>
 
+    <section id="before-you-apply">
+        <div class="container" style="text-align: center;">
+            <h2>Before you apply</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">A few simple checks can help you decide whether the role is right for you and make your application easier to assess.</p>
+            <div class="commitment-grid">
+                <div class="commitment-card">
+                    <h3>Read the complete role</h3>
+                    <p>Review the salary, location, employment type, experience level, responsibilities, and qualifications before applying.</p>
+                </div>
+                <div class="commitment-card">
+                    <h3>Show relevant evidence</h3>
+                    <p>Share work, projects, or experience that gives us useful evidence. You do not need to match every listed skill.</p>
+                </div>
+                <div class="commitment-card">
+                    <h3>Check practical details</h3>
+                    <p>Consider the location, working arrangement, work authorisation question, expected hours, and your preferred start date.</p>
+                </div>
+                <div class="commitment-card">
+                    <h3>Request support if needed</h3>
+                    <p>Tell us about any adjustment you need for an interview or discussion. Asking early allows us to plan properly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="hiring-process">
         <div class="container">
             <h2 style="text-align: center;">Hiring process</h2>
@@ -1294,6 +1448,47 @@
                 <div class="process-step"><span class="process-number">2</span><h3>Introduction</h3><p>Talk with us about your experience, the role, salary, and any questions you may have.</p></div>
                 <div class="process-step"><span class="process-number">3</span><h3>Discussion and checks</h3><p>Complete a short and relevant discussion. We never ask for unpaid production work. Required checks are completed fairly and proportionately.</p></div>
                 <div class="process-step"><span class="process-number">4</span><h3>Written decision</h3><p>If successful, receive a clear written summary of salary, employment terms, start date, and the arrangements for your first weeks.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career-faq">
+        <div class="container" style="text-align: center;">
+            <h2>Frequently asked questions</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Answers to common questions about applying, interviews, location, support, and the hiring process.</p>
+            <div class="faq-list" style="text-align: left;">
+                <details class="faq-item">
+                    <summary>What should I include in my application?</summary>
+                    <div class="faq-answer">Please include your name, contact details, current location, the role reference, a short account of relevant experience, and a link to your work when available. A clear and honest application is more useful than a long one.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>How long will the process take?</summary>
+                    <div class="faq-answer">We aim to acknowledge every application within seven days. The full process may take longer when practical discussions, checks, or holiday periods are involved. We will keep you informed at each important stage.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Are the roles remote?</summary>
+                    <div class="faq-answer">Most roles are remote friendly, while practical roles such as IT Technician may need a hybrid arrangement. The location and working expectations are stated clearly in every listing.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can you support work authorisation?</summary>
+                    <div class="faq-answer">Please answer the work authorisation question truthfully. Where a role may require support, this will be discussed early. Any possible arrangement is subject to the requirements of the role and must be confirmed in writing.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>When will I be asked for references?</summary>
+                    <div class="faq-answer">We only request references when they are relevant to the role and normally after an initial discussion. You will be told whose references we would like to contact and why.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I request an adjustment?</summary>
+                    <div class="faq-answer">Yes. Tell us what support would help you take part in the process. You can mention it in your application or at any later stage. We will consider reasonable adjustments and respond with the arrangements we can provide.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is a portfolio required for every role?</summary>
+                    <div class="faq-answer">A portfolio is useful for design and some technical roles, but it is not required for every position. Evidence of relevant work, thoughtful questions, and clear communication can be just as valuable.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What if there is no role that matches me?</summary>
+                    <div class="faq-answer">You can select Open application in the form. Tell us about your strengths, the kind of work you want, and where you could contribute to XPDevs. We will keep your details in mind for a relevant opportunity.</div>
+                </details>
             </div>
         </div>
     </section>
@@ -1365,6 +1560,49 @@
                         <button class="btn" type="submit">Prepare application</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="applicant-privacy">
+        <div class="container" style="text-align: center;">
+            <span class="section-eyebrow">Applicant privacy</span>
+            <h2>How your application information is handled</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">We aim to handle recruitment information carefully, openly, and only for legitimate hiring purposes.</p>
+            <div class="privacy-card" style="text-align: left;">
+                <p>This notice explains what to include, why it is requested, and how you can make a request concerning your application information.</p>
+                <div class="privacy-grid">
+                    <div class="privacy-item">
+                        <strong>Information requested</strong>
+                        <p>Contact details, current location, work authorisation information, application responses, links to work, and employment history relevant to the role.</p>
+                    </div>
+                    <div class="privacy-item">
+                        <strong>Reason for use</strong>
+                        <p>To assess your application, contact you about the role, complete fair checks, and make a recruitment decision.</p>
+                    </div>
+                    <div class="privacy-item">
+                        <strong>Website storage</strong>
+                        <p>This careers page prepares an email in your own email application. It does not send completed form information to a website server.</p>
+                    </div>
+                    <div class="privacy-item">
+                        <strong>Retention and choices</strong>
+                        <p>Application information is kept only as long as reasonably needed for recruitment. You may ask about access, correction, or deletion by email.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career-contact">
+        <div class="container">
+            <div class="career-contact-card">
+                <h3>Contact the hiring team</h3>
+                <p>Questions about a specific role, application status, accessibility support, or interview arrangements can be sent to xpdevsclient@gmail.com. We aim to reply within seven days.</p>
+                <div class="contact-actions">
+                    <a class="btn" href="mailto:xpdevsclient@gmail.com?subject=Careers%20at%20XPDevs">Email the hiring team</a>
+                    <a class="btn btn-secondary" href="feedback.html">Send product feedback</a>
+                    <a class="btn btn-secondary" href="https://github.com/XPDevs">Visit GitHub</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1778,7 +2016,7 @@
                 if (visible) count += 1;
             });
 
-            jobsStatus.textContent = `Showing ${count} open ${count === 1 ? 'position' : 'positions'}`;
+            jobsStatus.textContent = `Showing ${count} open ${count === 1 ? 'position' : 'positions'}. Last updated 25 September 2026.`;
             noJobs.classList.toggle('show', count === 0);
         }
 
