@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The requested XPDevs page could not be found.">
+    <meta name="robots" content="noindex">
+    <title>Page not found | XPDevs</title>
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .error-code {
+            margin: 0 0 18px;
+            color: var(--primary);
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+
+        .error-title {
+            margin-bottom: 12px;
+        }
+
+        .error-message {
+            max-width: 620px;
+            margin: 0 auto;
+            color: #5f6368;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .error-actions .btn-secondary {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        .helpful-links {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .helpful-link {
+            display: block;
+            height: 100%;
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            color: var(--text);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .helpful-link:hover {
+            transform: translateY(3px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.09);
+            text-decoration: none;
+        }
+
+        .helpful-link strong {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        .helpful-link span {
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .site-footer .footer-bottom {
+            opacity: 0.9;
+        }
+
+        .site-footer .legal-links a {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 58px;
+            }
+
+            .helpful-links {
+                grid-template-columns: 1fr;
+            }
+
+            .error-actions {
+                flex-direction: column;
+                align-items: stretch;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="topbar">
+    <div class="topbar-brand">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="index.html">
+            <img src="logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width: 92px; height: 52px;">
+        </a>
+    </div>
+    <div class="topbar-center">
+        <a href="index.html#about" class="topbar-link">About Us</a>
+        <a href="index.html#sneak-peek" class="topbar-link">Preview</a>
+        <div class="dropdown">
+            <a href="#" class="topbar-link" style="cursor: default;">Download ▾</a>
+            <div class="dropdown-content">
+                <a href="Doors.html">DoorsOS</a>
+                <a href="ExamOS.html">ExamOS</a>
+                <a href="download/OS-downloader.html">All Downloads</a>
+            </div>
+        </div>
+        <a href="Doors.html" class="topbar-link">DoorsOS</a>
+        <a href="ExamOS.html" class="topbar-link">ExamOS</a>
+        <a href="AI.html" class="topbar-link">AI</a>
+        <a href="rules.html" class="topbar-link">Rules</a>
+        <a href="beta.html" class="topbar-link">Beta</a>
+        <a href="kernel.html" class="topbar-link">Kernel</a>
+        <a href="feedback.html" class="topbar-link">Feedback</a>
+        <a href="jobs.html" class="topbar-link">Careers</a>
+    </div>
+    <div class="topbar-actions">
+        <a href="account/signin.html">
+            <img src="images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+        </a>
+    </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#sneak-peek">Preview</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Doors.html">DoorsOS</a></li>
+        <li><a href="ExamOS.html">ExamOS</a></li>
+        <li><a href="AI.html">AI</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="beta.html">Beta</a></li>
+        <li><a href="kernel.html">Kernel</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="download/OS-downloader.html">Downloads</a></li>
+        <li><a href="jobs.html">Careers</a></li>
+    </ul>
+</div>
+
+<main>
+    <section class="hero-center" style="padding-bottom: 30px;">
+        <div class="error-code" aria-label="Error 404">404</div>
+        <h1 class="error-title">Page not found</h1>
+        <p class="error-message">The page you requested may have moved, the address may be incorrect, or the page may no longer be available.</p>
+        <div class="error-actions">
+            <a class="btn" href="index.html">Return to home</a>
+            <button class="btn btn-secondary" id="goBack" type="button">Go back</button>
+        </div>
+    </section>
+
+    <section style="padding-top: 20px;">
+        <div class="container">
+            <h2 style="text-align: center;">Helpful links</h2>
+            <div class="helpful-links">
+                <a class="helpful-link" href="download/OS-downloader.html">
+                    <strong>All downloads</strong>
+                    <span>Find the latest available XPDevs downloads.</span>
+                </a>
+                <a class="helpful-link" href="feedback.html">
+                    <strong>Send feedback</strong>
+                    <span>Tell the XPDevs team about a problem or idea.</span>
+                </a>
+                <a class="helpful-link" href="jobs.html">
+                    <strong>Careers</strong>
+                    <span>Explore current opportunities at XPDevs.</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="Doors.html">DoorsOS</a></li>
+                <li><a href="ExamOS.html">ExamOS</a></li>
+                <li><a href="AI.html">AI</a></li>
+                <li><a href="kernel.html">Our Kernel</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Account</h3>
+            <ul>
+                <li><a href="account/signin.html">Sign Up</a></li>
+                <li><a href="beta.html">Beta Program</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="rules.html">Rules and EULA</a></li>
+                <li><a href="download/OS-downloader.html">All Downloads</a></li>
+                <li><a href="jobs.html">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>About XPDevs</h3>
+            <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                <ul class="legal-links">
+                    <li><a href="rules.html">Privacy Policy</a></li>
+                    <li><a href="rules.html">Terms of Use</a></li>
+                    <li><a href="rules.html">Legal</a></li>
+                    <li><a href="sitemap.xml">Site Map</a></li>
+                </ul>
+            </div>
+            <span>🇬🇧 Based in the United Kingdom</span>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/js/scripts.js"></script>
+<script>
+    const goBack = document.getElementById('goBack');
+    goBack.addEventListener('click', () => {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = 'index.html';
+        }
+    });
+</script>
+</body>
+</html>
