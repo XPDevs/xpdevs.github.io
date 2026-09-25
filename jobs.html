@@ -1,404 +1,1525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Junior Jobs Portal</title>
-assets/css/design.css
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore careers at XPDevs. Find engineering, design, product, writing, and community roles building simple, secure, and useful software.">
+    <title>Careers at XPDevs</title>
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .jobs-intro {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: #5f6368;
+            font-size: 17px;
+            line-height: 1.7;
+        }
 
-<style>
-.job-card{
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
-    padding:35px;
-    margin-bottom:30px;
-    transition:transform .3s ease;
-}
-.job-card:hover{
-    transform:translateY(-5px);
-}
+        .jobs-toolbar {
+            display: grid;
+            grid-template-columns: minmax(240px, 1.4fr) minmax(160px, 0.7fr) minmax(160px, 0.7fr) auto;
+            gap: 12px;
+            max-width: 980px;
+            margin: 0 auto 22px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
+        .jobs-toolbar input,
+        .jobs-toolbar select,
+        .application-form input,
+        .application-form select,
+        .application-form textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--input-bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 14px;
+            outline: none;
+        }
 
-.salary-box{
-    background:#f5f5f7;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-}
+        .jobs-toolbar input,
+        .jobs-toolbar select {
+            height: 46px;
+            padding: 0 14px;
+        }
 
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
-}
+        .jobs-toolbar input:focus,
+        .jobs-toolbar select:focus,
+        .application-form input:focus,
+        .application-form select:focus,
+        .application-form textarea:focus {
+            border-color: var(--primary);
+            background: var(--content-bg);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
 
-.stat{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
-}
+        .clear-jobs {
+            padding: 0 14px;
+            border: 0;
+            border-radius: var(--radius-lg);
+            background: transparent;
+            color: var(--primary);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-.timeline{
-    border-left:3px solid #0071e3;
-    padding-left:25px;
-}
+        .clear-jobs:hover {
+            background: var(--input-bg);
+        }
 
-.timeline div{
-    margin-bottom:25px;
-}
+        .jobs-status {
+            max-width: 980px;
+            margin: 0 auto 24px;
+            color: #5f6368;
+            font-size: 13px;
+            text-align: right;
+        }
 
-.apply-box{
-    background:linear-gradient(135deg,#0071e3,#42a5f5);
-    color:white;
-    border-radius:30px;
-    padding:50px;
-    text-align:center;
-}
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
 
-.apply-btn{
-    display:inline-block;
-    background:white;
-    color:#0071e3;
-    text-decoration:none;
-    padding:15px 30px;
-    border-radius:999px;
-    font-weight:bold;
-    margin-top:20px;
-}
+        .job-card {
+            display: flex;
+            min-height: 390px;
+            flex-direction: column;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-.faq-item{
-    background:white;
-    padding:25px;
-    margin-bottom:20px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.05);
-}
-</style>
+        .job-card:hover {
+            transform: translateY(3px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.09);
+        }
+
+        .job-card[hidden] {
+            display: none;
+        }
+
+        .job-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .job-department,
+        .job-level {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: var(--radius-full);
+            background: var(--input-bg);
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .job-level {
+            background: #eaf2ff;
+            color: #1557ad;
+        }
+
+        .job-card h3 {
+            margin: 0 0 6px;
+            font-size: 21px;
+            line-height: 1.3;
+        }
+
+        .job-project {
+            margin: 0 0 16px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .job-summary {
+            margin: 0 0 22px;
+            color: #5f6368;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .job-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 0 0 20px;
+        }
+
+        .job-facts div {
+            min-width: 0;
+            padding: 11px 12px;
+            border-radius: var(--radius-md);
+            background: var(--input-bg);
+        }
+
+        .job-facts .salary-fact {
+            grid-column: 1 / -1;
+        }
+
+        .job-facts dt {
+            margin: 0 0 4px;
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .job-facts dd {
+            margin: 0;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .job-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 24px;
+        }
+
+        .job-skills span {
+            padding: 6px 9px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .job-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .job-actions .btn {
+            padding: 10px 18px;
+            font-size: 12px;
+        }
+
+        .job-posted {
+            color: #5f6368;
+            font-size: 10px;
+        }
+
+        .no-jobs {
+            display: none;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .no-jobs.show {
+            display: block;
+        }
+
+        .no-jobs p {
+            margin: 10px 0 22px;
+            color: #5f6368;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            height: 100%;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card h3 {
+            margin: 0 0 10px;
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #5f6368;
+            line-height: 1.65;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 820px;
+            margin: 40px auto 0;
+        }
+
+        .benefit-item {
+            padding: 22px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            background: var(--content-bg);
+        }
+
+        .benefit-item strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .benefit-item span {
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .process-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            padding: 24px;
+            border-radius: var(--radius-3xl);
+            background: var(--input-bg);
+        }
+
+        .process-number {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .process-step h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        .process-step p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .application-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 36px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .application-note {
+            margin: 0 0 26px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .application-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px 14px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .application-form input,
+        .application-form select {
+            height: 46px;
+            padding: 0 13px;
+        }
+
+        .application-form textarea {
+            min-height: 120px;
+            padding: 12px 13px;
+            resize: vertical;
+        }
+
+        .form-help {
+            margin: 0;
+            color: #5f6368;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .application-submit {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 4px;
+        }
+
+        .application-submit p {
+            max-width: 410px;
+            margin: 0;
+            color: #5f6368;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .job-modal {
+            width: min(90%, 720px);
+            max-height: 86vh;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .job-modal-close {
+            position: sticky;
+            top: 0;
+            float: right;
+            z-index: 2;
+            margin: -12px -12px 0 0;
+            background: var(--input-bg);
+        }
+
+        .job-modal-header {
+            padding-right: 36px;
+        }
+
+        .job-modal-header h3 {
+            margin: 7px 0 12px;
+            font-size: 28px;
+            line-height: 1.2;
+        }
+
+        .job-modal-header p {
+            margin: 0;
+            color: #5f6368;
+            line-height: 1.65;
+        }
+
+        .job-modal-facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0 28px;
+        }
+
+        .job-modal-facts span {
+            padding: 7px 10px;
+            border-radius: var(--radius-full);
+            background: var(--input-bg);
+            color: #5f6368;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .job-modal-section {
+            margin-top: 26px;
+        }
+
+        .job-modal-section h4 {
+            margin: 0 0 12px;
+            font-size: 16px;
+        }
+
+        .job-modal-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .job-modal-section li {
+            margin-bottom: 7px;
+        }
+
+        .job-modal-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .job-modal-actions p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 11px;
+        }
+
+        .hero-center p {
+            opacity: 1;
+        }
+
+        .site-footer .footer-bottom {
+            opacity: 0.9;
+        }
+
+        .site-footer .legal-links a {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .jobs-toolbar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .jobs-toolbar .search-field {
+                grid-column: 1 / -1;
+            }
+
+            .feature-grid,
+            .process-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .jobs-toolbar,
+            .jobs-grid,
+            .feature-grid,
+            .benefit-grid,
+            .process-list,
+            .application-form {
+                grid-template-columns: 1fr;
+            }
+
+            .jobs-toolbar .search-field,
+            .form-field.full,
+            .application-submit {
+                grid-column: auto;
+            }
+
+            .jobs-toolbar {
+                padding: 12px;
+            }
+
+            .jobs-status {
+                text-align: left;
+            }
+
+            .job-card {
+                min-height: 0;
+                padding: 24px;
+            }
+
+            .application-card {
+                padding: 28px 22px;
+            }
+
+            .application-submit,
+            .job-modal-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .job-modal {
+                width: 94%;
+                max-height: 90vh;
+                padding: 26px 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .job-facts {
+                grid-template-columns: 1fr;
+            }
+
+            .job-facts .salary-fact {
+                grid-column: auto;
+            }
+
+            .job-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
-
 <body>
+<nav class="topbar">
+    <div class="topbar-brand">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="index.html">
+            <img src="logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width: 92px; height: 52px;">
+        </a>
+    </div>
+    <div class="topbar-center">
+        <a href="index.html#about" class="topbar-link">About Us</a>
+        <a href="index.html#sneak-peek" class="topbar-link">Preview</a>
+        <div class="dropdown">
+            <a href="#" class="topbar-link" style="cursor: default;">Download ▾</a>
+            <div class="dropdown-content">
+                <a href="Doors.html">DoorsOS</a>
+                <a href="ExamOS.html">ExamOS</a>
+                <a href="download/OS-downloader.html">All Downloads</a>
+            </div>
+        </div>
+        <a href="Doors.html" class="topbar-link">DoorsOS</a>
+        <a href="ExamOS.html" class="topbar-link">ExamOS</a>
+        <a href="AI.html" class="topbar-link">AI</a>
+        <a href="rules.html" class="topbar-link">Rules</a>
+        <a href="beta.html" class="topbar-link">Beta</a>
+        <a href="kernel.html" class="topbar-link">Kernel</a>
+        <a href="feedback.html" class="topbar-link">Feedback</a>
+        <a href="jobs.html" class="topbar-link active">Careers</a>
+    </div>
+    <div class="topbar-actions">
+        <a href="account/signin.html">
+            <img src="images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+        </a>
+    </div>
+</nav>
 
-<div class="hero-center">
-    <h1>Junior Jobs</h1>
-    <p style="font-size:21px;max-width:700px;margin:auto;color:#86868b;">
-        Discover exciting entry-level careers designed for students,
-        graduates, apprentices, and aspiring professionals.
-    </p>
+<div class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#sneak-peek">Preview</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Doors.html">DoorsOS</a></li>
+        <li><a href="ExamOS.html">ExamOS</a></li>
+        <li><a href="AI.html">AI</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="beta.html">Beta</a></li>
+        <li><a href="kernel.html">Kernel</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="download/OS-downloader.html">Downloads</a></li>
+        <li><a href="jobs.html">Careers</a></li>
+    </ul>
 </div>
 
-<section>
-<div class="container">
-
-<h2>Start Your Career Journey</h2>
-
-<p>
-Finding your first job can be challenging, but every successful career
-starts somewhere. This portal showcases junior and entry-level positions
-across technology, business, design, engineering, marketing, healthcare,
-retail, finance, and more.
-</p>
-
-<div class="stats" style="margin-top:50px;">
-    <div class="stat">
-        <h3>500+</h3>
-        <p>Junior Opportunities</p>
+<main>
+    <div class="hero-center">
+        <h1>Careers at XPDevs</h1>
+        <p style="font-size: 21px; line-height: 1.4; max-width: 650px; margin: 15px auto 0; color: #5f6368;">
+            Help build simple, secure, and useful software for everyone.
+        </p>
+        <p style="font-size: 16px; line-height: 1.4; max-width: 650px; margin: 10px auto 0; color: #5f6368;">
+            Based in the United Kingdom. Open to remote collaboration.
+        </p>
     </div>
 
-    <div class="stat">
-        <h3>120+</h3>
-        <p>Partner Companies</p>
-    </div>
+    <section id="open-roles">
+        <div class="container">
+            <h2 style="text-align: center;">Open positions</h2>
+            <p class="jobs-intro">Choose the role that best matches your experience. We welcome applications from junior, mid level, and senior people who care about clear and thoughtful technology.</p>
 
-    <div class="stat">
-        <h3>85%</h3>
-        <p>Graduate Employment Rate</p>
-    </div>
+            <div class="jobs-toolbar" role="search" aria-label="Filter open positions">
+                <label class="search-field">
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Search jobs</span>
+                    <input id="jobSearch" type="search" placeholder="Search by title, skill, or project">
+                </label>
+                <label>
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Filter by department</span>
+                    <select id="departmentFilter">
+                        <option value="all">All departments</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Design">Design</option>
+                        <option value="Product">Product</option>
+                        <option value="Community">Community</option>
+                    </select>
+                </label>
+                <label>
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Filter by experience level</span>
+                    <select id="levelFilter">
+                        <option value="all">All experience levels</option>
+                        <option value="Junior">Junior</option>
+                        <option value="Mid level">Mid level</option>
+                        <option value="Senior">Senior</option>
+                        <option value="Junior to mid level">Junior to mid level</option>
+                    </select>
+                </label>
+                <button class="clear-jobs" id="clearJobs" type="button">Clear filters</button>
+            </div>
 
-    <div class="stat">
-        <h3>£20k+</h3>
-        <p>Average Starting Salary</p>
-    </div>
-</div>
+            <div class="jobs-status" id="jobsStatus" aria-live="polite">Showing 13 open positions</div>
 
-</div>
-</section>
+            <div class="jobs-grid" id="jobsGrid">
+                <article class="job-card" data-job="kernel" data-department="Engineering" data-level="Senior">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Senior</span>
+                    </div>
+                    <h3>Senior Kernel Engineer</h3>
+                    <p class="job-project">NexShell and DoorsOS</p>
+                    <p class="job-summary">Lead low level work across our kernel, from memory and drivers to boot speed and reliability.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£70,000 to £95,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>C and C++</span><span>Kernel design</span><span>Performance</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 3 days ago</span><button class="btn view-job" type="button" data-view-job="kernel">View role</button></div>
+                </article>
 
-<section>
-<div class="container">
+                <article class="job-card" data-job="systems" data-department="Engineering" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Systems Software Engineer</h3>
+                    <p class="job-project">DoorsOS and ExamOS</p>
+                    <p class="job-summary">Build dependable user space tools that make a minimal operating system feel smooth and useful.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£48,000 to £65,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Rust</span><span>C and C++</span><span>Operating systems</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 5 days ago</span><button class="btn view-job" type="button" data-view-job="systems">View role</button></div>
+                </article>
 
-<h2>Popular Junior Careers</h2>
+                <article class="job-card" data-job="ai" data-department="Engineering" data-level="Senior">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Senior</span>
+                    </div>
+                    <h3>AI and Machine Learning Engineer</h3>
+                    <p class="job-project">Genesis AI</p>
+                    <p class="job-summary">Create capable local AI experiences while keeping privacy, clarity, and useful results at the centre.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£75,000 to £100,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Python</span><span>JavaScript</span><span>Local AI</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="ai">View role</button></div>
+                </article>
 
-<div class="grid">
+                <article class="job-card" data-job="frontend" data-department="Engineering" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Frontend Engineer</h3>
+                    <p class="job-project">Genesis AI and XPDevs Web</p>
+                    <p class="job-summary">Build fast and accessible interfaces for our AI products and public website.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£45,000 to £62,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Europe</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>JavaScript</span><span>HTML and CSS</span><span>Accessibility</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 4 days ago</span><button class="btn view-job" type="button" data-view-job="frontend">View role</button></div>
+                </article>
 
-<div class="job-card">
-<h3>Junior Software Developer</h3>
-<p>
-Help build websites, applications, and software systems while learning
-from senior engineers.
-</p>
+                <article class="job-card" data-job="junior-frontend" data-department="Engineering" data-level="Junior">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Junior</span>
+                    </div>
+                    <h3>Junior Frontend Developer</h3>
+                    <p class="job-project">XPDevs Web</p>
+                    <p class="job-summary">Learn through real projects while helping build clear, responsive, and accessible web experiences.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£28,000 to £38,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>HTML</span><span>CSS</span><span>JavaScript basics</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted today</span><button class="btn view-job" type="button" data-view-job="junior-frontend">View role</button></div>
+                </article>
 
-<ul>
-<li>Salary: £24,000 to £35,000</li>
-<li>Programming & Development</li>
-<li>Mentoring Included</li>
-<li>Remote Opportunities Available</li>
-</ul>
-</div>
+                <article class="job-card" data-job="designer" data-department="Design" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Design</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Product Designer</h3>
+                    <p class="job-project">All XPDevs products</p>
+                    <p class="job-summary">Turn complex ideas into calm and understandable experiences across operating systems and AI tools.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£42,000 to £58,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Europe</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Product design</span><span>Prototyping</span><span>Design systems</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 6 days ago</span><button class="btn view-job" type="button" data-view-job="designer">View role</button></div>
+                </article>
 
-<div class="job-card">
-<h3>Junior Cyber Security Analyst</h3>
-<p>
-Monitor systems, investigate alerts, and protect organisations from
-security threats.
-</p>
+                <article class="job-card" data-job="security" data-department="Engineering" data-level="Senior">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Senior</span>
+                    </div>
+                    <h3>Security Engineer</h3>
+                    <p class="job-project">ExamOS and NexShell</p>
+                    <p class="job-summary">Protect our kernel, exam environment, and account systems through practical security engineering.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£65,000 to £88,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Security</span><span>Risk review</span><span>Hardening</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="security">View role</button></div>
+                </article>
 
-<ul>
-<li>Salary: £25,000 to £38,000</li>
-<li>Security Operations</li>
-<li>Incident Response Training</li>
-<li>Certification Support</li>
-</ul>
-</div>
+                <article class="job-card" data-job="qa" data-department="Product" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Product</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>QA and Release Engineer</h3>
+                    <p class="job-project">DoorsOS and ExamOS</p>
+                    <p class="job-summary">Build practical quality systems that catch problems early and make every release more dependable.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£40,000 to £56,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Worldwide</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Test automation</span><span>Quality planning</span><span>Releases</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 8 days ago</span><button class="btn view-job" type="button" data-view-job="qa">View role</button></div>
+                </article>
 
-<div class="job-card">
-<h3>Junior Data Analyst</h3>
-<p>
-Work with business data, create dashboards, and uncover insights that
-drive decision making.
-</p>
+                <article class="job-card" data-job="developer-experience" data-department="Engineering" data-level="Junior to mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Junior to mid level</span>
+                    </div>
+                    <h3>Developer Experience Engineer</h3>
+                    <p class="job-project">NexShell</p>
+                    <p class="job-summary">Make contributing to NexShell easier through better examples, tools, documentation, and feedback.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£32,000 to £48,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Git</span><span>Build tools</span><span>Writing</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 2 days ago</span><button class="btn view-job" type="button" data-view-job="developer-experience">View role</button></div>
+                </article>
 
-<ul>
-<li>Salary: £24,000 to £36,000</li>
-<li>Excel & SQL Skills</li>
-<li>Business Intelligence</li>
-<li>Data Visualisation</li>
-</ul>
-</div>
+                <article class="job-card" data-job="research" data-department="Design" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Design</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>UX Researcher and Accessibility Specialist</h3>
+                    <p class="job-project">All XPDevs products</p>
+                    <p class="job-summary">Study real user needs and help every XPDevs product become easier to understand and use.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£44,000 to £60,000 per year</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Worldwide</dd></div>
+                        <div><dt>Job type</dt><dd>Full time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>User research</span><span>WCAG</span><span>Inclusive design</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 9 days ago</span><button class="btn view-job" type="button" data-view-job="research">View role</button></div>
+                </article>
 
-<div class="job-card">
-<h3>Junior Graphic Designer</h3>
-<p>
-Create digital content, branding materials, marketing graphics, and
-creative campaigns.
-</p>
+                <article class="job-card" data-job="automation" data-department="Engineering" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Engineering</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Automation and Platform Engineer</h3>
+                    <p class="job-project">XPDevs Platform</p>
+                    <p class="job-summary">Improve the services behind our releases, website, accounts, and developer workflows.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£450 to £600 per day</dd></div>
+                        <div><dt>Location</dt><dd>Remote, UK</dd></div>
+                        <div><dt>Job type</dt><dd>Six month contract</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Cloud</span><span>Automation</span><span>Monitoring</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="automation">View role</button></div>
+                </article>
 
-<ul>
-<li>Salary: £22,000 to £32,000</li>
-<li>Creative Industry</li>
-<li>Portfolio Development</li>
-<li>Adobe Suite Training</li>
-</ul>
-</div>
+                <article class="job-card" data-job="writer" data-department="Product" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Product</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Technical Writer</h3>
+                    <p class="job-project">All XPDevs projects</p>
+                    <p class="job-summary">Make complex systems easier to learn through clear guides, examples, release notes, and product copy.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£26,000 to £36,000 per year, pro rata</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Worldwide</dd></div>
+                        <div><dt>Job type</dt><dd>Part time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Documentation</span><span>Editing</span><span>Developer tools</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 4 days ago</span><button class="btn view-job" type="button" data-view-job="writer">View role</button></div>
+                </article>
 
-<div class="job-card">
-<h3>Junior Marketing Assistant</h3>
-<p>
-Support social media campaigns, advertising projects, and audience growth.
-</p>
+                <article class="job-card" data-job="community" data-department="Community" data-level="Mid level">
+                    <div class="job-card-top">
+                        <span class="job-department">Community</span>
+                        <span class="job-level">Mid level</span>
+                    </div>
+                    <h3>Community and Education Specialist</h3>
+                    <p class="job-project">XPDevs and ExamOS</p>
+                    <p class="job-summary">Build a welcoming community and help schools, educators, and learners get more from our software.</p>
+                    <dl class="job-facts">
+                        <div class="salary-fact"><dt>Salary</dt><dd>£24,000 to £32,000 per year, pro rata</dd></div>
+                        <div><dt>Location</dt><dd>Remote, Worldwide</dd></div>
+                        <div><dt>Job type</dt><dd>Part time</dd></div>
+                    </dl>
+                    <div class="job-skills"><span>Community</span><span>Education</span><span>Events</span></div>
+                    <div class="job-actions"><span class="job-posted">Posted 3 days ago</span><button class="btn view-job" type="button" data-view-job="community">View role</button></div>
+                </article>
+            </div>
 
-<ul>
-<li>Salary: £21,000 to £30,000</li>
-<li>Digital Marketing</li>
-<li>Campaign Planning</li>
-<li>Content Creation</li>
-</ul>
-</div>
+            <div class="no-jobs" id="noJobs">
+                <h3>No exact match found</h3>
+                <p>Try another search or send an open application. We may still want to hear from you.</p>
+                <a class="btn" href="#apply">Send an open application</a>
+            </div>
+        </div>
+    </section>
 
-<div class="job-card">
-<h3>Junior IT Technician</h3>
-<p>
-Provide technical support, maintain devices, and help staff with IT issues.
-</p>
+    <section id="why-xpdevs">
+        <div class="container" style="text-align: center;">
+            <h2>Why work at XPDevs?</h2>
+            <p style="max-width: 700px; margin: 0 auto; line-height: 1.7; color: #5f6368;">We are building technology that respects the person using it. Every role has a clear purpose and a visible result.</p>
+            <div class="feature-grid" style="text-align: left;">
+                <div class="feature-card">
+                    <h3>Work on real products</h3>
+                    <p>DoorsOS, ExamOS, Genesis AI, and NexShell are made to be used. You can see the impact of your work and hear feedback from real people.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Clear ownership</h3>
+                    <p>You will be trusted with meaningful work, direct access to project decisions, and honest feedback that helps you grow.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Simple and open</h3>
+                    <p>We value clear code, plain language, responsible security, and software that remains useful on hardware people already own.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<ul>
-<li>Salary: £22,000 to £31,000</li>
-<li>Help Desk Support</li>
-<li>Networking Experience</li>
-<li>Hardware Maintenance</li>
-</ul>
-</div>
+    <section id="benefits">
+        <div class="container" style="text-align: center;">
+            <h2>What we offer</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">A supportive workplace with clear expectations and room to develop your skills.</p>
+            <div class="benefit-grid" style="text-align: left;">
+                <div class="benefit-item"><strong>Remote friendly</strong><span>Work from a location that suits you, with regular time for team communication.</span></div>
+                <div class="benefit-item"><strong>Flexible hours</strong><span>Plan your work around the times when you focus best and when your team needs you.</span></div>
+                <div class="benefit-item"><strong>Learning support</strong><span>Receive help with books, courses, events, and tools that improve your craft.</span></div>
+                <div class="benefit-item"><strong>Equipment support</strong><span>Get practical help with the computer, software, and workspace you need.</span></div>
+                <div class="benefit-item"><strong>Open source work</strong><span>Share useful knowledge and contribute to technology that people can inspect and improve.</span></div>
+                <div class="benefit-item"><strong>Direct feedback</strong><span>Know what is going well, what to improve, and how your work supports the wider project.</span></div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <section id="hiring-process">
+        <div class="container">
+            <h2 style="text-align: center;">Hiring process</h2>
+            <p style="max-width: 700px; margin: 0 auto; text-align: center; color: #5f6368; line-height: 1.7;">A clear and human process. You will know what to expect and have time to decide if XPDevs is right for you.</p>
+            <div class="process-list">
+                <div class="process-step"><span class="process-number">1</span><h3>Apply</h3><p>Send your details, a link to your work, and a short explanation of why the role interests you.</p></div>
+                <div class="process-step"><span class="process-number">2</span><h3>Introduction</h3><p>Talk with us about your experience, the role, salary, and any questions you may have.</p></div>
+                <div class="process-step"><span class="process-number">3</span><h3>Practical discussion</h3><p>Complete a short and relevant discussion. We never ask for unpaid production work.</p></div>
+                <div class="process-step"><span class="process-number">4</span><h3>Decision</h3><p>Receive a clear answer, useful feedback, and the important terms before you make a decision.</p></div>
+            </div>
+        </div>
+    </section>
 
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<h2>Salary Guide</h2>
-
-<div class="grid">
-
-<div class="salary-box">
-<h3>Technology</h3>
-<p>£24,000 - £40,000</p>
-</div>
-
-<div class="salary-box">
-<h3>Marketing</h3>
-<p>£21,000 - £32,000</p>
-</div>
-
-<div class="salary-box">
-<h3>Design</h3>
-<p>£22,000 - £34,000</p>
-</div>
-
-<div class="salary-box">
-<h3>Finance</h3>
-<p>£24,000 - £38,000</p>
-</div>
-
-<div class="salary-box">
-<h3>Engineering</h3>
-<p>£25,000 - £42,000</p>
-</div>
-
-<div class="salary-box">
-<h3>Business</h3>
-<p>£22,000 - £35,000</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<h2>Career Progression</h2>
-
-<div class="timeline">
-
-<div>
-<h3>Year 1</h3>
-<p>Learn the fundamentals, complete training, and gain workplace experience.</p>
-</div>
-
-<div>
-<h3>Year 2-3</h3>
-<p>Move into a mid-level role with increased responsibility and independence.</p>
-</div>
-
-<div>
-<h3>Year 4-6</h3>
-<p>Lead projects, mentor new employees, and specialise in key areas.</p>
-</div>
-
-<div>
-<h3>Year 7+</h3>
-<p>Become a senior professional, team lead, manager, or specialist expert.</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<h2>Benefits of Junior Roles</h2>
-
-<div class="grid">
-
-<div class="job-card">
-<h3>Professional Training</h3>
-<p>Structured learning pathways and certification programmes.</p>
-</div>
-
-<div class="job-card">
-<h3>Mentorship</h3>
-<p>Work alongside experienced professionals who can guide your growth.</p>
-</div>
-
-<div class="job-card">
-<h3>Career Growth</h3>
-<p>Clear progression routes and promotion opportunities.</p>
-</div>
-
-<div class="job-card">
-<h3>Modern Working</h3>
-<p>Remote, hybrid, and flexible working options.</p>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<h2>Frequently Asked Questions</h2>
-
-<div class="faq-item">
-<h3>Do I need experience?</h3>
-<p>
-Most junior jobs focus on potential and willingness to learn rather than extensive experience.
-</p>
-</div>
-
-<div class="faq-item">
-<h3>Can students apply?</h3>
-<p>
-Many employers offer internships, apprenticeships, and part-time junior opportunities.
-</p>
-</div>
-
-<div class="faq-item">
-<h3>Do I need qualifications?</h3>
-<p>
-Requirements vary, but many roles accept self-taught candidates with strong skills and portfolios.
-</p>
-</div>
-
-<div class="faq-item">
-<h3>Can I work remotely?</h3>
-<p>
-Many modern organisations offer hybrid or fully remote entry-level positions.
-</p>
-</div>
-
-</div>
-</section>
-
-<section>
-<div class="container">
-
-<div class="apply-box">
-
-<h2>Ready to Begin?</h2>
-
-<p>
-Explore hundreds of junior opportunities across multiple industries and
-take your first step toward a successful career.
-</p>
-
-#Apply Today</a>
-
-</div>
-
-</div>
-</section>
+    <section id="apply">
+        <div class="container">
+            <h2 style="text-align: center;">Apply to XPDevs</h2>
+            <p class="jobs-intro">Submitting opens a prepared email in your email application. You can review every detail before sending it.</p>
+            <div class="application-card">
+                <p class="application-note">Tell us about yourself and the role you want. A clear and honest application is more useful than a long one.</p>
+                <form class="application-form" id="applicationForm">
+                    <div class="form-field">
+                        <label for="applicantName">Your name</label>
+                        <input id="applicantName" name="name" type="text" autocomplete="name" placeholder="Alex Morgan" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="applicantEmail">Email address</label>
+                        <input id="applicantEmail" name="email" type="email" autocomplete="email" placeholder="alex@example.com" required>
+                    </div>
+                    <div class="form-field full">
+                        <label for="applicationRole">Role</label>
+                        <select id="applicationRole" name="role" required></select>
+                    </div>
+                    <div class="form-field full">
+                        <label for="applicantPortfolio">Portfolio, GitHub, or LinkedIn</label>
+                        <input id="applicantPortfolio" name="portfolio" type="url" inputmode="url" placeholder="https://github.com/username" required>
+                    </div>
+                    <div class="form-field full">
+                        <label for="applicantExperience">Relevant experience</label>
+                        <textarea id="applicantExperience" name="experience" placeholder="Tell us about your experience, projects, and technical strengths." required></textarea>
+                    </div>
+                    <div class="form-field full">
+                        <label for="applicantMessage">Why XPDevs?</label>
+                        <textarea id="applicantMessage" name="message" placeholder="Tell us what you hope to build, learn, or contribute." required></textarea>
+                    </div>
+                    <div class="application-submit">
+                        <p>Your email application will be prepared for xpdevsclient@gmail.com. Nothing is stored by this website.</p>
+                        <button class="btn" type="submit">Prepare application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
 
 <footer class="site-footer">
-<div class="footer-bottom">
-    <div class="footer-legal">
-        <span>© 2026 Junior Jobs Portal. All rights reserved.</span>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="Doors.html">DoorsOS</a></li>
+                <li><a href="ExamOS.html">ExamOS</a></li>
+                <li><a href="AI.html">AI</a></li>
+                <li><a href="kernel.html">Our Kernel</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Account</h3>
+            <ul>
+                <li><a href="account/signin.html">Sign Up</a></li>
+                <li><a href="beta.html">Beta Program</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="rules.html">Rules and EULA</a></li>
+                <li><a href="download/OS-downloader.html">All Downloads</a></li>
+                <li><a href="jobs.html">Careers</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>About XPDevs</h3>
+            <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                <ul class="legal-links">
+                    <li><a href="rules.html">Privacy Policy</a></li>
+                    <li><a href="rules.html">Terms of Use</a></li>
+                    <li><a href="rules.html">Legal</a></li>
+                    <li><a href="sitemap.xml">Site Map</a></li>
+                </ul>
+            </div>
+            <span>🇬🇧 Based in the United Kingdom</span>
+        </div>
+    </div>
 </footer>
 
+<div class="modal-overlay" id="jobModal" aria-hidden="true">
+    <div class="modal-content job-modal" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+        <button class="btn-icon job-modal-close" id="closeJobModal" type="button" aria-label="Close role details">×</button>
+        <div id="jobModalContent"></div>
+    </div>
+</div>
+
+<script src="assets/js/scripts.js"></script>
+<script>
+    (() => {
+        const jobs = {
+            kernel: {
+                title: 'Senior Kernel Engineer',
+                project: 'NexShell and DoorsOS',
+                level: 'Senior',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£70,000 to £95,000 per year',
+                summary: 'Lead low level engineering across our kernel and operating system foundations.',
+                responsibilities: [
+                    'Design and improve core kernel features in C and C++.',
+                    'Improve boot speed, memory use, drivers, and system reliability.',
+                    'Review technical decisions and help contributors make safe changes.',
+                    'Explain complex system behaviour in clear documentation.'
+                ],
+                requirements: [
+                    'Strong C and C++ programming skills.',
+                    'Practical knowledge of memory, processes, and computer architecture.',
+                    'Experience debugging software on real hardware.',
+                    'Clear communication and a careful approach to system design.'
+                ]
+            },
+            systems: {
+                title: 'Systems Software Engineer',
+                project: 'DoorsOS and ExamOS',
+                level: 'Mid level',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£48,000 to £65,000 per year',
+                summary: 'Build dependable user space tools and applications for our operating systems.',
+                responsibilities: [
+                    'Build native tools, services, and system features.',
+                    'Improve file storage, process control, and user workflows.',
+                    'Work with kernel and quality engineers to solve system issues.',
+                    'Keep software fast and reliable on modest hardware.'
+                ],
+                requirements: [
+                    'Strong programming skills in C, C++, Rust, or a similar language.',
+                    'Understanding of processes, memory, files, and communication between programs.',
+                    'A preference for readable code and simple interfaces.',
+                    'Ability to test and debug complete software features.'
+                ]
+            },
+            ai: {
+                title: 'AI and Machine Learning Engineer',
+                project: 'Genesis AI',
+                level: 'Senior',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£75,000 to £100,000 per year',
+                summary: 'Build useful local AI features with clear limits, careful testing, and strong privacy.',
+                responsibilities: [
+                    'Develop and test models that run in local environments.',
+                    'Turn research ideas into reliable product features.',
+                    'Improve model quality, loading speed, memory use, and browser support.',
+                    'Work with product and design teams on responsible AI experiences.'
+                ],
+                requirements: [
+                    'Practical machine learning experience.',
+                    'Strong Python and JavaScript or TypeScript skills.',
+                    'Experience taking machine learning work from testing to real use.',
+                    'Careful judgement around privacy, quality, and product safety.'
+                ]
+            },
+            frontend: {
+                title: 'Frontend Engineer',
+                project: 'Genesis AI and XPDevs Web',
+                level: 'Mid level',
+                location: 'Remote, Europe',
+                type: 'Full time',
+                salary: '£45,000 to £62,000 per year',
+                summary: 'Create polished and accessible interfaces for AI tools and public web products.',
+                responsibilities: [
+                    'Build responsive interfaces with semantic HTML and modern JavaScript.',
+                    'Create reusable components and clear interaction patterns.',
+                    'Improve page speed, browser support, and accessibility.',
+                    'Work closely with design and product engineering.'
+                ],
+                requirements: [
+                    'Strong JavaScript, HTML, and CSS skills.',
+                    'Experience building complete web applications.',
+                    'Practical understanding of accessibility and responsive design.',
+                    'Ability to collaborate on both design and technical decisions.'
+                ]
+            },
+            'junior-frontend': {
+                title: 'Junior Frontend Developer',
+                project: 'XPDevs Web',
+                level: 'Junior',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£28,000 to £38,000 per year',
+                summary: 'Learn while building real pages, improving accessibility, and helping the website grow.',
+                responsibilities: [
+                    'Build clear and responsive website sections.',
+                    'Fix accessibility and browser issues with guidance.',
+                    'Write useful component code and page content.',
+                    'Learn through regular review and practical project work.'
+                ],
+                requirements: [
+                    'Basic HTML, CSS, and JavaScript knowledge.',
+                    'A clear interest in web development and accessible design.',
+                    'Careful work and willingness to learn from feedback.',
+                    'Examples of personal projects, coursework, or practical work.'
+                ]
+            },
+            designer: {
+                title: 'Product Designer',
+                project: 'All XPDevs products',
+                level: 'Mid level',
+                location: 'Remote, Europe',
+                type: 'Full time',
+                salary: '£42,000 to £58,000 per year',
+                summary: 'Turn difficult technical ideas into simple and welcoming product experiences.',
+                responsibilities: [
+                    'Design product flows from early ideas through final delivery.',
+                    'Create simple prototypes for testing.',
+                    'Maintain a consistent design language across XPDevs products.',
+                    'Protect accessibility and usability during implementation.'
+                ],
+                requirements: [
+                    'A portfolio showing strong product and interaction design.',
+                    'Experience designing software or technical products.',
+                    'Clear decisions based on real user needs.',
+                    'Comfort working directly with engineers in a small team.'
+                ]
+            },
+            security: {
+                title: 'Security Engineer',
+                project: 'ExamOS and NexShell',
+                level: 'Senior',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£65,000 to £88,000 per year',
+                summary: 'Make our operating systems, exam tools, and account services safer by design.',
+                responsibilities: [
+                    'Review sensitive code and system designs.',
+                    'Identify realistic risks and recommend practical improvements.',
+                    'Improve validation, access control, logging, and secure defaults.',
+                    'Help the whole team make safer decisions.'
+                ],
+                requirements: [
+                    'Strong application or systems security knowledge.',
+                    'Experience reviewing real software for common weaknesses.',
+                    'Ability to explain risk clearly and without exaggeration.',
+                    'A careful approach to user data and responsible disclosure.'
+                ]
+            },
+            qa: {
+                title: 'QA and Release Engineer',
+                project: 'DoorsOS and ExamOS',
+                level: 'Mid level',
+                location: 'Remote, Worldwide',
+                type: 'Full time',
+                salary: '£40,000 to £56,000 per year',
+                summary: 'Build repeatable quality checks that help every release feel dependable.',
+                responsibilities: [
+                    'Plan practical testing for operating system and web products.',
+                    'Create useful automated and manual test coverage.',
+                    'Reproduce defects and help engineers find the main cause.',
+                    'Improve release checklists and quality reporting.'
+                ],
+                requirements: [
+                    'Strong written communication and careful testing habits.',
+                    'Experience with test automation and continuous integration.',
+                    'Ability to learn new technical areas quickly.',
+                    'Good judgement about which risks need attention first.'
+                ]
+            },
+            'developer-experience': {
+                title: 'Developer Experience Engineer',
+                project: 'NexShell',
+                level: 'Junior to mid level',
+                location: 'Remote, UK',
+                type: 'Full time',
+                salary: '£32,000 to £48,000 per year',
+                summary: 'Make the path from first clone to working software clearer for new contributors.',
+                responsibilities: [
+                    'Improve build tools, scripts, and contributor setup.',
+                    'Write practical examples and clear technical guides.',
+                    'Test the experience of new contributors and remove common obstacles.',
+                    'Work with maintainers to improve project standards.'
+                ],
+                requirements: [
+                    'Basic software engineering and scripting skills.',
+                    'Clear technical writing and communication.',
+                    'Careful use of Git and build systems.',
+                    'Interest in helping other developers succeed.'
+                ]
+            },
+            research: {
+                title: 'UX Researcher and Accessibility Specialist',
+                project: 'All XPDevs products',
+                level: 'Mid level',
+                location: 'Remote, Worldwide',
+                type: 'Full time',
+                salary: '£44,000 to £60,000 per year',
+                summary: 'Use real user evidence to help our products become clearer and more inclusive.',
+                responsibilities: [
+                    'Plan and run user research with clear questions.',
+                    'Test products for accessibility and usability.',
+                    'Turn findings into useful product recommendations.',
+                    'Teach the team how to include accessibility in everyday work.'
+                ],
+                requirements: [
+                    'Experience in user research, usability testing, or product analysis.',
+                    'Working knowledge of WCAG and accessible design.',
+                    'Strong writing, facilitation, and synthesis skills.',
+                    'Ability to turn evidence into specific actions.'
+                ]
+            },
+            automation: {
+                title: 'Automation and Platform Engineer',
+                project: 'XPDevs Platform',
+                level: 'Mid level',
+                location: 'Remote, UK',
+                type: 'Six month contract',
+                salary: '£450 to £600 per day',
+                summary: 'Improve the services and automation behind our website, accounts, and releases.',
+                responsibilities: [
+                    'Automate repeatable deployment and validation work.',
+                    'Improve monitoring, recovery, and useful system messages.',
+                    'Keep configuration and secrets secure.',
+                    'Make platform decisions clear and easy to maintain.'
+                ],
+                requirements: [
+                    'Strong scripting and automation skills.',
+                    'Experience maintaining cloud or hosted services.',
+                    'Knowledge of continuous delivery, networks, and basic security.',
+                    'A preference for simple and maintainable systems.'
+                ]
+            },
+            writer: {
+                title: 'Technical Writer',
+                project: 'All XPDevs projects',
+                level: 'Mid level',
+                location: 'Remote, Worldwide',
+                type: 'Part time',
+                salary: '£26,000 to £36,000 per year, pro rata',
+                summary: 'Make technical information accurate, friendly, and easy to follow.',
+                responsibilities: [
+                    'Write guides, tutorials, references, and release notes.',
+                    'Check technical details with the engineers who built them.',
+                    'Improve structure, terminology, and accessibility.',
+                    'Create practical examples for real user tasks.'
+                ],
+                requirements: [
+                    'Excellent written English and editing skills.',
+                    'Ability to learn and explain technical concepts.',
+                    'Experience documenting software or developer tools.',
+                    'Reliable delivery and precise communication.'
+                ]
+            },
+            community: {
+                title: 'Community and Education Specialist',
+                project: 'XPDevs and ExamOS',
+                level: 'Mid level',
+                location: 'Remote, Worldwide',
+                type: 'Part time',
+                salary: '£24,000 to £32,000 per year, pro rata',
+                summary: 'Connect contributors, schools, educators, and learners with useful support.',
+                responsibilities: [
+                    'Organise community discussions, events, and feedback programmes.',
+                    'Build relationships with schools and education practitioners.',
+                    'Create learning resources and responsible product guidance.',
+                    'Share community needs clearly with product and engineering teams.'
+                ],
+                requirements: [
+                    'Clear communication with different audiences.',
+                    'Experience with communities, education, events, or support.',
+                    'A proactive and organised approach to relationships.',
+                    'Comfort using online collaboration tools while working remotely.'
+                ]
+            }
+        };
+
+        const cards = Array.from(document.querySelectorAll('.job-card'));
+        const searchInput = document.getElementById('jobSearch');
+        const departmentFilter = document.getElementById('departmentFilter');
+        const levelFilter = document.getElementById('levelFilter');
+        const clearJobs = document.getElementById('clearJobs');
+        const jobsStatus = document.getElementById('jobsStatus');
+        const noJobs = document.getElementById('noJobs');
+        const applicationRole = document.getElementById('applicationRole');
+        const applicationForm = document.getElementById('applicationForm');
+        const jobModal = document.getElementById('jobModal');
+        const jobModalContent = document.getElementById('jobModalContent');
+        const closeJobModal = document.getElementById('closeJobModal');
+        let lastFocusedElement = null;
+
+        const openOption = document.createElement('option');
+        openOption.value = 'open';
+        openOption.textContent = 'Open application';
+        applicationRole.appendChild(openOption);
+
+        Object.entries(jobs).forEach(([id, job]) => {
+            const option = document.createElement('option');
+            option.value = id;
+            option.textContent = job.title;
+            applicationRole.appendChild(option);
+        });
+
+        function filterJobs() {
+            const search = searchInput.value.trim().toLowerCase();
+            const department = departmentFilter.value;
+            const level = levelFilter.value;
+            let count = 0;
+
+            cards.forEach(card => {
+                const matchesSearch = !search || card.textContent.toLowerCase().includes(search);
+                const matchesDepartment = department === 'all' || card.dataset.department === department;
+                const matchesLevel = level === 'all' || card.dataset.level === level;
+                const visible = matchesSearch && matchesDepartment && matchesLevel;
+                card.hidden = !visible;
+                if (visible) count += 1;
+            });
+
+            jobsStatus.textContent = `Showing ${count} open ${count === 1 ? 'position' : 'positions'}`;
+            noJobs.classList.toggle('show', count === 0);
+        }
+
+        searchInput.addEventListener('input', filterJobs);
+        departmentFilter.addEventListener('change', filterJobs);
+        levelFilter.addEventListener('change', filterJobs);
+        clearJobs.addEventListener('click', () => {
+            searchInput.value = '';
+            departmentFilter.value = 'all';
+            levelFilter.value = 'all';
+            filterJobs();
+            searchInput.focus();
+        });
+
+        function openModal(element) {
+            lastFocusedElement = document.activeElement;
+            element.classList.add('show');
+            element.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            closeJobModal.focus();
+        }
+
+        function hideModal(element) {
+            element.classList.remove('show');
+            element.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        function addListSection(title, items) {
+            const section = document.createElement('section');
+            section.className = 'job-modal-section';
+            const heading = document.createElement('h4');
+            heading.textContent = title;
+            const list = document.createElement('ul');
+            items.forEach(text => {
+                const item = document.createElement('li');
+                item.textContent = text;
+                list.appendChild(item);
+            });
+            section.append(heading, list);
+            jobModalContent.appendChild(section);
+        }
+
+        function openJob(id) {
+            const job = jobs[id];
+            if (!job) return;
+
+            jobModalContent.innerHTML = '';
+            const header = document.createElement('header');
+            header.className = 'job-modal-header';
+            const project = document.createElement('span');
+            project.className = 'job-project';
+            project.textContent = job.project;
+            const title = document.createElement('h3');
+            title.id = 'jobModalTitle';
+            title.textContent = job.title;
+            const summary = document.createElement('p');
+            summary.textContent = job.summary;
+            header.append(project, title, summary);
+
+            const facts = document.createElement('div');
+            facts.className = 'job-modal-facts';
+            [job.level, job.location, job.type, `Salary: ${job.salary}`].forEach(text => {
+                const item = document.createElement('span');
+                item.textContent = text;
+                facts.appendChild(item);
+            });
+
+            jobModalContent.append(header, facts);
+            addListSection('What you will do', job.responsibilities);
+            addListSection('What you will bring', job.requirements);
+
+            const actions = document.createElement('div');
+            actions.className = 'job-modal-actions';
+            const note = document.createElement('p');
+            note.textContent = 'You do not need to match every line. Apply if the role interests you.';
+            const apply = document.createElement('button');
+            apply.className = 'btn';
+            apply.type = 'button';
+            apply.textContent = 'Apply for this role';
+            apply.addEventListener('click', () => {
+                hideModal(jobModal);
+                applicationRole.value = id;
+                document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
+            });
+            actions.append(note, apply);
+            jobModalContent.appendChild(actions);
+            openModal(jobModal);
+        }
+
+        document.querySelectorAll('[data-view-job]').forEach(button => {
+            button.addEventListener('click', () => openJob(button.dataset.viewJob));
+        });
+
+        closeJobModal.addEventListener('click', () => hideModal(jobModal));
+        jobModal.addEventListener('mousedown', event => {
+            if (event.target === jobModal) hideModal(jobModal);
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && jobModal.classList.contains('show')) hideModal(jobModal);
+        });
+
+        applicationForm.addEventListener('submit', event => {
+            event.preventDefault();
+            if (!applicationForm.reportValidity()) return;
+
+            const data = new FormData(applicationForm);
+            const selectedRole = data.get('role') === 'open' ? 'Open application' : jobs[data.get('role')].title;
+            const subject = `XPDevs application for ${selectedRole}`;
+            const body = [
+                `Role: ${selectedRole}`,
+                `Name: ${data.get('name')}`,
+                `Email: ${data.get('email')}`,
+                `Portfolio, GitHub, or LinkedIn: ${data.get('portfolio')}`,
+                '',
+                'RELEVANT EXPERIENCE',
+                data.get('experience'),
+                '',
+                'WHY XPDEVS?',
+                data.get('message')
+            ].join('\n');
+            const email = `mailto:xpdevsclient@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = email;
+        });
+    })();
+</script>
 </body>
 </html>
