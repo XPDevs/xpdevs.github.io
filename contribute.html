@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contribute to XPDevs. Browse the open source repositories you can help with: operating systems, kernels, compilers, networking frameworks, AI tools, and libraries. Open to everyone.">
+    <title>Contribute to XPDevs</title>
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .contribute-intro {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: #5f6368;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .project-overview {
+            padding-top: 0;
+        }
+
+        .company-profile {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+            gap: 42px;
+            align-items: center;
+            padding: 34px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-eyebrow {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .company-profile h2 {
+            margin: 0 0 14px;
+            font-size: 27px;
+            line-height: 1.3;
+        }
+
+        .company-profile p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .company-facts {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .company-fact {
+            min-width: 0;
+            padding: 15px;
+            border-radius: var(--radius-lg);
+            background: var(--input-bg);
+        }
+
+        .company-fact strong,
+        .company-fact span {
+            display: block;
+        }
+
+        .company-fact strong {
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .company-fact span {
+            color: #5f6368;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .commitment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 820px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .commitment-card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            background: var(--content-bg);
+        }
+
+        .commitment-card h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        .commitment-card p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .step-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            padding: 24px;
+            border-radius: var(--radius-3xl);
+            background: var(--input-bg);
+        }
+
+        .process-number {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .process-step h3 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        .process-step p {
+            margin: 0;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            height: 100%;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card h3 {
+            margin: 0 0 10px;
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #5f6368;
+            line-height: 1.65;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 820px;
+            margin: 40px auto 0;
+        }
+
+        .benefit-item {
+            padding: 22px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-2xl);
+            background: var(--content-bg);
+        }
+
+        .benefit-item strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .benefit-item span {
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .faq-list {
+            max-width: 820px;
+            margin: 40px auto 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item summary {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 21px 42px 21px 0;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 650;
+            cursor: pointer;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            position: absolute;
+            top: 50%;
+            right: 4px;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 400;
+            transform: translateY(-50%);
+        }
+
+        .faq-item[open] summary::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-answer {
+            max-width: 740px;
+            padding: 0 42px 21px 0;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .more-github-card {
+            max-width: 820px;
+            margin: 40px auto 0;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .more-github-card h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+
+        .more-github-card p {
+            margin: 0 0 18px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .contribute-contact-card {
+            max-width: 820px;
+            margin: 40px auto 0;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .contribute-contact-card h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+        }
+
+        .contribute-contact-card p {
+            max-width: 650px;
+            margin: 0 auto 22px;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-actions .btn-secondary {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+
+        .projects-toolbar {
+            display: grid;
+            grid-template-columns: minmax(240px, 1.4fr) minmax(180px, 0.7fr) minmax(180px, 0.7fr) auto;
+            gap: 12px;
+            max-width: 980px;
+            margin: 0 auto 22px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .projects-toolbar input,
+        .projects-toolbar select {
+            width: 100%;
+            height: 46px;
+            padding: 0 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--input-bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .projects-toolbar input:focus,
+        .projects-toolbar select:focus {
+            border-color: var(--primary);
+            background: var(--content-bg);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .clear-projects {
+            padding: 0 14px;
+            border: 0;
+            border-radius: var(--radius-lg);
+            background: transparent;
+            color: var(--primary);
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .clear-projects:hover {
+            background: var(--input-bg);
+        }
+
+        .projects-status {
+            max-width: 980px;
+            margin: 0 auto 24px;
+            color: #5f6368;
+            font-size: 13px;
+            text-align: right;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            min-height: 340px;
+            flex-direction: column;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(3px);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.09);
+        }
+
+        .project-card[hidden] {
+            display: none;
+        }
+
+        .project-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .project-category,
+        .project-language {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: var(--radius-full);
+            background: var(--input-bg);
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .project-language {
+            background: #eaf2ff;
+            color: #1557ad;
+        }
+
+        .project-card h3 {
+            margin: 0 0 6px;
+            font-size: 21px;
+            line-height: 1.3;
+        }
+
+        .project-repo {
+            margin: 0 0 16px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .project-summary {
+            margin: 0 0 20px;
+            color: #5f6368;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .project-facts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 0 0 20px;
+        }
+
+        .project-facts div {
+            min-width: 0;
+            padding: 11px 12px;
+            border-radius: var(--radius-md);
+            background: var(--input-bg);
+        }
+
+        .project-facts .level-fact {
+            grid-column: 1 / -1;
+        }
+
+        .project-facts dt {
+            margin: 0 0 4px;
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .project-facts dd {
+            margin: 0;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 24px;
+        }
+
+        .project-skills span {
+            padding: 6px 9px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .project-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-actions .btn {
+            padding: 10px 18px;
+            font-size: 12px;
+        }
+
+        .project-note {
+            color: #5f6368;
+            font-size: 10px;
+        }
+
+        .no-projects {
+            display: none;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 50px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            background: var(--content-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .no-projects.show {
+            display: block;
+        }
+
+        .no-projects p {
+            margin: 10px 0 22px;
+            color: #5f6368;
+        }
+
+        .project-modal {
+            position: relative;
+            display: flex;
+            width: min(92%, 780px);
+            max-height: 88vh;
+            padding: 0;
+            overflow: hidden;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        #projectModalContent {
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 30px 34px 24px;
+            scrollbar-gutter: stable;
+        }
+
+        .project-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 3;
+            background: var(--input-bg);
+        }
+
+        .project-modal-header {
+            padding-right: 48px;
+        }
+
+        .project-modal-eyebrow {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .project-modal-header h3 {
+            margin: 0 0 10px;
+            font-size: 26px;
+            line-height: 1.25;
+        }
+
+        .project-modal-header p {
+            max-width: 650px;
+            margin: 0;
+            color: #5f6368;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .project-modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 12px;
+        }
+
+        .project-modal-meta span {
+            padding: 5px 8px;
+            border-radius: var(--radius-full);
+            background: var(--input-bg);
+            color: #5f6368;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .project-modal-facts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin: 20px 0 4px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--input-bg);
+        }
+
+        .project-modal-fact {
+            min-width: 0;
+        }
+
+        .project-modal-fact dt {
+            margin: 0 0 4px;
+            color: #5f6368;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .project-modal-fact dd {
+            margin: 0;
+            color: var(--text);
+            font-size: 11px;
+            font-weight: 650;
+            line-height: 1.4;
+        }
+
+        .project-modal-section {
+            margin-top: 20px;
+            padding-top: 19px;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-modal-section h4 {
+            margin: 0 0 10px;
+            font-size: 15px;
+        }
+
+        .project-modal-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #5f6368;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .project-modal-section li {
+            margin-bottom: 6px;
+            padding-left: 2px;
+        }
+
+        .project-modal-section a {
+            color: var(--primary);
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .project-modal-context {
+            margin-top: 20px;
+            padding: 15px 16px;
+            border-radius: var(--radius-lg);
+            background: #eaf2ff;
+            color: #414851;
+            font-size: 11px;
+            line-height: 1.55;
+        }
+
+        .project-modal-context strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #173b6c;
+            font-size: 12px;
+        }
+
+        .project-modal-actions {
+            position: sticky;
+            bottom: -24px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 22px -34px -24px;
+            padding: 15px 34px 19px;
+            border-top: 1px solid var(--border);
+            background: var(--modal-bg);
+            box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-modal-actions p {
+            max-width: 420px;
+            margin: 0;
+            color: #5f6368;
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .project-modal-actions .btn {
+            flex: 0 0 auto;
+            padding: 10px 18px;
+            font-size: 12px;
+        }
+
+        .hero-center p {
+            opacity: 1;
+        }
+
+        .site-footer .footer-bottom {
+            opacity: 0.9;
+        }
+
+        .site-footer .legal-links a {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .projects-toolbar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .projects-toolbar .search-field {
+                grid-column: 1 / -1;
+            }
+
+            .company-profile {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .feature-grid,
+            .step-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-toolbar,
+            .projects-grid,
+            .feature-grid,
+            .benefit-grid,
+            .step-list,
+            .commitment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-toolbar .search-field {
+                grid-column: auto;
+            }
+
+            .projects-toolbar {
+                padding: 12px;
+            }
+
+            .projects-status {
+                text-align: left;
+            }
+
+            .company-profile {
+                padding: 26px 22px;
+            }
+
+            .project-card {
+                min-height: 0;
+                padding: 24px;
+            }
+
+            .project-modal {
+                width: 94%;
+                max-height: 90vh;
+                padding: 0;
+            }
+
+            #projectModalContent {
+                max-height: 90vh;
+                padding: 26px 22px 20px;
+            }
+
+            .project-modal-facts {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-modal-actions {
+                position: static;
+                align-items: flex-start;
+                flex-direction: column;
+                margin: 22px -22px -20px;
+                padding: 15px 22px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .company-facts,
+            .project-facts,
+            .project-modal-facts {
+                grid-template-columns: 1fr;
+            }
+
+            .project-facts .level-fact {
+                grid-column: auto;
+            }
+
+            .project-actions {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="topbar">
+    <div class="topbar-brand">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+            <span></span><span></span><span></span>
+        </button>
+        <a href="index.html">
+            <img src="logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width: 92px; height: 52px;">
+        </a>
+    </div>
+    <div class="topbar-center">
+        <a href="index.html#about" class="topbar-link">About Us</a>
+        <a href="index.html#sneak-peek" class="topbar-link">Preview</a>
+        <div class="dropdown">
+            <a href="#" class="topbar-link" style="cursor: default;">Download ▾</a>
+            <div class="dropdown-content">
+                <a href="Doors.html">DoorsOS</a>
+                <a href="ExamOS.html">ExamOS</a>
+                <a href="download/OS-downloader.html">All Downloads</a>
+            </div>
+        </div>
+        <a href="Doors.html" class="topbar-link">DoorsOS</a>
+        <a href="ExamOS.html" class="topbar-link">ExamOS</a>
+        <a href="AI.html" class="topbar-link">AI</a>
+        <a href="rules.html" class="topbar-link">Rules</a>
+        <a href="beta.html" class="topbar-link">Beta</a>
+        <a href="kernel.html" class="topbar-link">Kernel</a>
+        <a href="feedback.html" class="topbar-link">Feedback</a>
+        <a href="contribute.html" class="topbar-link active">Contribute</a>
+    </div>
+    <div class="topbar-actions">
+        <a href="account/signin.html">
+            <img src="images/account/user-icon.png" alt="Sign In" style="height: 20px; width: 20px; opacity: 0.8;">
+        </a>
+    </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+    <ul>
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#sneak-peek">Preview</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="Doors.html">DoorsOS</a></li>
+        <li><a href="ExamOS.html">ExamOS</a></li>
+        <li><a href="AI.html">AI</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="beta.html">Beta</a></li>
+        <li><a href="kernel.html">Kernel</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="download/OS-downloader.html">Downloads</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+    </ul>
+</div>
+
+<main>
+    <div class="hero-center">
+        <h1>Contribute to XPDevs</h1>
+        <p style="font-size: 21px; line-height: 1.4; max-width: 680px; margin: 15px auto 0; color: #5f6368;">
+            Everything here is public and open to anyone. Pick a repository, open an issue, or send a pull request.
+        </p>
+        <p style="font-size: 16px; line-height: 1.4; max-width: 680px; margin: 10px auto 0; color: #5f6368;">
+            No application form. No CV. No interview. No minimum experience. Start with whichever project looks interesting.
+        </p>
+    </div>
+
+    <section class="project-overview">
+        <div class="container">
+            <div class="company-profile">
+                <div>
+                    <span class="section-eyebrow">How it works</span>
+                    <h2>Pick a repository. Change something. That is the whole process.</h2>
+                    <p>XPDevs is a one person open source project run from the United Kingdom. The repositories listed below cover operating systems, low level systems work, compilers, networking frameworks, AI tools, and libraries. Every one of them is public and none of them are locked down, so you do not need permission to work on them. Fork a repository, make it better, and open a pull request. If you are not sure where to start, open an issue and ask, that is genuinely welcome too.</p>
+                </div>
+                <div class="company-facts" aria-label="Contribution facts">
+                    <div class="company-fact"><strong>Open to anyone</strong><span>No application, no CV</span></div>
+                    <div class="company-fact"><strong>Public code</strong><span>Fork and change freely</span></div>
+                    <div class="company-fact"><strong>Any skill</strong><span>Code, docs, design, testing</span></div>
+                    <div class="company-fact"><strong>No experience</strong><span>Helpful first changes listed</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="open-projects">
+        <div class="container">
+            <h2 style="text-align: center;">Repositories you can work on</h2>
+            <p class="contribute-intro">Each card below is a single real repository you can clone right now. Pick whatever matches the skills you already have, or try something completely new to you.</p>
+
+            <div class="projects-toolbar" role="search" aria-label="Filter repositories">
+                <label class="search-field">
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Search repositories</span>
+                    <input id="projectSearch" type="search" placeholder="Search by name, language, or idea">
+                </label>
+                <label>
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Filter by category</span>
+                    <select id="categoryFilter">
+                        <option value="all">All categories</option>
+                        <option value="Operating systems">Operating systems</option>
+                        <option value="Systems and networking">Systems and networking</option>
+                        <option value="Languages and compilers">Languages and compilers</option>
+                        <option value="AI and search">AI and search</option>
+                        <option value="Libraries and APIs">Libraries and APIs</option>
+                        <option value="Tools and utilities">Tools and utilities</option>
+                        <option value="Website">Website</option>
+                    </select>
+                </label>
+                <label>
+                    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Filter by entry level</span>
+                    <select id="levelFilter">
+                        <option value="all">All entry levels</option>
+                        <option value="Easy first change">Easy first change</option>
+                        <option value="Comfortable">Comfortable</option>
+                        <option value="Ambitious">Ambitious</option>
+                    </select>
+                </label>
+                <button class="clear-projects" id="clearProjects" type="button">Clear filters</button>
+            </div>
+
+            <div class="projects-status" id="projectsStatus" aria-live="polite">Showing 21 repositories.</div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <article class="project-card" data-project="website" data-category="Website" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Website</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>XPDevs Website</h3>
+                    <p class="project-repo">github.com/XPDevs/xpdevs.github.io</p>
+                    <p class="project-summary">The official XPDevs website, and the page you are reading right now. Plain HTML, shared CSS, and a small amount of JavaScript.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easiest place to start</dd></div>
+                        <div><dt>Main language</dt><dd>HTML, CSS, JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Static website</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>HTML</span><span>CSS</span><span>Accessibility</span><span>Copywriting</span></div>
+                    <div class="project-actions"><span class="project-note">Changes show up instantly</span><button class="btn view-project" type="button" data-view-project="website">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="gateway" data-category="AI and search" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">AI and search</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>gateway</h3>
+                    <p class="project-repo">github.com/XPDevs/gateway</p>
+                    <p class="project-summary">A search engine built from scratch, with no third party search service and no hidden layers.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, self contained</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Search engine</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Indexing</span><span>Ranking</span><span>Parsing</span><span>Benchmarks</span></div>
+                    <div class="project-actions"><span class="project-note">Small enough to read fully</span><button class="btn view-project" type="button" data-view-project="gateway">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="ofl" data-category="AI and search" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">AI and search</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>OFL</h3>
+                    <p class="project-repo">github.com/XPDevs/OFL</p>
+                    <p class="project-summary">A new fast search standard for databases, proposed as an open specification that anyone can implement.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, writing helps most</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript, specification</dd></div>
+                        <div><dt>Repo type</dt><dd>Specification and reference</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Specification</span><span>Search</span><span>Databases</span><span>Reference implementation</span></div>
+                    <div class="project-actions"><span class="project-note">Writing input is as useful as code</span><button class="btn view-project" type="button" data-view-project="ofl">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="telcom" data-category="Systems and networking" data-level="Ambitious">
+                    <div class="project-card-top">
+                        <span class="project-category">Systems and networking</span>
+                        <span class="project-language">C</span>
+                    </div>
+                    <h3>telcom</h3>
+                    <p class="project-repo">github.com/XPDevs/telcom</p>
+                    <p class="project-summary">An open source framework for managing packet queues and latency on access network equipment.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, real systems work</dd></div>
+                        <div><dt>Main language</dt><dd>C</dd></div>
+                        <div><dt>Repo type</dt><dd>Infrastructure framework</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>C</span><span>Networking</span><span>Queues</span><span>Latency</span></div>
+                    <div class="project-actions"><span class="project-note">Targets real network gear</span><button class="btn view-project" type="button" data-view-project="telcom">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="retroboot" data-category="Systems and networking" data-level="Ambitious">
+                    <div class="project-card-top">
+                        <span class="project-category">Systems and networking</span>
+                        <span class="project-language">C</span>
+                    </div>
+                    <h3>RetroBoot</h3>
+                    <p class="project-repo">github.com/XPDevs/RetroBoot</p>
+                    <p class="project-summary">A lightweight UEFI compatibility layer that lets legacy BIOS based operating systems boot on modern hardware, with no changes to the operating system itself.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, hardware involved</dd></div>
+                        <div><dt>Main language</dt><dd>C</dd></div>
+                        <div><dt>Repo type</dt><dd>UEFI application</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>C</span><span>UEFI</span><span>Bootloaders</span><span>Compatibility</span></div>
+                    <div class="project-actions"><span class="project-note">Fully documented already</span><button class="btn view-project" type="button" data-view-project="retroboot">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="nexshell" data-category="Operating systems" data-level="Ambitious">
+                    <div class="project-card-top">
+                        <span class="project-category">Operating systems</span>
+                        <span class="project-language">C</span>
+                    </div>
+                    <h3>NexShell</h3>
+                    <p class="project-repo">github.com/XPDevs/NexShell</p>
+                    <p class="project-summary">The NexShell source code, the low level environment the other XPDevs systems are built on.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, foundational code</dd></div>
+                        <div><dt>Main language</dt><dd>C</dd></div>
+                        <div><dt>Repo type</dt><dd>System source code</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>C</span><span>Shells</span><span>Terminals</span><span>Systems</span></div>
+                    <div class="project-actions"><span class="project-note">Core of the ecosystem</span><button class="btn view-project" type="button" data-view-project="nexshell">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="doorsos-server" data-category="Operating systems" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Operating systems</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>DoorsOS Server</h3>
+                    <p class="project-repo">github.com/XPDevs/DoorsOS-Server</p>
+                    <p class="project-summary">The DoorsOS Server operating system, running as an interface in the browser with its own server build.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable for web developers</dd></div>
+                        <div><dt>Main language</dt><dd>HTML, CSS, JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Operating system</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>JavaScript</span><span>Windows</span><span>Virtual file system</span><span>UI</span></div>
+                    <div class="project-actions"><span class="project-note">Deployed and in use</span><button class="btn view-project" type="button" data-view-project="doorsos-server">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="auraos" data-category="Operating systems" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Operating systems</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>AuraOS</h3>
+                    <p class="project-repo">github.com/XPDevs/AuraOS</p>
+                    <p class="project-summary">The AuraOS interface, a separate desktop design built on the idea that an operating system should feel calm and uncluttered.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>HTML, CSS, JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Operating system interface</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>CSS</span><span>Interface design</span><span>Settings</span><span>Responsive layout</span></div>
+                    <div class="project-actions"><span class="project-note">Live on the website</span><button class="btn view-project" type="button" data-view-project="auraos">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="genesis-ai" data-category="AI and search" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">AI and search</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>Genesis AI</h3>
+                    <p class="project-repo">github.com/XPDevs/Genesis-AI</p>
+                    <p class="project-summary">An experimental browser based AI platform where behaviour is defined in plain JSON, with no model downloads and no server calls for the main chat.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, nothing to install</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript and JSON</dd></div>
+                        <div><dt>Repo type</dt><dd>Web application</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>JavaScript</span><span>JSON behaviour</span><span>Text analysis</span><span>Image analysis</span></div>
+                    <div class="project-actions"><span class="project-note">README explains the design</span><button class="btn view-project" type="button" data-view-project="genesis-ai">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="lm-studio-image-search" data-category="AI and search" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">AI and search</span>
+                        <span class="project-language">TypeScript</span>
+                    </div>
+                    <h3>LM Studio Image Search</h3>
+                    <p class="project-repo">github.com/XPDevs/LM-Studio-Image-Search</p>
+                    <p class="project-summary">An MCP server that lets models trained for tool use in LM Studio search the web for images and display them.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>TypeScript</dd></div>
+                        <div><dt>Repo type</dt><dd>MCP server</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>TypeScript</span><span>MCP</span><span>Tool use</span><span>Web APIs</span></div>
+                    <div class="project-actions"><span class="project-note">Modern, tidy codebase</span><button class="btn view-project" type="button" data-view-project="lm-studio-image-search">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="aimi" data-category="Languages and compilers" data-level="Ambitious">
+                    <div class="project-card-top">
+                        <span class="project-category">Languages and compilers</span>
+                        <span class="project-language">Language project</span>
+                    </div>
+                    <h3>aimi</h3>
+                    <p class="project-repo">github.com/XPDevs/aimi</p>
+                    <p class="project-summary">A programming language in the shape of C that gives the developer more explicit control over what the code does.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, design heavy</dd></div>
+                        <div><dt>Main language</dt><dd>Language design and tooling</dd></div>
+                        <div><dt>Repo type</dt><dd>Programming language</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Language design</span><span>Compilers</span><span>Syntax</span><span>Specification</span></div>
+                    <div class="project-actions"><span class="project-note">Early stage, ideas welcome</span><button class="btn view-project" type="button" data-view-project="aimi">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="xjs" data-category="Languages and compilers" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Languages and compilers</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>XJS</h3>
+                    <p class="project-repo">github.com/XPDevs/XJS</p>
+                    <p class="project-summary">The XPDevs version of JavaScript, built so it can be interchanged with standard JavaScript as easily as possible.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable for JavaScript developers</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Language and library</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>JavaScript</span><span>Interpreters</span><span>Compatibility</span><span>Benchmarks</span></div>
+                    <div class="project-actions"><span class="project-note">Compatibility is the goal</span><button class="btn view-project" type="button" data-view-project="xjs">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="asm-plus" data-category="Languages and compilers" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Languages and compilers</span>
+                        <span class="project-language">C</span>
+                    </div>
+                    <h3>ASM plus</h3>
+                    <p class="project-repo">github.com/XPDevs/ASM-plus-</p>
+                    <p class="project-summary">A compiler that turns a friendlier custom assembly dialect into real x86 assembly, built to make bootloader assembly approachable for beginners.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, small clear codebase</dd></div>
+                        <div><dt>Main language</dt><dd>C</dd></div>
+                        <div><dt>Repo type</dt><dd>Compiler</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>C</span><span>Assemblers</span><span>x86</span><span>Linux or WSL</span></div>
+                    <div class="project-actions"><span class="project-note">Runs on Linux or WSL</span><button class="btn view-project" type="button" data-view-project="asm-plus">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="xpdevs-studio" data-category="Tools and utilities" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Tools and utilities</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>XPDevs Studio</h3>
+                    <p class="project-repo">github.com/XPDevs/XPDevs-Studio</p>
+                    <p class="project-summary">A small Linux style IDE that runs in the browser. There is very little code to read first, which makes it a good early project.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Developer tool</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Editors</span><span>Syntax highlighting</span><span>File trees</span><span>UI</span></div>
+                    <div class="project-actions"><span class="project-note">Lots left to build</span><button class="btn view-project" type="button" data-view-project="xpdevs-studio">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="paral" data-category="Libraries and APIs" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Libraries and APIs</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>Paral</h3>
+                    <p class="project-repo">github.com/XPDevs/Paral</p>
+                    <p class="project-summary">A JavaScript 3D library built on top of THREE.js, giving projects a simpler way to build 3D scenes in the browser.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, graphics focused</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>3D library</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>THREE.js</span><span>WebGL</span><span>3D graphics</span><span>API design</span></div>
+                    <div class="project-actions"><span class="project-note">Library API work</span><button class="btn view-project" type="button" data-view-project="paral">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="controller-api" data-category="Libraries and APIs" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Libraries and APIs</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>controller.API</h3>
+                    <p class="project-repo">github.com/XPDevs/controller.API</p>
+                    <p class="project-summary">A free and open source API that gives any website controller support, so gamepad input can be added to a site in a few lines.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, small library</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript, HTML</dd></div>
+                        <div><dt>Repo type</dt><dd>Open library</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Gamepad API</span><span>Input mapping</span><span>Examples</span><span>Docs</span></div>
+                    <div class="project-actions"><span class="project-note">Examples are very welcome</span><button class="btn view-project" type="button" data-view-project="controller-api">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="iframe-control" data-category="Libraries and APIs" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Libraries and APIs</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>iframe-control</h3>
+                    <p class="project-repo">github.com/XPDevs/iframe-control</p>
+                    <p class="project-summary">A small JavaScript API for calling an API, showing an iframe, and handing control of that iframe to the page displaying it.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, focused scope</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Open library</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Iframes</span><span>PostMessage</span><span>Browser security</span><span>Docs</span></div>
+                    <div class="project-actions"><span class="project-note">Well defined scope</span><button class="btn view-project" type="button" data-view-project="iframe-control">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="js2py" data-category="Tools and utilities" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Tools and utilities</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>JS2PY</h3>
+                    <p class="project-repo">github.com/XPDevs/JS2PY</p>
+                    <p class="project-summary">A program that converts JavaScript into Python, so scripts can move between the two languages without being rewritten by hand.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript, HTML</dd></div>
+                        <div><dt>Repo type</dt><dd>Converter tool</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Parsing</span><span>Conversion</span><span>Edge cases</span><span>Error messages</span></div>
+                    <div class="project-actions"><span class="project-note">Small and understandable</span><button class="btn view-project" type="button" data-view-project="js2py">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="64232" data-category="Tools and utilities" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Tools and utilities</span>
+                        <span class="project-language">JavaScript</span>
+                    </div>
+                    <h3>64232</h3>
+                    <p class="project-repo">github.com/XPDevs/64232</p>
+                    <p class="project-summary">A tool that converts 64 bit executables into 32 bit executables, so software can run on older or 32 bit only systems.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Converter tool</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Binary formats</span><span>Conversion</span><span>Testing</span><span>Error messages</span></div>
+                    <div class="project-actions"><span class="project-note">Every fix needs a test file</span><button class="btn view-project" type="button" data-view-project="64232">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="url-shortener" data-category="Tools and utilities" data-level="Easy first change">
+                    <div class="project-card-top">
+                        <span class="project-category">Tools and utilities</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>URL</h3>
+                    <p class="project-repo">github.com/XPDevs/URL</p>
+                    <p class="project-summary">A URL shortener built as an independent alternative to services such as TinyURL, with no account needed.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Easy first change</dd></div>
+                        <div><dt>Main language</dt><dd>HTML, CSS, JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Web tool</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Routing</span><span>Database</span><span>UI</span><span>Abuse prevention</span></div>
+                    <div class="project-actions"><span class="project-note">Independent alternative</span><button class="btn view-project" type="button" data-view-project="url-shortener">View project</button></div>
+                </article>
+
+                <article class="project-card" data-project="hostly" data-category="Tools and utilities" data-level="Comfortable">
+                    <div class="project-card-top">
+                        <span class="project-category">Tools and utilities</span>
+                        <span class="project-language">HTML</span>
+                    </div>
+                    <h3>Hostly</h3>
+                    <p class="project-repo">github.com/XPDevs/Hostly</p>
+                    <p class="project-summary">A free website hosting project, built so anyone can put a site online without a hosting subscription.</p>
+                    <dl class="project-facts">
+                        <div class="level-fact"><dt>Entry level</dt><dd>Comfortable, infrastructure focused</dd></div>
+                        <div><dt>Main language</dt><dd>HTML, CSS, JavaScript</dd></div>
+                        <div><dt>Repo type</dt><dd>Hosting service</dd></div>
+                    </dl>
+                    <div class="project-skills"><span>Hosting</span><span>Uploads</span><span>Deployments</span><span>Security</span></div>
+                    <div class="project-actions"><span class="project-note">Real service, real users</span><button class="btn view-project" type="button" data-view-project="hostly">View project</button></div>
+                </article>
+            </div>
+
+            <div class="no-projects" id="noProjects">
+                <h3>No exact match found</h3>
+                <p>Try a different search, or browse every repository on GitHub and open an issue on whatever looks interesting.</p>
+                <a class="btn" href="https://github.com/XPDevs?tab=repositories">Browse all XPDevs repositories</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-contribute">
+        <div class="container" style="text-align: center;">
+            <h2>How to contribute</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">There is no application process. If you want to help, the fastest route is to open the repository and start reading it.</p>
+            <div class="step-list">
+                <div class="process-step"><span class="process-number">1</span><h3>Find something</h3><p>Browse the repositories above. Read the source, the README, and any open issues on the one you picked.</p></div>
+                <div class="process-step"><span class="process-number">2</span><h3>Ask or claim it</h3><p>Open an issue saying what you would like to change. This stops two people doing the same work and lets you check the idea fits the project.</p></div>
+                <div class="process-step"><span class="process-number">3</span><h3>Fork and change it</h3><p>Fork the repository, make your change, and commit it with a clear message describing what changed and why.</p></div>
+                <div class="process-step"><span class="process-number">4</span><h3>Open a pull request</h3><p>Send the pull request. Expect honest feedback, be willing to adjust, and be patient while it is reviewed.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ways-to-help">
+        <div class="container" style="text-align: center;">
+            <h2>Ways to help that are not code</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">These projects have far more to do than there are people, and none of the work below is less valuable than writing code.</p>
+            <div class="feature-grid" style="text-align: left;">
+                <div class="feature-card">
+                    <h3>Documentation</h3>
+                    <p>Write setup guides, explain how something works, or fix a README that confused you. If a page confused you, someone else will be confused by it too.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Testing and bug reports</h3>
+                    <p>Install a project, try it on hardware you own, and report what breaks. A clear reproduction is often worth more than a fix.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Design and accessibility</h3>
+                    <p>Improve contrast, keyboard support, focus states, mobile layout, and screen reader labels across the web projects.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Translation</h3>
+                    <p>Translate documentation, interfaces, and error codes. The error code reference is a good place to start, because error messages are read by people under stress.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Examples and tutorials</h3>
+                    <p>Write a small demo showing how to use NexShell, ASM plus, or gateway. Teaching something is one of the best ways to find gaps in a project.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Community and review</h3>
+                    <p>Answer questions from people using the projects, help newcomers get their first commit merged, and give kind, useful feedback on pull requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="good-first-changes">
+        <div class="container" style="text-align: center;">
+            <h2>Good first changes</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">If you have never contributed to anything before, these are the least intimidating places to start.</p>
+            <div class="benefit-grid" style="text-align: left;">
+                <div class="benefit-item"><strong>Fix a typo or broken link</strong><span>Every repository here has documentation. A wrong link or an unclear sentence is a real problem and a real fix.</span></div>
+                <div class="benefit-item"><strong>Add an example</strong><span>Most of these projects have no examples folder yet. One working example teaches people more than any README rewrite.</span></div>
+                <div class="benefit-item"><strong>Improve the website</strong><span>The site is plain HTML and CSS. Fixing an accessibility problem or tidying a page is a safe, contained first change.</span></div>
+                <div class="benefit-item"><strong>Report and confirm a bug</strong><span>Reproducing an existing bug, or confirming one still happens on your machine, genuinely moves a project forward.</span></div>
+                <div class="benefit-item"><strong>Test on a different device</strong><span>These projects are built on one person's hardware. Testing on your phone, tablet, or an older machine finds real problems.</span></div>
+                <div class="benefit-item"><strong>Write a specification section</strong><span>OFL and aimi both benefit far more from a clear written rule than from new code, and there is plenty left to write.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="more-on-github">
+        <div class="container">
+            <div class="more-github-card">
+                <h3>More on GitHub</h3>
+                <p>The repositories above are the ones that are actively worked on and reviewed. The XPDevs account also holds older, archived, forked, and experimental repositories. They are not listed here because nothing is being reviewed in them, and a contribution would sit unanswered. If you want to work on one of those anyway, open an issue on it first and say what you have in mind, so nobody wastes your time.</p>
+                <div class="contact-actions">
+                    <a class="btn" href="https://github.com/XPDevs?tab=repositories">View every XPDevs repository</a>
+                    <a class="btn btn-secondary" href="https://github.com/XPDevs?tab=repositories&q=is%3Aissue+is%3Aopen">Open issues across all repositories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contributor-faq">
+        <div class="container" style="text-align: center;">
+            <h2>Frequently asked questions</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Answers to the questions people ask most often about contributing to XPDevs.</p>
+            <div class="faq-list" style="text-align: left;">
+                <details class="faq-item">
+                    <summary>Can I use AI to write my code?</summary>
+                    <div class="faq-answer">Preferably not. If you do use it, you are still the person sending the code, so you must be certain the result is actually compatible with what the project is and how it is built, and that you have checked every line of it yourself before sending. Nothing goes in that has not been read, run, and verified. All contributed code must be checked to make sure it is safe, reliable, and does not break anything that already worked. If you cannot explain how a piece of code works, or you have not tested it, it is not ready to send, no matter how it was produced. Unchecked generated code that silently breaks a build, corrupts data, or puts user data at risk is worse than sending nothing at all.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do I need a CV or a resume?</summary>
+                    <div class="faq-answer">No. There is no application, no CV, and no selection process. Your commits, issues, and pull requests on the repository already say everything relevant. If you want to introduce yourself, link something you have built.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do I need previous experience?</summary>
+                    <div class="faq-answer">No. Plenty of useful contributions are a fixed typo, a clearer README, a new example, or a bug report. If you have never written code before, start with documentation or testing and use that to learn the projects at your own pace.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Who is behind XPDevs?</summary>
+                    <div class="faq-answer">One person, James Turner, working from the United Kingdom. That means review of a pull request may take a little while, and it also means a well described contribution gets taken seriously quickly.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do I need permission before opening a pull request?</summary>
+                    <div class="faq-answer">No. Fork the repository and open a pull request whenever you want. For anything larger than a bug fix, opening an issue first is a good idea so you do not spend a weekend on a change that will not fit.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What if my change gets rejected?</summary>
+                    <div class="faq-answer">That happens, and it is usually about direction rather than quality. Ask why, and ask what would make it fit. Plenty of contributors have had a first patch declined and then gone on to have their second merged.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What should I put in a commit message?</summary>
+                    <div class="faq-answer">A short summary of what changed, then why you changed it. Future readers, including you, will be grateful. Keep unrelated changes in separate commits so they are easy to review.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>What should I check before opening a pull request?</summary>
+                    <div class="faq-answer">That the project still builds, that the code has been read line by line, that you have run whatever tests exist, and that you have tested the change yourself on real hardware where it applies. If you cannot say honestly that you did all four, do not send it yet.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Why are only some repositories listed?</summary>
+                    <div class="faq-answer">The listed ones are actively worked on and reviewed. The rest are archived, forked, or experimental, so a contribution there would go unanswered. Open an issue on one of them first if you still want to, and it can be picked up again.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Is there any age, location, or nationality requirement?</summary>
+                    <div class="faq-answer">None. Anyone who can reach GitHub can contribute, wherever they are. The only rule is to be decent to each other in issues and reviews.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contributor-contact">
+        <div class="container">
+            <div class="contribute-contact-card">
+                <h3>Get in touch</h3>
+                <p>Questions about a repository, an idea for a change, or a pull request you are unsure about can be sent to xpdevsclient@gmail.com, or raised as an issue on the repository itself, which is usually faster.</p>
+                <div class="contact-actions">
+                    <a class="btn" href="mailto:xpdevsclient@gmail.com?subject=Contributing%20to%20XPDevs">Email XPDevs</a>
+                    <a class="btn btn-secondary" href="https://github.com/XPDevs?tab=repositories">Browse all repositories</a>
+                    <a class="btn btn-secondary" href="feedback.html">Send product feedback</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="Doors.html">DoorsOS</a></li>
+                <li><a href="ExamOS.html">ExamOS</a></li>
+                <li><a href="AI.html">AI</a></li>
+                <li><a href="kernel.html">Our Kernel</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Account</h3>
+            <ul>
+                <li><a href="account/signin.html">Sign Up</a></li>
+                <li><a href="beta.html">Beta Program</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="rules.html">Rules and EULA</a></li>
+                <li><a href="download/OS-downloader.html">All Downloads</a></li>
+                <li><a href="contribute.html">Contribute</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>About XPDevs</h3>
+            <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="https://github.com/XPDevs">GitHub</a></li>
+                <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+                <ul class="legal-links">
+                    <li><a href="rules.html">Privacy Policy</a></li>
+                    <li><a href="rules.html">Terms of Use</a></li>
+                    <li><a href="rules.html">Legal</a></li>
+                    <li><a href="sitemap.xml">Site Map</a></li>
+                </ul>
+            </div>
+            <span>🇬🇧 Based in the United Kingdom</span>
+        </div>
+    </div>
+</footer>
+
+<div class="modal-overlay" id="projectModal" aria-hidden="true">
+    <div class="modal-content project-modal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+        <button class="btn-icon project-modal-close" id="closeProjectModal" type="button" aria-label="Close project details">&times;</button>
+        <div id="projectModalContent"></div>
+    </div>
+</div>
+
+<script src="assets/js/scripts.js"></script>
+<script>
+    (() => {
+        const projects = {
+            website: {
+                title: 'XPDevs Website',
+                repo: 'XPDevs/xpdevs.github.io',
+                url: 'https://github.com/XPDevs/xpdevs.github.io',
+                language: 'HTML, CSS, JavaScript',
+                level: 'Easiest place to start',
+                summary: 'The official XPDevs website, built as a static site with shared CSS and a small amount of JavaScript.',
+                ideas: [
+                    'Fix accessibility problems, missing alt text, and keyboard traps.',
+                    'Improve mobile layout and page loading speed.',
+                    'Add or correct pages, such as the error code reference.',
+                    'Tighten the wording and keep the tone consistent across pages.'
+                ],
+                gettingStarted: [
+                    'Open a page in your browser, then view the source and find the part you want to change.',
+                    'Change one thing, check it in the browser at different screen sizes, and open a pull request.',
+                    'This is a good first repository because a change is visible immediately.'
+                ]
+            },
+            gateway: {
+                title: 'gateway',
+                repo: 'XPDevs/gateway',
+                url: 'https://github.com/XPDevs/gateway',
+                language: 'JavaScript',
+                level: 'Comfortable, self contained',
+                summary: 'A search engine built from scratch, with no third party search service sitting behind it.',
+                ideas: [
+                    'Improve indexing speed and ranking quality.',
+                    'Support more file formats and content types.',
+                    'Add a test suite and benchmarks so changes can be measured rather than guessed at.',
+                    'Write documentation explaining how ranking currently works.'
+                ],
+                gettingStarted: [
+                    'The repository is small enough to read in one sitting, so start by reading all of it.',
+                    'Pick a goal you can measure, such as indexing time for a large set of files.',
+                    'Add a benchmark with your change so the improvement is visible.'
+                ]
+            },
+            ofl: {
+                title: 'OFL',
+                repo: 'XPDevs/OFL',
+                url: 'https://github.com/XPDevs/OFL',
+                language: 'JavaScript, specification',
+                level: 'Comfortable, writing helps most',
+                summary: 'A new fast search standard for databases, proposed as an open specification that anyone is free to implement.',
+                ideas: [
+                    'Write specification sections precisely enough that a second implementation would match.',
+                    'Build or improve the reference implementation.',
+                    'Define error handling and edge cases, which are usually the vague part of a standard.',
+                    'Add test vectors so implementers can check their work.'
+                ],
+                gettingStarted: [
+                    'Read the existing specification and find the section that is least clear.',
+                    'Open an issue proposing a rewrite of that one section.',
+                    'Written design work here is genuinely as valuable as code.'
+                ]
+            },
+            telcom: {
+                title: 'telcom',
+                repo: 'XPDevs/telcom',
+                url: 'https://github.com/XPDevs/telcom',
+                language: 'C',
+                level: 'Ambitious, real systems work',
+                summary: 'An open source framework for managing packet queues and latency on access network equipment.',
+                ideas: [
+                    'Improve queue management and scheduling behaviour.',
+                    'Refine latency measurement and reporting.',
+                    'Reduce memory use so it runs comfortably on constrained equipment.',
+                    'Write worked examples showing how to integrate it into a real network setup.'
+                ],
+                gettingStarted: [
+                    'Read the code and headers to understand the public interface before changing anything.',
+                    'Look for existing tests or examples to extend rather than starting from scratch.',
+                    'Open an issue describing your hardware and use case so a change can be targeted.'
+                ]
+            },
+            retroboot: {
+                title: 'RetroBoot',
+                repo: 'XPDevs/RetroBoot',
+                url: 'https://github.com/XPDevs/RetroBoot',
+                language: 'C',
+                level: 'Ambitious, hardware involved',
+                summary: 'A lightweight UEFI compatibility layer that lets legacy BIOS based operating systems boot on modern hardware, with no changes to the operating system itself.',
+                ideas: [
+                    'Test compatibility with more operating systems and report exactly which ones work.',
+                    'Improve diagnostics so failures during boot are easier to understand.',
+                    'Review the C code for correctness and portability problems.',
+                    'Extend the documentation so the project is usable by more people.'
+                ],
+                gettingStarted: [
+                    'Read the README carefully, it explains how the compatibility layer works.',
+                    'Testing needs real hardware, so documentation and testing contributions are the easiest way in.',
+                    'Always report what hardware you tested on and what the result was.'
+                ]
+            },
+            nexshell: {
+                title: 'NexShell',
+                repo: 'XPDevs/NexShell',
+                url: 'https://github.com/XPDevs/NexShell',
+                language: 'C',
+                level: 'Ambitious, foundational code',
+                summary: 'The NexShell source code, the low level environment the other XPDevs systems are built on.',
+                ideas: [
+                    'Build and fix features against a real terminal with real input and output.',
+                    'Improve the parts of the code that are hardest to follow and document them properly.',
+                    'Add small self contained programs that use the shell in new ways.',
+                    'Document behaviour that is currently only discoverable by reading the source.'
+                ],
+                gettingStarted: [
+                    'Read the source through once, even if most of it does not make sense yet.',
+                    'Pick one file that looks approachable and make a small change to it.',
+                    'Because this is foundational code, test carefully on real hardware before opening a pull request.'
+                ]
+            },
+            'doorsos-server': {
+                title: 'DoorsOS Server',
+                repo: 'XPDevs/DoorsOS-Server',
+                url: 'https://github.com/XPDevs/DoorsOS-Server',
+                language: 'HTML, CSS, JavaScript',
+                level: 'Comfortable for web developers',
+                summary: 'The DoorsOS Server operating system, running as a full desktop interface in the browser.',
+                ideas: [
+                    'Build a new application for the desktop, such as a file manager, editor, or media tool.',
+                    'Fix window dragging, resizing, and stacking behaviour that feels wrong.',
+                    'Improve accessibility, especially keyboard navigation between OS windows.',
+                    'Add support for more file types and better handling of large files.'
+                ],
+                gettingStarted: [
+                    'Open the running version and click around to see what already works.',
+                    'Find the folder that owns the feature you want to change and read it end to end.',
+                    'For anything larger than a bug fix, open an issue so the direction can be agreed first.'
+                ]
+            },
+            auraos: {
+                title: 'AuraOS',
+                repo: 'XPDevs/AuraOS',
+                url: 'https://github.com/XPDevs/AuraOS',
+                language: 'HTML, CSS, JavaScript',
+                level: 'Easy first change',
+                summary: 'The AuraOS interface, a separate desktop design built on the idea that an operating system should feel calm and uncluttered.',
+                ideas: [
+                    'Restyle existing windows, menus, and controls.',
+                    'Add settings for theme, font size, and reduced motion.',
+                    'Make the layout work properly on phones and tablets.',
+                    'Improve contrast and keyboard support throughout.'
+                ],
+                gettingStarted: [
+                    'View the live version linked in the repository description.',
+                    'Choose a single visual element to change, such as colours, spacing, or a font.',
+                    'Include a before and after screenshot in your pull request so the change is easy to review.'
+                ]
+            },
+            'genesis-ai': {
+                title: 'Genesis AI',
+                repo: 'XPDevs/Genesis-AI',
+                url: 'https://github.com/XPDevs/Genesis-AI',
+                language: 'JavaScript and JSON',
+                level: 'Comfortable, nothing to install',
+                summary: 'An experimental browser based AI platform where behaviour is defined in plain JSON, with no model downloads and no server calls for the main chat.',
+                ideas: [
+                    'Add and refine JSON behaviour files, which is the main way the project is extended.',
+                    'Improve the accuracy and explainability of the text and image analysis.',
+                    'Improve accessibility and mobile layout of the chat interface.',
+                    'Add tests for the rule based chat behaviour.'
+                ],
+                gettingStarted: [
+                    'Open it in a browser, the main chat needs no installation at all.',
+                    'Read the README, it explains the reasoning behind the design and a lot of the choices.',
+                    'A contribution that adds one behaviour file plus a test for it is ideal.'
+                ]
+            },
+            'lm-studio-image-search': {
+                title: 'LM Studio Image Search',
+                repo: 'XPDevs/LM-Studio-Image-Search',
+                url: 'https://github.com/XPDevs/LM-Studio-Image-Search',
+                language: 'TypeScript',
+                level: 'Easy first change',
+                summary: 'An MCP server that lets models trained for tool use in LM Studio search the web for images and display them.',
+                ideas: [
+                    'Add new search providers and make the active one configurable.',
+                    'Improve error handling so a failed search explains itself clearly.',
+                    'Add a cache or rate limiting so repeated queries cost less.',
+                    'Write a clear setup guide for people using it for the first time.'
+                ],
+                gettingStarted: [
+                    'Install it and connect it to LM Studio using the README instructions.',
+                    'Run one search, then add one provider or one improvement to the existing flow.',
+                    'This is a small modern TypeScript codebase, which makes it a comfortable first contribution.'
+                ]
+            },
+            aimi: {
+                title: 'aimi',
+                repo: 'XPDevs/aimi',
+                url: 'https://github.com/XPDevs/aimi',
+                language: 'Language design and tooling',
+                level: 'Ambitious, design heavy',
+                summary: 'A programming language in the shape of C that gives the developer more explicit control over what the code does.',
+                ideas: [
+                    'Write a specification explaining the language rules clearly and precisely.',
+                    'Design and document new syntax, with the reasoning for why it helps.',
+                    'Build or improve the tooling, such as a parser, formatter, or error messages.',
+                    'Write example programs that show what the extra control actually enables.'
+                ],
+                gettingStarted: [
+                    'This is an early stage project, so written design input is as valuable as code.',
+                    'Read what exists, then open an issue proposing one small specific improvement.',
+                    'Language discussions go better in an issue thread than in one large pull request.'
+                ]
+            },
+            xjs: {
+                title: 'XJS',
+                repo: 'XPDevs/XJS',
+                url: 'https://github.com/XPDevs/XJS',
+                language: 'JavaScript',
+                level: 'Comfortable for JavaScript developers',
+                summary: 'The XPDevs version of JavaScript, built so it can be interchanged with standard JavaScript as easily as possible.',
+                ideas: [
+                    'Improve compatibility so existing JavaScript runs with fewer changes.',
+                    'Add missing language features and document the differences clearly.',
+                    'Build benchmarks comparing XJS against standard JavaScript.',
+                    'Write examples that demonstrate swapping between the two.'
+                ],
+                gettingStarted: [
+                    'Install it and run the existing tests before changing anything.',
+                    'Start with a compatibility gap you can reproduce in a few lines of code.',
+                    'Keep changes focused, because easy interchangeability is the whole point of the project.'
+                ]
+            },
+            'asm-plus': {
+                title: 'ASM plus',
+                repo: 'XPDevs/ASM-plus-',
+                url: 'https://github.com/XPDevs/ASM-plus-',
+                language: 'C',
+                level: 'Comfortable, small clear codebase',
+                summary: 'A compiler that turns a friendlier custom assembly dialect into real x86 assembly, built to make bootloader assembly approachable for beginners.',
+                ideas: [
+                    'Add new instructions to the custom dialect along with their x86 output.',
+                    'Improve the error messages, which matters most for the beginners it is built for.',
+                    'Add examples, especially complete bootloader examples that can actually be run.',
+                    'Fix incorrect output for tricky syntax.'
+                ],
+                gettingStarted: [
+                    'Run it on Linux or WSL using the instructions in the README.',
+                    'Add one instruction end to end, from parsing through to generated assembly.',
+                    'Document anything you had to work out yourself, that is a real contribution.'
+                ]
+            },
+            'xpdevs-studio': {
+                title: 'XPDevs Studio',
+                repo: 'XPDevs/XPDevs-Studio',
+                url: 'https://github.com/XPDevs/XPDevs-Studio',
+                language: 'JavaScript',
+                level: 'Easy first change',
+                summary: 'A small Linux style IDE that runs in the browser. There is very little code to read first, which makes it a good early project.',
+                ideas: [
+                    'Add editor features such as find and replace, line numbers, or undo history.',
+                    'Improve syntax highlighting and add support for more languages.',
+                    'Build a command palette or a run panel.',
+                    'Fix layout and keyboard handling problems inside the editor.'
+                ],
+                gettingStarted: [
+                    'Open it in a browser and try the editor to see what already works.',
+                    'Pick one small editor feature and add it, there is very little code to read first.',
+                    'Good first commits here are small, self contained, and easy to review.'
+                ]
+            },
+            paral: {
+                title: 'Paral',
+                repo: 'XPDevs/Paral',
+                url: 'https://github.com/XPDevs/Paral',
+                language: 'JavaScript',
+                level: 'Comfortable, graphics focused',
+                summary: 'A JavaScript 3D library built on top of THREE.js, giving projects a simpler way to build 3D scenes in the browser.',
+                ideas: [
+                    'Extend the scene API so common 3D setup needs less boilerplate.',
+                    'Improve performance, for example object reuse and draw call counts.',
+                    'Add worked examples and a documentation site.',
+                    'Write input handling helpers for cameras and objects.'
+                ],
+                gettingStarted: [
+                    'Install it, run the existing examples, and get a scene on screen first.',
+                    'Choose one API gap you hit while building an example, since real friction makes good feature ideas.',
+                    'Include a runnable example with any API change so it can be checked.'
+                ]
+            },
+            'controller-api': {
+                title: 'controller.API',
+                repo: 'XPDevs/controller.API',
+                url: 'https://github.com/XPDevs/controller.API',
+                language: 'JavaScript, HTML',
+                level: 'Comfortable, small library',
+                summary: 'A free and open source API that gives any website controller support, so gamepad input can be added to a site in a few lines.',
+                ideas: [
+                    'Improve gamepad detection and handle unusual controllers and mappings.',
+                    'Add worked examples and a live demo page.',
+                    'Improve the documentation with clear, copy and paste snippets.',
+                    'Report controllers that do not work so the mappings can be fixed.'
+                ],
+                gettingStarted: [
+                    'The library is small, so reading all of it is realistic.',
+                    'Add one example someone could copy straight into their own site.',
+                    'Testing with a real controller and reporting what happens is genuinely useful.'
+                ]
+            },
+            'iframe-control': {
+                title: 'iframe-control',
+                repo: 'XPDevs/iframe-control',
+                url: 'https://github.com/XPDevs/iframe-control',
+                language: 'JavaScript',
+                level: 'Comfortable, focused scope',
+                summary: 'A small JavaScript API for calling an API, showing an iframe, and handing control of that iframe to the page displaying it.',
+                ideas: [
+                    'Tighten the message handling so cross frame communication is safer by default.',
+                    'Add validation for origins and payloads.',
+                    'Write clear documentation and a small demo page.',
+                    'Improve error reporting when a frame fails to load or refuses a message.'
+                ],
+                gettingStarted: [
+                    'Read the library in full, it is short and the scope is well defined.',
+                    'Reproduce a specific problem with cross frame messaging and open an issue with it.',
+                    'Anything touching security here needs care, so propose before implementing.'
+                ]
+            },
+            js2py: {
+                title: 'JS2PY',
+                repo: 'XPDevs/JS2PY',
+                url: 'https://github.com/XPDevs/JS2PY',
+                language: 'JavaScript, HTML',
+                level: 'Easy first change',
+                summary: 'A program that converts JavaScript into Python, so scripts can move between the two languages without being rewritten by hand.',
+                ideas: [
+                    'Handle more syntax cases correctly, especially modern JavaScript syntax.',
+                    'Improve the interface so it is clearer to use.',
+                    'Add tests for edge cases that currently fail quietly.',
+                    'Make errors say which part of the input could not be converted.'
+                ],
+                gettingStarted: [
+                    'The tool is small enough to understand in an afternoon.',
+                    'Find a case where the output is wrong or confusing, and open an issue with the example.',
+                    'A fix with a clear before and after example is very easy to review.'
+                ]
+            },
+            64232: {
+                title: '64232',
+                repo: 'XPDevs/64232',
+                url: 'https://github.com/XPDevs/64232',
+                language: 'JavaScript',
+                level: 'Easy first change',
+                summary: 'A tool that converts 64 bit executables into 32 bit executables, so software can run on older or 32 bit only systems.',
+                ideas: [
+                    'Handle more binary formats and edge cases correctly.',
+                    'Add a test suite built from real sample executables.',
+                    'Report clearly when a file cannot be converted, and why.',
+                    'Improve the progress reporting for large files.'
+                ],
+                gettingStarted: [
+                    'Run it on a small executable you have permission to test with.',
+                    'Reproduce a failure and open an issue with the file details and what went wrong.',
+                    'Every fix should come with a sample file, since this is a file format project.'
+                ]
+            },
+            'url-shortener': {
+                title: 'URL',
+                repo: 'XPDevs/URL',
+                url: 'https://github.com/XPDevs/URL',
+                language: 'HTML, CSS, JavaScript',
+                level: 'Easy first change',
+                summary: 'A URL shortener built as an independent alternative to services such as TinyURL, with no account needed.',
+                ideas: [
+                    'Make the interface clearer and faster to use.',
+                    'Add custom aliases and handle them safely.',
+                    'Add basic abuse prevention, such as blocking known malicious destinations.',
+                    'Write clear documentation for self hosting.'
+                ],
+                gettingStarted: [
+                    'Run it locally and shorten a link before changing anything.',
+                    'Start with the interface or the error messages, both are visible improvements with a small diff.',
+                    'Be careful with anything that handles user submitted links.'
+                ]
+            },
+            hostly: {
+                title: 'Hostly',
+                repo: 'XPDevs/Hostly',
+                url: 'https://github.com/XPDevs/Hostly',
+                language: 'HTML, CSS, JavaScript',
+                level: 'Comfortable, infrastructure focused',
+                summary: 'A free website hosting project, built so anyone can put a site online without a hosting subscription.',
+                ideas: [
+                    'Make the upload and deployment flow more reliable.',
+                    'Improve error reporting so failures are easier to diagnose.',
+                    'Add security improvements, since this handles real sites and real files.',
+                    'Write a clear guide for people hosting their first site with it.'
+                ],
+                gettingStarted: [
+                    'Read how deployment currently works before changing it.',
+                    'Open an issue describing the hosting setup you want to test against.',
+                    'Anything touching file uploads needs careful review for safety before it is deployed.'
+                ]
+            }
+        };
+
+        const cards = Array.from(document.querySelectorAll('.project-card'));
+        const searchInput = document.getElementById('projectSearch');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const levelFilter = document.getElementById('levelFilter');
+        const clearProjects = document.getElementById('clearProjects');
+        const projectsStatus = document.getElementById('projectsStatus');
+        const noProjects = document.getElementById('noProjects');
+        const projectModal = document.getElementById('projectModal');
+        const projectModalContent = document.getElementById('projectModalContent');
+        const closeProjectModal = document.getElementById('closeProjectModal');
+        let lastFocusedElement = null;
+
+        function filterProjects() {
+            const search = searchInput.value.trim().toLowerCase();
+            const category = categoryFilter.value;
+            const level = levelFilter.value;
+            let count = 0;
+
+            cards.forEach(card => {
+                const matchesSearch = !search || card.textContent.toLowerCase().includes(search);
+                const matchesCategory = category === 'all' || card.dataset.category === category;
+                const matchesLevel = level === 'all' || card.dataset.level === level;
+                const visible = matchesSearch && matchesCategory && matchesLevel;
+                card.hidden = !visible;
+                if (visible) count += 1;
+            });
+
+            projectsStatus.textContent = `Showing ${count} ${count === 1 ? 'repository' : 'repositories'}.`;
+            noProjects.classList.toggle('show', count === 0);
+        }
+
+        searchInput.addEventListener('input', filterProjects);
+        categoryFilter.addEventListener('change', filterProjects);
+        levelFilter.addEventListener('change', filterProjects);
+        clearProjects.addEventListener('click', () => {
+            searchInput.value = '';
+            categoryFilter.value = 'all';
+            levelFilter.value = 'all';
+            filterProjects();
+            searchInput.focus();
+        });
+
+        function openModal(element) {
+            lastFocusedElement = document.activeElement;
+            element.classList.add('show');
+            element.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            closeProjectModal.focus();
+        }
+
+        function hideModal(element) {
+            element.classList.remove('show');
+            element.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (lastFocusedElement) lastFocusedElement.focus();
+        }
+
+        function addListSection(title, items) {
+            const section = document.createElement('section');
+            section.className = 'project-modal-section';
+            const heading = document.createElement('h4');
+            heading.textContent = title;
+            const list = document.createElement('ul');
+            items.forEach(text => {
+                const item = document.createElement('li');
+                item.textContent = text;
+                list.appendChild(item);
+            });
+            section.append(heading, list);
+            projectModalContent.appendChild(section);
+        }
+
+        function addRepoLink(project) {
+            const section = document.createElement('section');
+            section.className = 'project-modal-section';
+            const heading = document.createElement('h4');
+            heading.textContent = 'Repository';
+            const list = document.createElement('ul');
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = project.url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = `github.com/${project.repo}`;
+            item.appendChild(link);
+            list.appendChild(item);
+            section.append(heading, list);
+            projectModalContent.appendChild(section);
+        }
+
+        function openProject(id) {
+            const project = projects[id];
+            if (!project) return;
+
+            const card = document.querySelector(`.project-card[data-project="${id}"]`);
+            const category = card ? card.dataset.category : 'XPDevs';
+
+            projectModalContent.innerHTML = '';
+            projectModalContent.scrollTop = 0;
+
+            const header = document.createElement('header');
+            header.className = 'project-modal-header';
+            const eyebrow = document.createElement('span');
+            eyebrow.className = 'project-modal-eyebrow';
+            eyebrow.textContent = `${category} · ${project.language}`;
+            const title = document.createElement('h3');
+            title.id = 'projectModalTitle';
+            title.textContent = project.title;
+            const summary = document.createElement('p');
+            summary.textContent = project.summary;
+            const meta = document.createElement('div');
+            meta.className = 'project-modal-meta';
+            const tag = document.createElement('span');
+            tag.textContent = project.repo;
+            meta.appendChild(tag);
+            header.append(eyebrow, title, summary, meta);
+
+            const facts = document.createElement('dl');
+            facts.className = 'project-modal-facts';
+            [
+                ['Category', category],
+                ['Main language', project.language],
+                ['Entry level', project.level],
+                ['Experience needed', 'None, help is welcome'],
+                ['Access', 'Public, fork freely'],
+                ['First step', 'Open an issue']
+            ].forEach(([label, value]) => {
+                const fact = document.createElement('div');
+                fact.className = 'project-modal-fact';
+                const term = document.createElement('dt');
+                term.textContent = label;
+                const description = document.createElement('dd');
+                description.textContent = value;
+                fact.append(term, description);
+                facts.appendChild(fact);
+            });
+
+            projectModalContent.append(header, facts);
+            addListSection('Things you could work on', project.ideas);
+            addListSection('How to get started', project.gettingStarted);
+            addRepoLink(project);
+
+            const context = document.createElement('div');
+            context.className = 'project-modal-context';
+            const contextTitle = document.createElement('strong');
+            contextTitle.textContent = 'No CV, no application, no interview';
+            const contextText = document.createElement('span');
+            contextText.textContent = 'Open the repository, read the code, and start. Make sure anything you send actually fits the project, and that you have checked it works and is safe before opening the pull request.';
+            context.append(contextTitle, contextText);
+            projectModalContent.appendChild(context);
+
+            const actions = document.createElement('div');
+            actions.className = 'project-modal-actions';
+            const note = document.createElement('p');
+            note.textContent = 'Fork the repository, make your change, and open a pull request. Keep it focused and explain why you made it.';
+            const open = document.createElement('a');
+            open.className = 'btn';
+            open.href = project.url;
+            open.target = '_blank';
+            open.rel = 'noopener noreferrer';
+            open.textContent = 'Open on GitHub';
+            actions.append(note, open);
+            projectModalContent.appendChild(actions);
+            openModal(projectModal);
+        }
+
+        document.querySelectorAll('[data-view-project]').forEach(button => {
+            button.addEventListener('click', () => openProject(button.dataset.viewProject));
+        });
+
+        closeProjectModal.addEventListener('click', () => hideModal(projectModal));
+        projectModal.addEventListener('mousedown', event => {
+            if (event.target === projectModal) hideModal(projectModal);
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && projectModal.classList.contains('show')) hideModal(projectModal);
+        });
+    })();
+</script>
+</body>
+</html>
