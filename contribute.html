@@ -364,6 +364,127 @@
             background: var(--input-bg);
         }
 
+        .clear-projects.has-filters {
+            background: #eaf2ff;
+            color: #1557ad;
+        }
+
+        .project-alert {
+            margin: 0 0 18px;
+            padding: 12px 14px;
+            border-radius: var(--radius-md);
+            font-size: 11px;
+            line-height: 1.55;
+        }
+
+        .project-alert strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .project-alert.critical {
+            border: 1px solid #e0a24a;
+            background: #fff4e2;
+            color: #7a4a06;
+        }
+
+        .project-alert.critical strong {
+            color: #8a3d00;
+        }
+
+        .project-alert.high {
+            border: 1px solid #c9d6e6;
+            background: #eef3f9;
+            color: #414851;
+        }
+
+        .project-alert.high strong {
+            color: #173b6c;
+        }
+
+        .tier-label {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: var(--radius-full);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .tier-label.critical {
+            background: #fff4e2;
+            color: #8a3d00;
+        }
+
+        .tier-label.high {
+            background: #eef3f9;
+            color: #173b6c;
+        }
+
+        .tier-label.standard {
+            background: var(--input-bg);
+            color: #5f6368;
+        }
+
+        .tier-projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 14px 0 0;
+        }
+
+        .tier-projects a {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            color: #5f6368;
+            font-size: 11px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .tier-projects a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .project-modal-strict {
+            margin-top: 20px;
+            padding: 16px 17px;
+            border-radius: var(--radius-lg);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .project-modal-strict.critical {
+            border: 1px solid #e0a24a;
+            background: #fff4e2;
+            color: #7a4a06;
+        }
+
+        .project-modal-strict.high {
+            border: 1px solid #c9d6e6;
+            background: #eef3f9;
+            color: #414851;
+        }
+
+        .project-modal-strict strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
         .projects-status {
             max-width: 980px;
             margin: 0 auto 24px;
@@ -922,6 +1043,7 @@
                         <option value="all">All categories</option>
                         <option value="Operating systems">Operating systems</option>
                         <option value="Systems and networking">Systems and networking</option>
+                        <option value="Security">Security</option>
                         <option value="Languages and compilers">Languages and compilers</option>
                         <option value="AI and search">AI and search</option>
                         <option value="Libraries and APIs">Libraries and APIs</option>
@@ -1003,6 +1125,7 @@
                     <h3>telcom</h3>
                     <p class="project-repo">github.com/XPDevs/telcom</p>
                     <p class="project-summary">An open source framework for managing packet queues and latency on access network equipment.</p>
+                    <p class="project-alert high"><strong>Serious project</strong>Network infrastructure code, so it is reviewed closely. It matters, but it is not held to the same bar as BSS.</p>
                     <dl class="project-facts">
                         <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, real systems work</dd></div>
                         <div><dt>Main language</dt><dd>C</dd></div>
@@ -1114,21 +1237,22 @@
                     <div class="project-actions"><span class="project-note">Modern, tidy codebase</span><button class="btn view-project" type="button" data-view-project="lm-studio-image-search">View project</button></div>
                 </article>
 
-                <article class="project-card" data-project="aimi" data-category="Languages and compilers" data-level="Ambitious">
+                <article class="project-card" data-project="bss" data-category="Security" data-level="Ambitious">
                     <div class="project-card-top">
-                        <span class="project-category">Languages and compilers</span>
-                        <span class="project-language">Language project</span>
+                        <span class="project-category">Security</span>
+                        <span class="project-language">C11</span>
                     </div>
-                    <h3>aimi</h3>
-                    <p class="project-repo">github.com/XPDevs/aimi</p>
-                    <p class="project-summary">A programming language in the shape of C that gives the developer more explicit control over what the code does.</p>
+                    <h3>BSS (Britannic Security Sentinel)</h3>
+                    <p class="project-repo">github.com/XPDevs/BSS</p>
+                    <p class="project-summary">Offline-first, cryptographically verified file integrity monitoring for UK critical infrastructure, defence, and public sector systems. No network calls, no telemetry, no external dependencies.</p>
+                    <p class="project-alert critical"><strong>High standard project</strong>Security critical code, so it has to be correct, checked, and reliable before it goes in. Cybersecurity experience is recommended, but it is not required.</p>
                     <dl class="project-facts">
-                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, design heavy</dd></div>
-                        <div><dt>Main language</dt><dd>Language design and tooling</dd></div>
-                        <div><dt>Repo type</dt><dd>Programming language</dd></div>
+                        <div class="level-fact"><dt>Entry level</dt><dd>Ambitious, cybersecurity helpful</dd></div>
+                        <div><dt>Main language</dt><dd>C11, Linux</dd></div>
+                        <div><dt>Repo type</dt><dd>Security system</dd></div>
                     </dl>
-                    <div class="project-skills"><span>Language design</span><span>Compilers</span><span>Syntax</span><span>Specification</span></div>
-                    <div class="project-actions"><span class="project-note">Early stage, ideas welcome</span><button class="btn view-project" type="button" data-view-project="aimi">View project</button></div>
+                    <div class="project-skills"><span>C</span><span>Cryptography</span><span>Ed25519</span><span>Linux</span><span>Hardening</span></div>
+                    <div class="project-actions"><span class="project-note">Has a test suite and contributing guide</span><button class="btn view-project" type="button" data-view-project="bss">View project</button></div>
                 </article>
 
                 <article class="project-card" data-project="xjs" data-category="Languages and compilers" data-level="Comfortable">
@@ -1304,8 +1428,9 @@
 
             <div class="no-projects" id="noProjects">
                 <h3>No exact match found</h3>
-                <p>Try a different search, or browse every repository on GitHub and open an issue on whatever looks interesting.</p>
-                <a class="btn" href="https://github.com/XPDevs?tab=repositories">Browse all XPDevs repositories</a>
+                <p id="noProjectsReason">Those filters are still applied, so clear one to widen the results.</p>
+                <button class="btn" id="noProjectsClear" type="button">Clear all filters</button>
+                <p style="margin-top: 18px;"><a href="https://github.com/XPDevs?tab=repositories">Or browse all XPDevs repositories on GitHub</a></p>
             </div>
         </div>
     </section>
@@ -1366,7 +1491,34 @@
                 <div class="benefit-item"><strong>Improve the website</strong><span>The site is plain HTML and CSS. Fixing an accessibility problem or tidying a page is a safe, contained first change.</span></div>
                 <div class="benefit-item"><strong>Report and confirm a bug</strong><span>Reproducing an existing bug, or confirming one still happens on your machine, genuinely moves a project forward.</span></div>
                 <div class="benefit-item"><strong>Test on a different device</strong><span>These projects are built on one person's hardware. Testing on your phone, tablet, or an older machine finds real problems.</span></div>
-                <div class="benefit-item"><strong>Write a specification section</strong><span>OFL and aimi both benefit far more from a clear written rule than from new code, and there is plenty left to write.</span></div>
+                <div class="benefit-item"><strong>Write a specification section</strong><span>OFL benefits far more from a clear written rule than from new code, and there is plenty left to write.</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="review-standards">
+        <div class="container" style="text-align: center;">
+            <h2>How seriously each project is taken</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Not every repository carries the same consequences if it goes wrong, so they are not reviewed to the same standard. This page tells you which is which before you start, so you can pick the level of pressure you want.</p>
+            <div class="feature-grid" style="text-align: left;">
+                <div class="feature-card">
+                    <span class="tier-label critical">Highest standard</span>
+                    <h3>BSS</h3>
+                    <p>Security critical software for operational integrity, and the highest bar of anything here, though not an impossible one. Code needs to be correct, checked, and reliable before it is accepted. There are no third party dependencies beyond libc, everything is C11 under <code>-Wall -Wextra -Wconversion -Wshadow -Werror</code>, unsafe string functions are banned, the system stays deterministic, offline, and fail-secure, and anything touching serialisation or cryptography needs both a working test and a malformed input test. Untested or unverified work is what gets sent back, not honest work from a beginner. Cybersecurity experience is recommended but not required, and documentation or test contributions are a genuinely good way in. Read <code>CONTRIBUTING.md</code> before you start.</p>
+                    <div class="tier-projects"><a href="https://github.com/XPDevs/BSS">XPDevs/BSS</a></div>
+                </div>
+                <div class="feature-card">
+                    <span class="tier-label high">Serious</span>
+                    <h3>telcom and NexShell</h3>
+                    <p>Foundational code that other things depend on, and in telcom's case it governs real network equipment. Mistakes here break things further down the line, so it is reviewed closely and the reasoning behind a change has to be clear. It is still serious work, but there is more room to iterate than there is on BSS.</p>
+                    <div class="tier-projects"><a href="https://github.com/XPDevs/telcom">XPDevs/telcom</a><a href="https://github.com/XPDevs/NexShell">XPDevs/NexShell</a></div>
+                </div>
+                <div class="feature-card">
+                    <span class="tier-label standard">Standard</span>
+                    <h3>Everything else</h3>
+                    <p>Normal open source expectations. A focused change that does what it says, that you have actually run and tested, with a commit message and a pull request description explaining why you made it. Feedback will be honest and it will sometimes ask you to reshape the change, but a good first contribution is genuinely easy to get merged here.</p>
+                    <div class="tier-projects"><a href="#open-projects">All other repositories</a></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1576,6 +1728,11 @@
                 language: 'C',
                 level: 'Ambitious, real systems work',
                 summary: 'An open source framework for managing packet queues and latency on access network equipment.',
+                strictness: {
+                    tier: 'high',
+                    label: 'Serious project',
+                    text: 'This code governs real network equipment, so it is reviewed closely and mistakes here break things further down the line. A change has to come with clear reasoning about why it is correct for packet queues and latency. It is serious work, but there is more room to iterate than on BSS.'
+                },
                 ideas: [
                     'Improve queue management and scheduling behaviour.',
                     'Refine latency measurement and reporting.',
@@ -1702,23 +1859,31 @@
                     'This is a small modern TypeScript codebase, which makes it a comfortable first contribution.'
                 ]
             },
-            aimi: {
-                title: 'aimi',
-                repo: 'XPDevs/aimi',
-                url: 'https://github.com/XPDevs/aimi',
-                language: 'Language design and tooling',
-                level: 'Ambitious, design heavy',
-                summary: 'A programming language in the shape of C that gives the developer more explicit control over what the code does.',
+            bss: {
+                title: 'BSS (Britannic Security Sentinel)',
+                repo: 'XPDevs/BSS',
+                url: 'https://github.com/XPDevs/BSS',
+                language: 'C11, Linux',
+                level: 'Ambitious, security background helpful',
+                experience: 'Recommended: cybersecurity, but none is still fine',
+                summary: 'Offline-first, cryptographically verified file integrity monitoring. Monitored files are hashed into a signed manifest and re-verified periodically, with no network calls, no telemetry, and no third party dependencies.',
+                strictness: {
+                    tier: 'critical',
+                    label: 'High standard project',
+                    text: 'This is security critical software, so code needs to be correct, checked, and reliable before it is accepted. There is no rush and perfection is not the bar, but untested or unverified work will be sent back. In practice that means no dependencies beyond libc, C11 clean under -Wall -Wextra -Wconversion -Wshadow -Werror, no unsafe string functions, and the deterministic, offline, fail-secure behaviour preserved. Anything touching serialisation or cryptography needs a working test and a malformed input test. If you have never worked in security before, that is completely fine. Say so, and start with something well scoped like documentation or a test.'
+                },
                 ideas: [
-                    'Write a specification explaining the language rules clearly and precisely.',
-                    'Design and document new syntax, with the reasoning for why it helps.',
-                    'Build or improve the tooling, such as a parser, formatter, or error messages.',
-                    'Write example programs that show what the extra control actually enables.'
+                    'Add coverage to the test suite, which already runs with make test.',
+                    'Work on the documentation set: architecture, cryptography, key management, deployment, or the public API reference.',
+                    'Extend the configuration parser to cover the documented keys more completely.',
+                    'Strengthen the build hardening, warnings, or sanitiser setup.',
+                    'Review changes against the documented threat model and the fail-secure design rules.'
                 ],
                 gettingStarted: [
-                    'This is an early stage project, so written design input is as valuable as code.',
-                    'Read what exists, then open an issue proposing one small specific improvement.',
-                    'Language discussions go better in an issue thread than in one large pull request.'
+                    'Read CONTRIBUTING.md first, it sets out the ground rules and states the bar clearly.',
+                    'Build with make all and confirm the tests pass with make test before you change anything.',
+                    'Read docs/ARCHITECTURE.md and docs/SECURITY.md, they explain why each design decision was made.',
+                    'This is security critical code, so open an issue before a large change, and add a happy path test plus a malformed input test for anything you add.'
                 ]
             },
             xjs: {
@@ -1920,28 +2085,50 @@
         const clearProjects = document.getElementById('clearProjects');
         const projectsStatus = document.getElementById('projectsStatus');
         const noProjects = document.getElementById('noProjects');
+        const noProjectsReason = document.getElementById('noProjectsReason');
         const projectModal = document.getElementById('projectModal');
         const projectModalContent = document.getElementById('projectModalContent');
         const closeProjectModal = document.getElementById('closeProjectModal');
         let lastFocusedElement = null;
 
+        const normalize = value => String(value || '').trim().toLowerCase();
+
+        function activeFilters() {
+            const filters = [];
+            if (categoryFilter.value !== 'all') filters.push(categoryFilter.value);
+            if (levelFilter.value !== 'all') filters.push(levelFilter.value);
+            const search = searchInput.value.trim();
+            if (search) filters.push(`the search "${search}"`);
+            return filters;
+        }
+
         function filterProjects() {
-            const search = searchInput.value.trim().toLowerCase();
-            const category = categoryFilter.value;
-            const level = levelFilter.value;
+            const search = normalize(searchInput.value);
+            const category = normalize(categoryFilter.value);
+            const level = normalize(levelFilter.value);
             let count = 0;
 
             cards.forEach(card => {
-                const matchesSearch = !search || card.textContent.toLowerCase().includes(search);
-                const matchesCategory = category === 'all' || card.dataset.category === category;
-                const matchesLevel = level === 'all' || card.dataset.level === level;
+                const matchesSearch = !search || normalize(card.textContent).includes(search);
+                const matchesCategory = category === 'all' || normalize(card.dataset.category) === category;
+                const matchesLevel = level === 'all' || normalize(card.dataset.level) === level;
                 const visible = matchesSearch && matchesCategory && matchesLevel;
                 card.hidden = !visible;
                 if (visible) count += 1;
             });
 
-            projectsStatus.textContent = `Showing ${count} ${count === 1 ? 'repository' : 'repositories'}.`;
+            const filters = activeFilters();
+            const noun = count === 1 ? 'repository' : 'repositories';
+            projectsStatus.textContent = filters.length
+                ? `Showing ${count} ${noun}. Filtered by ${filters.join(' and ')}.`
+                : `Showing ${count} ${noun}.`;
+
+            noProjectsReason.textContent = filters.length
+                ? `Nothing here matches ${filters.join(' and ')}. Those filters are still applied, so clear one to widen the results.`
+                : 'There are no repositories to show.';
+
             noProjects.classList.toggle('show', count === 0);
+            clearProjects.classList.toggle('has-filters', filters.length > 0);
         }
 
         searchInput.addEventListener('input', filterProjects);
@@ -1953,6 +2140,13 @@
             levelFilter.value = 'all';
             filterProjects();
             searchInput.focus();
+        });
+
+        document.getElementById('noProjectsClear').addEventListener('click', () => {
+            searchInput.value = '';
+            categoryFilter.value = 'all';
+            levelFilter.value = 'all';
+            filterProjects();
         });
 
         function openModal(element) {
@@ -2036,7 +2230,7 @@
                 ['Category', category],
                 ['Main language', project.language],
                 ['Entry level', project.level],
-                ['Experience needed', 'None, help is welcome'],
+                ['Experience needed', project.experience || 'None, help is welcome'],
                 ['Access', 'Public, fork freely'],
                 ['First step', 'Open an issue']
             ].forEach(([label, value]) => {
@@ -2051,6 +2245,18 @@
             });
 
             projectModalContent.append(header, facts);
+
+            if (project.strictness) {
+                const strict = document.createElement('div');
+                strict.className = `project-modal-strict ${project.strictness.tier}`;
+                const strictLabel = document.createElement('strong');
+                strictLabel.textContent = project.strictness.label;
+                const strictText = document.createElement('span');
+                strictText.textContent = project.strictness.text;
+                strict.append(strictLabel, strictText);
+                projectModalContent.appendChild(strict);
+            }
+
             addListSection('Things you could work on', project.ideas);
             addListSection('How to get started', project.gettingStarted);
             addRepoLink(project);
