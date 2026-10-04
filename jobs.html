@@ -364,6 +364,80 @@
             display: none;
         }
 
+        /* Closed positions */
+        .jobs-closed {
+            max-width: 980px;
+            margin: 0 auto 32px;
+            padding: 26px 30px;
+            border: 1px solid var(--border);
+            border-left: 4px solid #5f6368;
+            border-radius: var(--radius-4xl);
+            background: var(--sidebar);
+        }
+
+        .jobs-closed h2 {
+            margin: 0 0 12px;
+            font-size: 1.4rem;
+        }
+
+        .jobs-closed p {
+            margin: 0 0 10px;
+            color: #5f6368;
+            line-height: 1.7;
+        }
+
+        .jobs-closed p:last-child {
+            margin-bottom: 0;
+        }
+
+        .jobs-closed strong {
+            color: var(--text);
+        }
+
+        .job-card.is-closed {
+            opacity: 0.5;
+            filter: grayscale(1);
+            box-shadow: none;
+        }
+
+        .job-card.is-closed:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .job-card.is-closed .job-level {
+            background: var(--input-bg);
+            color: #5f6368;
+        }
+
+        .job-card.is-closed .view-job {
+            background: var(--input-bg);
+            color: #5f6368;
+            border: 1px solid var(--border);
+        }
+
+        .job-closed-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: var(--radius-full);
+            background: #5f6368;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .job-closed-note {
+            margin: 0;
+            color: #5f6368;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
         .job-card-top {
             display: flex;
             align-items: center;
@@ -668,6 +742,21 @@
             color: #5f6368;
             font-size: 11px;
             line-height: 1.5;
+        }
+
+        /* Closed application form: fields stay editable, send button is disabled */
+        .application-form .btn:disabled {
+            background: var(--input-bg);
+            color: #9aa0a6;
+            border: 1px solid var(--border);
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 1;
+            filter: grayscale(1);
+        }
+
+        .application-closed-note {
+            font-weight: 600;
         }
 
         .job-modal {
@@ -1015,8 +1104,15 @@
             Join a small independent United Kingdom software team building open and dependable technology for more people.
         </p>
         <p style="font-size: 16px; line-height: 1.4; max-width: 680px; margin: 10px auto 0; color: #5f6368;">
-            Current opportunities across engineering, design, product, writing, and community.
+            All positions have been filled. We are not accepting applications at this time.
         </p>
+    </div>
+
+    <div class="jobs-closed">
+        <h2>Applications are currently closed</h2>
+        <p>Every position listed on this page has been taken. The roles below are kept as a record of what we hire for, and they are no longer accepting applications.</p>
+        <p><strong>Please do not send an application for any of these roles.</strong> Applications submitted after a role has been filled will not be read and will not be answered.</p>
+        <p>When new positions open they will be listed on this page. You are welcome to check back later.</p>
     </div>
 
     <section class="career-overview">
@@ -1039,10 +1135,10 @@
 
     <section id="open-roles">
         <div class="container">
-            <h2 style="text-align: center;">Open positions</h2>
-            <p class="jobs-intro">Choose the role that best matches your experience. We welcome applications from junior, mid level, and senior people who care about clear and thoughtful technology.</p>
+            <h2 style="text-align: center;">All positions filled</h2>
+            <p class="jobs-intro">Every role below has been taken. This listing is kept for reference only, and no applications are being accepted.</p>
 
-            <div class="jobs-toolbar" role="search" aria-label="Filter open positions">
+            <div class="jobs-toolbar" role="search" aria-label="Filter filled positions">
                 <label class="search-field">
                     <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0);">Search jobs</span>
                     <input id="jobSearch" type="search" placeholder="Search by title, skill, or project">
@@ -1071,13 +1167,13 @@
                 <button class="clear-jobs" id="clearJobs" type="button">Clear filters</button>
             </div>
 
-            <div class="jobs-status" id="jobsStatus" aria-live="polite">Showing 14 open positions. Last updated 25 September 2026.</div>
+            <div class="jobs-status" id="jobsStatus" aria-live="polite">No open positions. All 14 roles have been filled. Last updated 4 October 2026.</div>
 
             <div class="jobs-grid" id="jobsGrid">
-                <article class="job-card" data-job="kernel" data-department="Engineering" data-level="Senior">
+                <article class="job-card is-closed" data-job="kernel" data-department="Engineering" data-level="Senior">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Senior</span>
+                        <span class="job-level">Senior</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Senior Kernel Engineer</h3>
                     <p class="job-project">NexShell and DoorsOS</p>
@@ -1091,10 +1187,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 3 days ago</span><button class="btn view-job" type="button" data-view-job="kernel">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="systems" data-department="Engineering" data-level="Mid level">
+                <article class="job-card is-closed" data-job="systems" data-department="Engineering" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Systems Software Engineer</h3>
                     <p class="job-project">DoorsOS and ExamOS</p>
@@ -1108,10 +1204,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 5 days ago</span><button class="btn view-job" type="button" data-view-job="systems">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="ai" data-department="Engineering" data-level="Senior">
+                <article class="job-card is-closed" data-job="ai" data-department="Engineering" data-level="Senior">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Senior</span>
+                        <span class="job-level">Senior</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>AI and Machine Learning Engineer</h3>
                     <p class="job-project">Genesis AI</p>
@@ -1125,10 +1221,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="ai">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="frontend" data-department="Engineering" data-level="Mid level">
+                <article class="job-card is-closed" data-job="frontend" data-department="Engineering" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Frontend Engineer</h3>
                     <p class="job-project">Genesis AI and XPDevs Web</p>
@@ -1142,10 +1238,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 4 days ago</span><button class="btn view-job" type="button" data-view-job="frontend">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="junior-frontend" data-department="Engineering" data-level="Junior">
+                <article class="job-card is-closed" data-job="junior-frontend" data-department="Engineering" data-level="Junior">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Junior</span>
+                        <span class="job-level">Junior</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Junior Frontend Developer</h3>
                     <p class="job-project">XPDevs Web</p>
@@ -1159,10 +1255,10 @@
                     <div class="job-actions"><span class="job-posted">Posted today</span><button class="btn view-job" type="button" data-view-job="junior-frontend">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="designer" data-department="Design" data-level="Mid level">
+                <article class="job-card is-closed" data-job="designer" data-department="Design" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Design</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Product Designer</h3>
                     <p class="job-project">All XPDevs products</p>
@@ -1176,10 +1272,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 6 days ago</span><button class="btn view-job" type="button" data-view-job="designer">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="security" data-department="Engineering" data-level="Senior">
+                <article class="job-card is-closed" data-job="security" data-department="Engineering" data-level="Senior">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Senior</span>
+                        <span class="job-level">Senior</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Security Engineer</h3>
                     <p class="job-project">ExamOS and NexShell</p>
@@ -1193,10 +1289,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="security">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="qa" data-department="Product" data-level="Mid level">
+                <article class="job-card is-closed" data-job="qa" data-department="Product" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Product</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>QA and Release Engineer</h3>
                     <p class="job-project">DoorsOS and ExamOS</p>
@@ -1210,10 +1306,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 8 days ago</span><button class="btn view-job" type="button" data-view-job="qa">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="developer-experience" data-department="Engineering" data-level="Junior to mid level">
+                <article class="job-card is-closed" data-job="developer-experience" data-department="Engineering" data-level="Junior to mid level">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Junior to mid level</span>
+                        <span class="job-level">Junior to mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Developer Experience Engineer</h3>
                     <p class="job-project">NexShell</p>
@@ -1227,10 +1323,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 2 days ago</span><button class="btn view-job" type="button" data-view-job="developer-experience">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="research" data-department="Design" data-level="Mid level">
+                <article class="job-card is-closed" data-job="research" data-department="Design" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Design</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>UX Researcher and Accessibility Specialist</h3>
                     <p class="job-project">All XPDevs products</p>
@@ -1244,10 +1340,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 9 days ago</span><button class="btn view-job" type="button" data-view-job="research">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="automation" data-department="Engineering" data-level="Mid level">
+                <article class="job-card is-closed" data-job="automation" data-department="Engineering" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Engineering</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Automation and Platform Engineer</h3>
                     <p class="job-project">XPDevs Platform</p>
@@ -1261,10 +1357,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 1 week ago</span><button class="btn view-job" type="button" data-view-job="automation">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="writer" data-department="Product" data-level="Mid level">
+                <article class="job-card is-closed" data-job="writer" data-department="Product" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Product</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Technical Writer</h3>
                     <p class="job-project">All XPDevs projects</p>
@@ -1278,10 +1374,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 4 days ago</span><button class="btn view-job" type="button" data-view-job="writer">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="community" data-department="Community" data-level="Mid level">
+                <article class="job-card is-closed" data-job="community" data-department="Community" data-level="Mid level">
                     <div class="job-card-top">
                         <span class="job-department">Community</span>
-                        <span class="job-level">Mid level</span>
+                        <span class="job-level">Mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>Community and Education Specialist</h3>
                     <p class="job-project">XPDevs and ExamOS</p>
@@ -1295,10 +1391,10 @@
                     <div class="job-actions"><span class="job-posted">Posted 3 days ago</span><button class="btn view-job" type="button" data-view-job="community">View role</button></div>
                 </article>
 
-                <article class="job-card" data-job="technician" data-department="Operations" data-level="Junior to mid level">
+                <article class="job-card is-closed" data-job="technician" data-department="Operations" data-level="Junior to mid level">
                     <div class="job-card-top">
                         <span class="job-department">Operations</span>
-                        <span class="job-level">Junior to mid level</span>
+                        <span class="job-level">Junior to mid level</span><span class="job-closed-badge">Filled</span>
                     </div>
                     <h3>IT Technician</h3>
                     <p class="job-project">XPDevs Operations</p>
@@ -1315,8 +1411,8 @@
 
             <div class="no-jobs" id="noJobs">
                 <h3>No exact match found</h3>
-                <p>Try another search or send an open application. We may still want to hear from you.</p>
-                <a class="btn" href="#apply">Send an open application</a>
+                <p>Try another search or clear the filters. All positions are currently filled and applications are closed.</p>
+                <a class="btn" href="#open-roles">Show all filled positions</a>
             </div>
         </div>
     </section>
@@ -1410,7 +1506,7 @@
     <section id="before-you-apply">
         <div class="container" style="text-align: center;">
             <h2>Before you apply</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">A few simple checks can help you decide whether the role is right for you and make your application easier to assess.</p>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Applications are currently closed, so none of the roles below can be applied for. They are kept as a record of what we hire for and what we look for in candidates.</p>
             <div class="commitment-grid">
                 <div class="commitment-card">
                     <h3>Read the complete role</h3>
@@ -1435,9 +1531,9 @@
     <section id="hiring-process">
         <div class="container">
             <h2 style="text-align: center;">Hiring process</h2>
-            <p style="max-width: 700px; margin: 0 auto; text-align: center; color: #5f6368; line-height: 1.7;">A clear and human process. You will know what to expect and have time to decide if XPDevs is right for you.</p>
+            <p style="max-width: 700px; margin: 0 auto; text-align: center; color: #5f6368; line-height: 1.7;">The process we use when a role is open. Every position has been filled, so this stage is currently closed.</p>
             <div class="process-list">
-                <div class="process-step"><span class="process-number">1</span><h3>Apply</h3><p>Send your details, a link to your work, and a short explanation of why the role interests you.</p></div>
+                <div class="process-step"><span class="process-number">1</span><h3>Apply</h3><p>Send your details, a link to your work, and a short explanation of why the role interests you. This step is closed while all positions are filled.</p></div>
                 <div class="process-step"><span class="process-number">2</span><h3>Introduction</h3><p>Talk with us about your experience, the role, salary, and any questions you may have.</p></div>
                 <div class="process-step"><span class="process-number">3</span><h3>Discussion and checks</h3><p>Complete a short and relevant discussion. We never ask for unpaid production work. Required checks are completed fairly and proportionately.</p></div>
                 <div class="process-step"><span class="process-number">4</span><h3>Written decision</h3><p>If successful, receive a clear written summary of salary, employment terms, start date, and the arrangements for your first weeks.</p></div>
@@ -1448,15 +1544,15 @@
     <section id="career-faq">
         <div class="container" style="text-align: center;">
             <h2>Frequently asked questions</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Answers to common questions about applying, interviews, location, support, and the hiring process.</p>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Answers to common questions about roles at XPDevs, location, support, and the hiring process. Applications are currently closed.</p>
             <div class="faq-list" style="text-align: left;">
                 <details class="faq-item">
-                    <summary>What should I include in my application?</summary>
-                    <div class="faq-answer">Please include your name, contact details, current location, the role reference, a short account of relevant experience, and a link to your work when available. A clear and honest application is more useful than a long one.</div>
+                    <summary>What should I include in an application?</summary>
+                    <div class="faq-answer">Please include your name, contact details, current location, the role reference, a short account of relevant experience, and a link to your work when available. A clear and honest application is more useful than a long one. Applications cannot be submitted right now, as all positions are filled.</div>
                 </details>
                 <details class="faq-item">
                     <summary>How long will the process take?</summary>
-                    <div class="faq-answer">We aim to acknowledge every application within seven days. The full process may take longer when practical discussions, checks, or holiday periods are involved. We will keep you informed at each important stage.</div>
+                    <div class="faq-answer">There is no live process at the moment, because every role has been filled. When a role opens we aim to acknowledge every application within seven days. The full process may take longer when practical discussions, checks, or holiday periods are involved.</div>
                 </details>
                 <details class="faq-item">
                     <summary>Are the roles remote?</summary>
@@ -1480,7 +1576,7 @@
                 </details>
                 <details class="faq-item">
                     <summary>What if there is no role that matches me?</summary>
-                    <div class="faq-answer">You can select Open application in the form. Tell us about your strengths, the kind of work you want, and where you could contribute to XPDevs. We will keep your details in mind for a relevant opportunity.</div>
+                    <div class="faq-answer">There is no open application option at the moment. All positions are filled, and we are not able to review unsolicited applications. Keep an eye on this page, as any new role will be listed here.</div>
                 </details>
             </div>
         </div>
@@ -1489,7 +1585,13 @@
     <section id="apply">
         <div class="container">
             <h2 style="text-align: center;">Apply to XPDevs</h2>
-            <p class="jobs-intro">Submitting opens a prepared email in your email application. You can review every detail before sending it.</p>
+            <p class="jobs-intro">Applications are closed, so the send button below is disabled. You can still fill in the form, but nothing will be sent or answered.</p>
+            <div class="jobs-closed">
+                <h2>Please do not apply for these roles</h2>
+                <p>Every role on this page has been taken. The listings above are kept as a record of the kind of work we hire for.</p>
+                <p><strong>Applications sent for a filled role will not be read and will not be answered.</strong> Please do not email an application, CV, or portfolio for any position listed here.</p>
+                <p>If a role that suits you opens in future, it will be listed on this page and the form below will be reactivated.</p>
+            </div>
             <div class="application-guidance">
                 <div class="guidance-card">
                     <h3>What to include</h3>
@@ -1497,11 +1599,11 @@
                 </div>
                 <div class="guidance-card">
                     <h3>What to expect</h3>
-                    <p>We aim to acknowledge every application within seven days. The process normally includes an introduction and a practical discussion.</p>
+                    <p>When a role is open we aim to acknowledge every application within seven days. The process normally includes an introduction and a practical discussion.</p>
                 </div>
                 <div class="guidance-card">
                     <h3>Your information</h3>
-                    <p>This website does not store applications. Your email application is prepared in your own email application for you to review.</p>
+                    <p>This website does not store applications. You can type in the form below, but nothing is sent anywhere while applications are closed.</p>
                 </div>
             </div>
             <div class="application-card">
@@ -1549,8 +1651,8 @@
                         <textarea id="applicantMessage" name="message" placeholder="Tell us what you hope to build, learn, or contribute." required></textarea>
                     </div>
                     <div class="application-submit">
-                        <p>Your email application will be prepared for xpdevsclient@gmail.com. Nothing is stored by this website.</p>
-                        <button class="btn" type="submit">Prepare application</button>
+                        <p class="application-closed-note">You can still fill this in, but applications are closed. The send button is disabled, so nothing you enter here will be sent, read, or answered.</p>
+                        <button class="btn" type="submit" disabled>Prepare application</button>
                     </div>
                 </form>
             </div>
@@ -1561,7 +1663,7 @@
         <div class="container" style="text-align: center;">
             <span class="section-eyebrow">Applicant privacy</span>
             <h2>How your application information is handled</h2>
-            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">We aim to handle recruitment information carefully, openly, and only for legitimate hiring purposes.</p>
+            <p style="max-width: 700px; margin: 0 auto; color: #5f6368; line-height: 1.7;">Applications are closed, so no recruitment information is being collected through this page. This notice covers what would be requested if a role opens.</p>
             <div class="privacy-card" style="text-align: left;">
                 <p>This notice explains what to include, why it is requested, and how you can make a request concerning your application information.</p>
                 <div class="privacy-grid">
@@ -1575,7 +1677,7 @@
                     </div>
                     <div class="privacy-item">
                         <strong>Website storage</strong>
-                        <p>This careers page prepares an email in your own email application. It does not send completed form information to a website server.</p>
+                        <p>This careers page does not collect or submit recruitment information. No application form is available while all positions are filled.</p>
                     </div>
                     <div class="privacy-item">
                         <strong>Retention and choices</strong>
@@ -1590,9 +1692,9 @@
         <div class="container">
             <div class="career-contact-card">
                 <h3>Contact the hiring team</h3>
-                <p>Questions about a specific role, application status, accessibility support, or interview arrangements can be sent to xpdevsclient@gmail.com. We aim to reply within seven days.</p>
+                <p>All positions are filled and applications are closed, so we cannot accept or answer applications for the roles listed here. General questions about XPDevs can still be sent to xpdevsclient@gmail.com. If you applied before a role was filled, we will contact you directly if we decide to progress.</p>
                 <div class="contact-actions">
-                    <a class="btn" href="mailto:xpdevsclient@gmail.com?subject=Careers%20at%20XPDevs">Email the hiring team</a>
+                    <a class="btn" href="mailto:xpdevsclient@gmail.com?subject=XPDevs%20general%20question">Email us a general question</a>
                     <a class="btn btn-secondary" href="feedback.html">Send product feedback</a>
                     <a class="btn btn-secondary" href="https://github.com/XPDevs">Visit GitHub</a>
                 </div>
@@ -1984,13 +2086,13 @@
 
         const openOption = document.createElement('option');
         openOption.value = 'open';
-        openOption.textContent = 'Open application';
+        openOption.textContent = 'No open positions at this time';
         applicationRole.appendChild(openOption);
 
         Object.entries(jobs).forEach(([id, job]) => {
             const option = document.createElement('option');
             option.value = id;
-            option.textContent = job.title;
+            option.textContent = `${job.title} (filled)`;
             applicationRole.appendChild(option);
         });
 
@@ -2009,7 +2111,10 @@
                 if (visible) count += 1;
             });
 
-            jobsStatus.textContent = `Showing ${count} open ${count === 1 ? 'position' : 'positions'}. Last updated 25 September 2026.`;
+            const total = cards.length;
+            jobsStatus.textContent = count === total
+                ? `No open positions. All ${total} roles have been filled. Last updated 4 October 2026.`
+                : `Showing ${count} of ${total} filled ${count === 1 ? 'position' : 'positions'}. Applications are closed.`;
             noJobs.classList.toggle('show', count === 0);
         }
 
@@ -2111,26 +2216,25 @@
             const context = document.createElement('div');
             context.className = 'job-modal-context';
             const contextTitle = document.createElement('strong');
-            contextTitle.textContent = 'Application guidance';
+            contextTitle.textContent = 'This position has been filled';
             const contextText = document.createElement('span');
-            contextText.textContent = 'We assess relevant evidence and potential. You do not need to meet every listed skill. Tell us if you need an adjustment during the process.';
+            contextText.textContent = 'Applications for this role are closed. Please do not send an application, as it will not be read or answered.';
             context.append(contextTitle, contextText);
             jobModalContent.appendChild(context);
 
             const actions = document.createElement('div');
             actions.className = 'job-modal-actions';
             const note = document.createElement('p');
-            note.textContent = `Role ${job.reference}. Your prepared application will include this reference automatically.`;
-            const apply = document.createElement('button');
-            apply.className = 'btn';
-            apply.type = 'button';
-            apply.textContent = 'Apply for this role';
-            apply.addEventListener('click', () => {
-                hideModal(jobModal);
-                applicationRole.value = id;
-                document.getElementById('apply').scrollIntoView({ behavior: 'smooth' });
-            });
-            actions.append(note, apply);
+            note.className = 'job-closed-note';
+            note.textContent = `Role ${job.reference} is no longer accepting applications. New vacancies are listed on this page.`;
+            const badge = document.createElement('span');
+            badge.className = 'job-closed-badge';
+            badge.textContent = 'Filled';
+            const scroll = document.createElement('a');
+            scroll.className = 'btn';
+            scroll.href = '#apply';
+            scroll.textContent = 'View the application form';
+            actions.append(note, badge, scroll);
             jobModalContent.appendChild(actions);
             openModal(jobModal);
         }
@@ -2149,31 +2253,12 @@
 
         applicationForm.addEventListener('submit', event => {
             event.preventDefault();
-            if (!applicationForm.reportValidity()) return;
 
-            const data = new FormData(applicationForm);
-            const selectedJob = data.get('role') === 'open' ? null : jobs[data.get('role')];
-            const selectedRole = selectedJob ? selectedJob.title : 'Open application';
-            const selectedReference = selectedJob ? selectedJob.reference : 'Not selected';
-            const subject = `XPDevs application for ${selectedRole}, ${selectedReference}`;
-            const body = [
-                `Role: ${selectedRole}`,
-                `Reference: ${selectedReference}`,
-                `Name: ${data.get('name')}`,
-                `Email: ${data.get('email')}`,
-                `Current location: ${data.get('location')}`,
-                `Portfolio, GitHub, or LinkedIn: ${data.get('portfolio') || 'Not provided'}`,
-                `Work authorisation support: ${data.get('sponsorship')}`,
-                `Preferred start date: ${data.get('preferredStart') || 'Flexible'}`,
-                '',
-                'RELEVANT EXPERIENCE',
-                data.get('experience'),
-                '',
-                'WHY XPDEVS?',
-                data.get('message')
-            ].join('\n');
-            const email = `mailto:xpdevsclient@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.location.href = email;
+            const submitButton = applicationForm.querySelector('button[type="submit"]');
+            if (!submitButton || submitButton.disabled) return;
+
+            // Applications are closed. The form is kept visible for reference only,
+            // so nothing is ever prepared or sent, even if the button is re-enabled.
         });
     })();
 </script>
