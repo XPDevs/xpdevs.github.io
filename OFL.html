@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Open Fast Lookup (OFL) by XPDevs - a deterministic, low-latency search standard and reference implementation for local files and structured records.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs - Open Fast Lookup (OFL)</title>
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .code-block {
+            background: var(--sidebar);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 16px 0 0;
+        }
+        .code-block code {
+            font-family: inherit;
+            white-space: pre;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-grid .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.05rem;
+        }
+        .feature-grid .card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .badge {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            padding: 6px 14px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+        .page-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        table.data-table th,
+        table.data-table td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        table.data-table th { opacity: 0.75; font-weight: 600; }
+    </style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://xpdevs.github.io/">
+    <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width:100px;height:100px;">
+    </a>
+  </div>
+  <div class="topbar-center">
+    <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
+    <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Download ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Search ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Gateway">Gateway</a>
+        <a href="https://xpdevs.github.io/OFL">OFL</a>
+      </div>
+    </div>
+    <a href="https://xpdevs.github.io/Doors" class="topbar-link">DoorsOS</a>
+    <a href="https://xpdevs.github.io/ExamOS" class="topbar-link">ExamOS</a>
+    <a href="https://xpdevs.github.io/AI" class="topbar-link">AI</a>
+    <a href="https://xpdevs.github.io/rules" class="topbar-link">Rules</a>
+    <a href="https://xpdevs.github.io/beta" class="topbar-link">Beta</a>
+    <a href="https://xpdevs.github.io/kernel" class="topbar-link">Kernel</a>
+    <a href="https://xpdevs.github.io/feedback" class="topbar-link">Feedback</a>
+    <a href="https://xpdevs.github.io/contribute.html" class="topbar-link">Contribute</a>
+  </div>
+  <div class="topbar-actions">
+    <a href="https://xpdevs.github.io/account/signin">
+      <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height:20px;width:20px;opacity:0.8;">
+    </a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+    <li><a href="https://xpdevs.github.io/beta">Beta</a></li>
+    <li><a href="https://xpdevs.github.io/kernel">Kernel</a></li>
+    <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+    <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+    <li><a href="https://xpdevs.github.io/download/OS-downloader">Downloads</a></li>
+    <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+  </ul>
+</div>
+
+<div class="hero-center">
+    <h1>Open Fast Lookup</h1>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        OFL &mdash; a deterministic, low-latency search standard for databases.
+    </p>
+    <div class="page-actions" style="justify-content: center;">
+        <a href="https://github.com/XPDevs/OFL" class="btn">View on GitHub</a>
+        <a href="https://github.com/XPDevs/OFL/blob/main/SPEC.md" class="btn btn-secondary">Read the Specification</a>
+    </div>
+</div>
+
+<div class="container" style="padding-bottom: 80px;">
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>A fast search standard for databases</h2>
+        <p>Open Fast Lookup (OFL) is a deterministic, low-latency search standard and reference implementation, built by <a href="https://github.com/XPDevs">XPDevs</a>.</p>
+        <p>OFL provides an open standard for deterministic, low-latency search over local files and structured records without relying on AI or remote services. Results are explainable, indexes are committed crash-safely with SHA-256 checksums, and hot queries are designed to answer in under 2&nbsp;ms.</p>
+        <div class="badge-row">
+            <span class="badge">Deterministic results</span>
+            <span class="badge">Sub-2ms hot queries</span>
+            <span class="badge">No AI, no ML, no embeddings</span>
+            <span class="badge">Local-first</span>
+            <span class="badge">Apache-2.0 licensed</span>
+            <span class="badge">Node &gt;= 18</span>
+        </div>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Features</h2>
+        <div class="feature-grid">
+            <div class="card">
+                <h3>Deterministic results</h3>
+                <p>Search output is structured and repeatable &mdash; the same query over the same index always produces the same ranked results, with no opaque model in the loop.</p>
+            </div>
+            <div class="card">
+                <h3>Index-first architecture</h3>
+                <p>Built for sub-2ms hot queries by keeping index segments hot and answering from prebuilt structures rather than scanning data at query time.</p>
+            </div>
+            <div class="card">
+                <h3>Local-first</h3>
+                <p>No remote dependencies. Your data, your index and your queries stay on your machine, so OFL works fully offline.</p>
+            </div>
+            <div class="card">
+                <h3>No AI, no ML, no embeddings</h3>
+                <p>Ranking is arithmetic, not inference. Every score can be traced back to the terms and index structures that produced it.</p>
+            </div>
+            <div class="card">
+                <h3>Structured SearchOutput</h3>
+                <p>A single <code>SearchOutput</code> contract is shared by the library, the CLI and the daemon, so results are portable between all three modes.</p>
+            </div>
+            <div class="card">
+                <h3>Library, CLI and daemon</h3>
+                <p>Use OFL as an ES module, drive it from the <code>ofl</code> command line tool, or keep indexes hot in memory behind a local Unix socket daemon.</p>
+            </div>
+            <div class="card">
+                <h3>Filesystem metadata search</h3>
+                <p>Index files by their metadata &mdash; names, paths, sizes, types and timestamps &mdash; with configurable symlink, hidden-file and depth limits.</p>
+            </div>
+            <div class="card">
+                <h3>Structured records search</h3>
+                <p>Index JSON and NDJSON records directly, so databases, exports and log-style data can be searched without a custom loader.</p>
+            </div>
+            <div class="card">
+                <h3>Crash-safe commits</h3>
+                <p>Index writes are committed with SHA-256 checksums and verified with <code>ofl verify</code>, so a partially written index is detected rather than silently queried.</p>
+            </div>
+            <div class="card">
+                <h3>Multiple index types</h3>
+                <p>Exact, prefix, range, bitmap and trigram index types are all supported, and the query planner combines them for each request.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Installation</h2>
+        <pre class="code-block"><code>git clone https://github.com/XPDevs/OFL.git
+cd OFL
+npm install</code></pre>
+        <p style="margin-top: 16px;">OFL is an ES module with <strong>zero runtime dependencies</strong> and requires Node <strong>&gt;= 18</strong>. The package exposes <code>ofl</code> as a bin entry point and exports the core at <code>src/core/index.js</code>, plus <code>./cli</code> and <code>./daemon</code>.</p>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Quick start</h2>
+        <pre class="code-block"><code># Create a config file (ofl.json)
+# Then build an index
+ofl build --config ./ofl.json
+
+# Search
+ofl search --text "report" --json
+
+# Run as daemon
+ofl daemon start</code></pre>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Configuration</h2>
+        <p>Create an <code>ofl.json</code> in your project root:</p>
+        <pre class="code-block"><code>{
+  "index_dir": ".ofl/index",
+  "sources": [
+    {
+      "id": "my-files",
+      "name": "My Files",
+      "type": "filesystem-metadata",
+      "root": "/path/to/search"
+    }
+  ],
+  "security": {
+    "follow_symlinks": false,
+    "include_hidden": false,
+    "max_depth": 50,
+    "default_limit": 50
+  }
+}</code></pre>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>CLI commands</h2>
+        <table class="data-table">
+            <tr><th>Command</th><th>Description</th></tr>
+            <tr><td><code>ofl search</code></td><td>Search indexed data</td></tr>
+            <tr><td><code>ofl build</code></td><td>Build or rebuild indexes</td></tr>
+            <tr><td><code>ofl verify</code></td><td>Verify index integrity</td></tr>
+            <tr><td><code>ofl info</code></td><td>Show source and index information</td></tr>
+            <tr><td><code>ofl daemon</code></td><td>Manage the local daemon</td></tr>
+            <tr><td><code>ofl bench</code></td><td>Run benchmarks</td></tr>
+            <tr><td><code>ofl conformance</code></td><td>Run conformance tests</td></tr>
+        </table>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Library usage</h2>
+        <pre class="code-block"><code>import { createSearchOutput, normalizeQueryText, tokenizeText } from 'ofl';</code></pre>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Daemon</h2>
+        <p>The daemon keeps indexes hot in memory and answers queries over a local Unix socket:</p>
+        <pre class="code-block"><code>ofl daemon start
+ofl daemon query --text "search term"
+ofl daemon status
+ofl daemon stop</code></pre>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Documentation</h2>
+        <table class="data-table">
+            <tr><th>Document</th><th>Description</th></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/SPEC.md">Specification</a></td><td>The OFL standard itself</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/ARCHITECTURE.md">Architecture</a></td><td>How the components fit together</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/QUERY.md">Query Model</a></td><td>Query grammar, terms and planning</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/OUTPUT.md">Output Model</a></td><td>The SearchOutput contract</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/BENCHMARKS.md">Benchmarks</a></td><td>Latency and throughput results</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/SECURITY.md">Security</a></td><td>Path handling and query guard rules</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/DECISIONS.md">Design Decisions</a></td><td>Why the standard works the way it does</td></tr>
+            <tr><td><a href="https://github.com/XPDevs/OFL/blob/main/CONTRIBUTING.md">Contributing</a></td><td>How to get involved</td></tr>
+        </table>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Testing</h2>
+        <pre class="code-block"><code>npm test
+npm run conformance
+npm run bench</code></pre>
+        <p style="margin-top: 16px;">The test suite is split into unit, integration and conformance suites, covering the CLI, the daemon, every index type, connectors, checksum verification and the security guard.</p>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Repository details</h2>
+        <table class="data-table">
+            <tr><th>Repository</th><td><a href="https://github.com/XPDevs/OFL">github.com/XPDevs/OFL</a></td></tr>
+            <tr><th>Description</th><td>A new fast search standard for databases</td></tr>
+            <tr><th>Full name</th><td>Open Fast Lookup (OFL)</td></tr>
+            <tr><th>Version</th><td>0.1.0 &mdash; initial release</td></tr>
+            <tr><th>Language</th><td>JavaScript (ESM), Node &gt;= 18, zero runtime dependencies</td></tr>
+            <tr><th>License</th><td><a href="https://github.com/XPDevs/OFL/blob/main/LICENSE">Apache-2.0</a></td></tr>
+            <tr><th>Related project</th><td><a href="https://xpdevs.github.io/Gateway">Gateway</a> &mdash; our end-user search engine, built alongside this standard</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>About XPDevs</h2>
+        <p>OFL is developed by <a href="https://github.com/XPDevs">XPDevs</a>. It provides an open standard for deterministic, low-latency search over local files and structured records without relying on AI or remote services.</p>
+        <p style="margin-top: 16px;" class="contact-info">For more information about OFL, or to discuss how our technology can support your needs, please contact us at <a href="mailto:xpdevs.github.io.com@gmail.com">xpdevs.github.io.com@gmail.com</a>.</p>
+    </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Search</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+        <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Account</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/rules">Rules &amp; EULA</a></li>
+        <li><a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a></li>
+        <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>About XPDevs</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+        <ul class="legal-links">
+          <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+          <li><a href="sitemap.xml">Site Map</a></li>
+        </ul>
+      </div>
+      <span>🇬🇧 Based in the United Kingdom</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/scripts.js"></script>
+</body>
+</html>

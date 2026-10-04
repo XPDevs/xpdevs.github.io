@@ -657,6 +657,13 @@ section { padding: 60px 0; }
 .section { margin-bottom: 40px; }
 
 /* === Responsive === */
+/* Tighten the topbar nav so all items (incl. Search) fit before the
+   topbar-center is swapped out for the hamburger below 1240px. */
+@media (min-width: 1241px) and (max-width: 1440px) {
+  .topbar-center { gap: 2px; }
+  .topbar-link { padding: 8px 10px; }
+}
+
 @media (min-width: 769px) and (max-width: 1240px) {
   .topbar-center { display: none; }
   .hamburger { display: flex; }

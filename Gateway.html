@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Gateway Search by XPDevs - a fast, private, multi-source search engine with a bundled local web index, Quick Wiki answers and hybrid BM25 ranking.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs - Gateway Search</title>
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .code-block {
+            background: var(--sidebar);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 18px 20px;
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            margin: 16px 0 0;
+        }
+        .code-block code {
+            font-family: inherit;
+            white-space: pre;
+        }
+        .shot {
+            margin: 20px 0 0;
+            border-radius: var(--radius-4xl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-modal);
+            background: var(--content-bg);
+        }
+        .shot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .shot figcaption {
+            padding: 12px 16px;
+            font-size: 13px;
+            opacity: 0.7;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature-grid .card h3 {
+            margin: 0 0 10px;
+            font-size: 1.05rem;
+        }
+        .feature-grid .card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .badge {
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-4xl);
+            padding: 6px 14px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+        .page-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        table.data-table th,
+        table.data-table td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        table.data-table th { opacity: 0.75; font-weight: 600; }
+    </style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://xpdevs.github.io/">
+    <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width:100px;height:100px;">
+    </a>
+  </div>
+  <div class="topbar-center">
+    <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
+    <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Download ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
+        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
+        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Search ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Gateway">Gateway</a>
+        <a href="https://xpdevs.github.io/OFL">OFL</a>
+      </div>
+    </div>
+    <a href="https://xpdevs.github.io/Doors" class="topbar-link">DoorsOS</a>
+    <a href="https://xpdevs.github.io/ExamOS" class="topbar-link">ExamOS</a>
+    <a href="https://xpdevs.github.io/AI" class="topbar-link">AI</a>
+    <a href="https://xpdevs.github.io/rules" class="topbar-link">Rules</a>
+    <a href="https://xpdevs.github.io/beta" class="topbar-link">Beta</a>
+    <a href="https://xpdevs.github.io/kernel" class="topbar-link">Kernel</a>
+    <a href="https://xpdevs.github.io/feedback" class="topbar-link">Feedback</a>
+    <a href="https://xpdevs.github.io/contribute.html" class="topbar-link">Contribute</a>
+  </div>
+  <div class="topbar-actions">
+    <a href="https://xpdevs.github.io/account/signin">
+      <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height:20px;width:20px;opacity:0.8;">
+    </a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+    <li><a href="https://xpdevs.github.io/beta">Beta</a></li>
+    <li><a href="https://xpdevs.github.io/kernel">Kernel</a></li>
+    <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+    <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+    <li><a href="https://xpdevs.github.io/download/OS-downloader">Downloads</a></li>
+    <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+  </ul>
+</div>
+
+<div class="hero-center">
+    <h1>Gateway Search</h1>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        A fast, private, multi-source search engine made from scratch.
+    </p>
+    <div class="page-actions" style="justify-content: center;">
+        <a href="https://xpdevs.github.io/gateway/" class="btn">Open Gateway</a>
+        <a href="https://github.com/XPDevs/gateway" class="btn btn-secondary">View on GitHub</a>
+    </div>
+</div>
+
+<div class="container" style="padding-bottom: 80px;">
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>A search engine built from scratch</h2>
+        <p>Gateway is a fast, private, multi-source search engine by <a href="https://xpdevs.github.io">XPDevs</a>. It searches a bundled local web index of 50,000 real websites across 50,000 domains, plus live Wikipedia and Wikidata open data &mdash; with no API keys, no build step, and no generative AI.</p>
+        <p>Live behaviour: main results paint from the local index first (typically milliseconds), while Quick Wiki, spell-check and web enrichment resolve asynchronously afterwards.</p>
+        <p>Your searches are recorded to a local-only <a href="https://xpdevs.github.io/gateway/history/">search history</a> you can replay, filter, switch off or delete. It never leaves the browser and never affects ranking.</p>
+        <div class="badge-row">
+            <span class="badge">50,000 indexed websites</span>
+            <span class="badge">No API keys</span>
+            <span class="badge">No build step</span>
+            <span class="badge">No generative AI</span>
+            <span class="badge">25-language UI</span>
+            <span class="badge">Dark mode</span>
+        </div>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Screenshots</h2>
+        <p>The screenshots below are taken directly from the <a href="https://github.com/XPDevs/gateway">XPDevs/gateway</a> repository.</p>
+
+        <h3>Homepage</h3>
+        <figure class="shot" style="margin-top: 16px;">
+            <img src="https://xpdevs.github.io/images/Gateway/homepage_example.png" alt="Gateway Search homepage" loading="lazy" decoding="async" width="1920" height="1080">
+            <figcaption>Clean, minimal interface with instant local search.</figcaption>
+        </figure>
+
+        <h3 style="margin-top: 32px;">Search results</h3>
+        <figure class="shot" style="margin-top: 16px;">
+            <img src="https://xpdevs.github.io/images/Gateway/search_results_example.png" alt="Gateway Search results for Costa Coffee" loading="lazy" decoding="async" width="1920" height="1080">
+            <figcaption>Results for &ldquo;Costa Coffee&rdquo;, featuring the Quick Wiki box, result stats and favicons.</figcaption>
+        </figure>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Features</h2>
+        <div class="feature-grid">
+
+            <div class="card">
+                <h3>Instant main results</h3>
+                <p>Two-stage search: Stage 1 renders <code>gatewaySearchLocal()</code> (local IndexedDB/memory index only, no network) inside <code>requestAnimationFrame</code>; Stage 2 enriches with <code>gatewayCrawl()</code> without replacing the visible list. Result stats show measured time, e.g. <em>120 ranked results (0.03 seconds)</em>. Uses <code>content-visibility: auto</code>, 20-per-page pagination, memory + <code>localStorage</code> + IndexedDB caches and request dedup.</p>
+            </div>
+
+            <div class="card">
+                <h3>Quick Wiki</h3>
+                <p>Deterministic answers from Wikipedia extracts plus Wikidata claims (<code>P577</code>, <code>P571</code>, <code>P36</code>, <code>P1082</code>&hellip;) with date-intent parsing &mdash; never generative AI. It renders after the main list behind a skeleton placeholder, and failures show no box at all without touching results. Can be disabled entirely via Settings.</p>
+            </div>
+
+            <div class="card">
+                <h3>XPDevs profile</h3>
+                <p>Searching <code>XPDevs</code> &mdash; or any query containing the token (<code>xpdevs</code>, <code>xp dev</code>, <code>xp-dev</code>, <code>xpdev</code>, <code>gateway search</code>) &mdash; is answered entirely from a local deterministic profile with no network call. It pins the official site, the GitHub organisation, Gateway and all 59 public repositories above every ranked result.</p>
+            </div>
+
+            <div class="card">
+                <h3>Favicons on every URL</h3>
+                <p>Each result row and each Quick Wiki source link shows a favicon: Google S2 primary, DuckDuckGo <code>icons.duckduckgo.com</code> fallback, letter-avatar final fallback &mdash; so no row is icon-less. Images load lazily and asynchronously.</p>
+            </div>
+
+            <div class="card">
+                <h3>Unique descriptions</h3>
+                <p>All 50,000 <code>index.json</code> descriptions are unique (verified 50,000 / 50,000), as are all 50,000 URLs. Every entry is a real website, one per domain, sourced from Wikidata and confirmed to answer over HTTP at build time.</p>
+            </div>
+
+            <div class="card">
+                <h3>Local search history</h3>
+                <p>Every search is recorded to <code>localStorage</code> under <code>gw-history</code> as <code>{q, t, n, ms}</code>, newest first, capped at 200 entries. Grouped by day, filterable, replayable, deletable and exportable as JSON. Nothing is uploaded, never attached to a search, and never used for ranking.</p>
+            </div>
+
+            <div class="card">
+                <h3>BM25 hybrid ranking</h3>
+                <p>IDF with additive smoothing, <code>IDF^1.5</code> term weighting, Okapi BM25 and a static authority prior &mdash; see Ranking below for the full formula.</p>
+            </div>
+
+            <div class="card">
+                <h3>Plus</h3>
+                <p>25-language UI, dark mode, autocomplete (<code>getSuggestions</code>), <em>Did you mean?</em> spell-check, <em>I'm Feeling Lucky</em>, uploadable custom index, safe-domain filtering and tracking-param stripping.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Project structure</h2>
+        <pre class="code-block"><code>gateway-main/
+├── index.html       # Home + results UI, settings modal
+├── ui.css           # Theme, results, Quick Wiki, favicon, responsive styles
+├── main.js          # UI, staged search orchestration, rendering
+├── crawl.js         # Index engine, Wikipedia/Wikidata fetchers, ranking, caches
+├── index/
+│   ├── index.json       # Bundled local index: [{t, u, d, s}] — 50,000 unique-description entries
+│   └── index-meta.json  # Index version + entry count (cache-busting)
+├── about/ advertising/ business/ how-search-works/ history/ privacy/ terms/  # Static pages
+├── favicon.ico
+└── 404.html</code></pre>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Setup</h2>
+        <p>No build, no dependencies. Any static server works:</p>
+        <pre class="code-block"><code>cd gateway-main
+python3 -m http.server 8000
+# open http://localhost:8000/</code></pre>
+        <p style="margin-top: 16px;">Or <code>npx serve .</code>, GitHub Pages, Nginx, etc. Use <code>http(s)://</code>, not <code>file://</code> (fetch and IndexedDB require it).</p>
+        <p style="margin-top: 16px;">Custom index (optional): Settings &rarr; Upload Index &rarr; select a JSON array of <code>{t, u, d, s}</code>. It is validated, persisted to IndexedDB and versioned, so old caches are invalidated. Settings (gear icon) also cover language, dark mode, Quick Wiki on/off (persisted as <code>gw-quickwiki</code>, default on) and index upload.</p>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Architecture</h2>
+        <pre class="code-block"><code>User query
+  ├─ Stage 1 (sync-fast): gatewaySearchLocal() → prepared normalised index → score → _boostXpdevs → paint (rAF) + timing
+  ├─ Stage 2a (async): gatewayCrawl() → local + Wikipedia search + official URLs + extlinks → merge new URLs only, re-sort, update count
+  ├─ Stage 2b (async, lazy): gatewayQuickWiki() → parse intent → wiki search → best-page match → Wikidata claims → image → renderQuickWiki()
+  └─ Stage 2c (async): gatewaySpellCheck() → renderDidYouMean()</code></pre>
+        <h3 style="margin-top: 28px;">Key modules</h3>
+        <ul>
+            <li><strong>crawl.js</strong> &mdash; <code>_normalize</code>, <code>_prepareIndex</code> (term frequencies, document frequency, <code>avgdl</code>, authority), <code>searchIndex</code>, <code>gatewaySearchLocal</code>, <code>gatewayCrawl</code>, <code>_searchWikipedia</code>, <code>_wikidataClaims</code>, <code>quickWiki</code>, <code>getSuggestions</code>, <code>spellCheck</code>, <code>_dedupeAndRank</code>, <code>isSafeResult</code>, <code>cleanTracking</code>, plus a tiered cache (memory &rarr; <code>localStorage</code> <code>gw_v6_</code> &rarr; IndexedDB <code>GatewayIndex</code>). Introspection: <code>gatewayRankDebug(query)</code> and <code>gatewayAuthorityScore(domain)</code>.</li>
+            <li><strong>main.js</strong> &mdash; <code>performSearch</code> (staged), <code>_gwRender</code> (stats with seconds + <code>renderDidYouMean</code> + <code>renderQuickWiki</code> + paginated <code>renderItem</code>), <code>_faviconHtml</code> (S2 &rarr; DDG &rarr; letter), <code>_answerLinkHtml</code>, translations (25 locales), dark mode and autocomplete wiring.</li>
+        </ul>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Ranking</h2>
+        <p>Every result &mdash; bundled index, live Wikipedia, official sites, cited web links &mdash; is scored with one hybrid function, so all sources compete on identical terms.</p>
+        <pre class="code-block"><code>FinalScore = (BM25_Score * 0.8) + (Authority_Score * 0.2)</code></pre>
+        <ol style="margin-top: 16px;">
+            <li><strong>IDF with additive smoothing</strong> &mdash; <code>IDF(q_i) = ln(1 + (N - n(q_i) + 0.5) / (n(q_i) + 0.5))</code>, where <code>N = 20,000,000,000</code> (web-corpus scale, <code>RANK_CORPUS_SIZE</code>; override with <code>window.GATEWAY_RANK_CORPUS</code>) and <code>n(q_i)</code> is document frequency, counted at index load.</li>
+            <li><strong>Dynamic query term weighting</strong> &mdash; <code>W(q_i) = IDF(q_i) ^ 1.5</code>, so rare entities are boosted and common terms are damped.</li>
+            <li><strong>Okapi BM25</strong> &mdash; <code>BM25(D, Q) = Σ W(q_i) · (f(q_i,D) · (k1 + 1)) / (f(q_i,D) + k1 · (1 - b + b · (|D| / avgdl)))</code>, with <code>k1 = 1.2</code> and <code>b = 0.75</code>. Documents are <code>title + description</code>; <code>|D|</code> is the word count; <code>avgdl</code> is the mean across the whole index (12.73 words for the bundled set: 548,586 tokens over 50,000 documents, 79,765 distinct terms).</li>
+            <li><strong>Authority</strong> &mdash; a pre-calculated static float in <code>[0.0, 10.0]</code>, PageRank-style, resolved per domain: exact table &rarr; parent-domain walk (<code>en.wikipedia.org</code> &rarr; <code>wikipedia.org</code>) &rarr; public-sector/academic host shapes (<code>.gov</code>, <code>gov.uk</code>, <code>.edu</code>, <code>ac.uk</code>, &hellip;) &rarr; deterministic 2.0&ndash;6.0 hash band for everything else. It never varies with the query, and an index entry may ship its own value in <code>a</code>, which always wins.</li>
+        </ol>
+        <p style="margin-top: 16px;">Since authority contributes at most 2.0 points, relevance dominates and authority only breaks ties &mdash; the intended 80/20 split.</p>
+
+        <h3 style="margin-top: 28px;">Tokenisation</h3>
+        <p>Query terms are stopword-filtered; single digits are kept (<code>PlayStation 5</code>, <code>World War 2</code>) while lone letters are dropped. Document text keeps every token, so stopwords still count toward <code>f</code> and <code>|D|</code>. Matching is whole-token, not substring.</p>
+
+        <h3 style="margin-top: 28px;">Verification</h3>
+        <p>IDF, <code>W</code>, BM25 and <code>FinalScore</code> were re-derived from the raw index for 150+ results across 6 queries with a maximum drift of <code>0.0</code>. Corpus statistics (<code>avgdl</code> = 12.7286, vocabulary = 79,765) also match an independent count.</p>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Performance notes</h2>
+        <ul>
+            <li>First paint never awaits network, so network failures cannot blank results.</li>
+            <li><code>MAX_INDEX_RESULTS = 120</code>, <code>MAX_RESULTS = 100</code>, <code>PER_PAGE = 20</code>. Each search walks only the documents its query terms actually match in a prebuilt inverted index.</li>
+            <li>Warm search averages ~3 ms over 50,000 documents (median 2.6 ms, p95 21.1 ms across 600 timed <code>gatewaySearchLocal()</code> calls). The one-time index preparation costs ~1.3 s and is cached in memory.</li>
+            <li>To verify: search anything and read <code>result-stats</code>, for example <em>(0.04 seconds)</em>, and compare against Google's typical 0.3&ndash;0.6 s SERP time.</li>
+        </ul>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Data notes</h2>
+        <p><code>index/index.json</code> format: <code>t</code> title, <code>u</code> URL (tracking params stripped), <code>d</code> unique description, <code>s</code> normalised domain, and optional <code>a</code> pre-calculated authority (0.0&ndash;10.0, falling back to the domain table when absent).</p>
+        <p style="margin-top: 16px;">Regeneration check:</p>
+        <pre class="code-block"><code>python3 -c "import json; d=json.load(open('index/index.json')); print(len(d), len(set(x['d'] for x in d)))"
+# → 50000 50000</code></pre>
+        <p style="margin-top: 16px;"><strong>Local keys written by the browser</strong> (all removable via site data): <code>gw-lang</code>, <code>gw-dark</code>, <code>gw-quickwiki</code> (preferences); <code>gw_v6_*</code> (10-minute search cache, max 30 keys); <code>gw-history</code> and <code>gw-history-optout</code> (search history, max 200 entries). Nothing else is persisted, and none of it is ever transmitted.</p>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Security &amp; privacy</h2>
+        <ul>
+            <li>Dangerous domains, private-IP hostnames, non-http(s) URLs and malware-keyword hits are filtered via <code>isSafeDomain</code> / <code>isSafeResult</code> / <code>_safeHref</code>.</li>
+            <li>Tracking params (<code>utm_*</code>, <code>fbclid</code>, <code>gclid</code>, &hellip;) and hashes are stripped.</li>
+            <li>No third-party analytics. Favicon and image loads are the only external requests besides the Wikipedia and Wikidata APIs.</li>
+        </ul>
+    </div>
+
+    <div class="section" style="margin-bottom: 40px;">
+        <h2>Repository details</h2>
+        <table class="data-table">
+            <tr><th>Repository</th><td><a href="https://github.com/XPDevs/gateway">github.com/XPDevs/gateway</a></td></tr>
+            <tr><th>Live site</th><td><a href="https://xpdevs.github.io/gateway/">xpdevs.github.io/gateway/</a></td></tr>
+            <tr><th>Description</th><td>A small search engine made from scratch</td></tr>
+            <tr><th>Language</th><td>JavaScript, HTML and CSS &mdash; no build step, no dependencies</td></tr>
+            <tr><th>Index size</th><td>50,000 entries &middot; version 2026-09-29-gateway-index-v6-50000-verified</td></tr>
+            <tr><th>Documentation</th><td><a href="https://github.com/XPDevs/gateway/blob/main/README.md">README</a> &middot; <a href="https://xpdevs.github.io/gateway/how-search-works/">How search works</a> &middot; <a href="https://xpdevs.github.io/gateway/about/">About</a> &middot; <a href="https://xpdevs.github.io/gateway/privacy/">Privacy</a> &middot; <a href="https://xpdevs.github.io/gateway/terms/">Terms</a></td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Contact Us</h3>
+        <p class="contact-info">For more information about Gateway or to discuss how our technology can support your needs, please contact us at <a href="mailto:xpdevs.github.io.com@gmail.com">xpdevs.github.io.com@gmail.com</a>.</p>
+    </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Search</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+        <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Account</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/rules">Rules &amp; EULA</a></li>
+        <li><a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a></li>
+        <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>About XPDevs</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+        <ul class="legal-links">
+          <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+          <li><a href="sitemap.xml">Site Map</a></li>
+        </ul>
+      </div>
+      <span>🇬🇧 Based in the United Kingdom</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/scripts.js"></script>
+</body>
+</html>
