@@ -52,12 +52,6 @@
             font-size: 13px;
             opacity: 0.85;
         }
-        .page-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 24px;
-        }
         table.data-table {
             width: 100%;
             border-collapse: collapse;
@@ -87,14 +81,7 @@
   <div class="topbar-center">
     <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
     <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
-    <div class="dropdown">
-      <a href="#" class="topbar-link" style="cursor:default;">Download ▾</a>
-      <div class="dropdown-content">
-        <a href="https://xpdevs.github.io/Doors">DoorsOS</a>
-        <a href="https://xpdevs.github.io/ExamOS">ExamOS</a>
-        <a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a>
-      </div>
-    </div>
+    <a href="https://xpdevs.github.io/download/OS-downloader" class="topbar-link">Download</a>
     <div class="dropdown">
       <a href="#" class="topbar-link" style="cursor:default;">Search ▾</a>
       <div class="dropdown-content">
@@ -139,9 +126,9 @@
 <div class="hero-center">
     <h1>Open Fast Lookup</h1>
     <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
-        OFL &mdash; a deterministic, low-latency search standard for databases.
+        OFL: a deterministic, low-latency search standard for databases.
     </p>
-    <div class="page-actions" style="justify-content: center;">
+    <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
         <a href="https://github.com/XPDevs/OFL" class="btn">View on GitHub</a>
         <a href="https://github.com/XPDevs/OFL/blob/main/SPEC.md" class="btn btn-secondary">Read the Specification</a>
     </div>
@@ -168,7 +155,7 @@
         <div class="feature-grid">
             <div class="card">
                 <h3>Deterministic results</h3>
-                <p>Search output is structured and repeatable &mdash; the same query over the same index always produces the same ranked results, with no opaque model in the loop.</p>
+                <p>Search output is structured and repeatable: the same query over the same index always produces the same ranked results, with no opaque model in the loop.</p>
             </div>
             <div class="card">
                 <h3>Index-first architecture</h3>
@@ -192,7 +179,7 @@
             </div>
             <div class="card">
                 <h3>Filesystem metadata search</h3>
-                <p>Index files by their metadata &mdash; names, paths, sizes, types and timestamps &mdash; with configurable symlink, hidden-file and depth limits.</p>
+                <p>Index files by their metadata (names, paths, sizes, types and timestamps), with configurable symlink, hidden-file and depth limits.</p>
             </div>
             <div class="card">
                 <h3>Structured records search</h3>
@@ -309,10 +296,10 @@ npm run bench</code></pre>
             <tr><th>Repository</th><td><a href="https://github.com/XPDevs/OFL">github.com/XPDevs/OFL</a></td></tr>
             <tr><th>Description</th><td>A new fast search standard for databases</td></tr>
             <tr><th>Full name</th><td>Open Fast Lookup (OFL)</td></tr>
-            <tr><th>Version</th><td>0.1.0 &mdash; initial release</td></tr>
+            <tr><th>Version</th><td>0.1.0, initial release</td></tr>
             <tr><th>Language</th><td>JavaScript (ESM), Node &gt;= 18, zero runtime dependencies</td></tr>
             <tr><th>License</th><td><a href="https://github.com/XPDevs/OFL/blob/main/LICENSE">Apache-2.0</a></td></tr>
-            <tr><th>Related project</th><td><a href="https://xpdevs.github.io/Gateway">Gateway</a> &mdash; our end-user search engine, built alongside this standard</td></tr>
+            <tr><th>Related project</th><td><a href="https://xpdevs.github.io/Gateway">Gateway</a>, our end-user search engine, built alongside this standard</td></tr>
         </table>
     </div>
 
@@ -332,11 +319,6 @@ npm run bench</code></pre>
         <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
         <li><a href="https://xpdevs.github.io/AI">AI</a></li>
         <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>Search</h3>
-      <ul>
         <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
         <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
       </ul>
