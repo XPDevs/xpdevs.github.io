@@ -1,0 +1,26 @@
+{
+  "name": "KCNTV — Korean Central Television & DPRK Radio Live",
+  "short_name": "KCNTV",
+  "description": "Watch Korean Central Television (KCTV) live and listen to KCBS and Voice of Korea radio. Free live stream of North Korean state TV and radio worldwide.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#131314",
+  "theme_color": "#131314",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["news", "entertainment", "multimedia"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
