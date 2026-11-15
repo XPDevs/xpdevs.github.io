@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XPDevs - Rules & EULA</title>
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .box {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        .agreement {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .agreement button {
+            background-color: #0071e3;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 980px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .agreement button:disabled {
+            background-color: #86868b;
+            cursor: not-allowed;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(50,50,50,0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10vh auto;
+            padding: 40px;
+            border: none;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        .modal.show {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .box { padding: 24px; }
+            .modal-content { padding: 24px; width: 90%; }
+        }
+    </style>
+</head>
+<body>
+<!-- Modal -->
+<div id="confirmation-modal" class="modal">
+  <div class="modal-content">
+    <p>Thank you for agreeing to the Rules and EULA.</p>
+  </div>
+</div>
+
+<nav class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://xpdevs.github.io/">
+    <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width:100px;height:100px;">
+    </a>
+  </div>
+  <div class="topbar-center">
+    <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
+    <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
+    <a href="https://xpdevs.github.io/download/OS-downloader" class="topbar-link">Download</a>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Search ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Gateway">Gateway</a>
+        <a href="https://xpdevs.github.io/OFL">OFL</a>
+      </div>
+    </div>
+    <a href="https://xpdevs.github.io/Doors" class="topbar-link">DoorsOS</a>
+    <a href="https://xpdevs.github.io/ExamOS" class="topbar-link">ExamOS</a>
+    <a href="https://xpdevs.github.io/AI" class="topbar-link">AI</a>
+    <a href="https://xpdevs.github.io/rules" class="topbar-link">Rules</a>
+    <a href="https://xpdevs.github.io/beta" class="topbar-link">Beta</a>
+    <a href="https://xpdevs.github.io/kernel" class="topbar-link">Kernel</a>
+    <a href="https://xpdevs.github.io/feedback" class="topbar-link">Feedback</a>
+    <a href="https://xpdevs.github.io/contribute.html" class="topbar-link">Contribute</a>
+  </div>
+  <div class="topbar-actions">
+    <a href="https://xpdevs.github.io/account/signin">
+      <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height:20px;width:20px;opacity:0.8;">
+    </a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+    <li><a href="https://xpdevs.github.io/beta">Beta</a></li>
+    <li><a href="https://xpdevs.github.io/kernel">Kernel</a></li>
+    <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+    <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+    <li><a href="https://xpdevs.github.io/download/OS-downloader">Downloads</a></li>
+    <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+  </ul>
+</div>
+
+
+    
+    <div class="hero-center">
+        <h1>XPDevs - Legal</h1>
+        <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">Privacy, jurisdiction and the End User License Agreement.</p>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <div class="content-scroll">
+<p><strong>Last Updated:</strong> 15/07/25</p>
+                <p>
+                    This End User License Agreement ("Agreement") is a legal agreement between you ("Licensee" or "you") and XPDevs,
+                    the creator and owner of the XPDevs website ("Licensor," "we," or "us"), governing your access to and use of the
+                    XPDevs website ("Website") located at <a href="https://xpdevs.github.io/">https://xpdevs.github.io/</a>.
+                </p>
+                <p>
+                    By accessing or using the Website, you agree to be bound by the terms of this Agreement. If you do not agree to
+                    these terms, you must not use the Website.
+                </p>
+<h2>1. Applicable Jurisdiction: United Kingdom</h2>
+                <p>All rules and guidelines outlined below are in accordance with the laws and regulations of the United Kingdom. Users from other regions are expected to comply with these guidelines when accessing XPDevs from within the UK.</p>
+<h2>2. Privacy Policy</h2>
+                <ul>
+                    <li><strong>Personal Information:</strong> Respect others' privacy. Sharing personal information without consent is prohibited.</li>
+                    <li><strong>Data Security:</strong> Do not attempt to access, misuse, or distribute personal or company data without proper authorization.</li>
+                    <li><strong>Third-Party Sharing:</strong> XPDevs will never share your data with third parties without explicit consent.</li>
+                </ul>
+<h2>3. License Grant</h2>
+                <p>
+                    Licensor grants you a limited, non-exclusive, non-transferable, revocable license to access and use the Website for
+                    your personal or internal business purposes only. This license does not permit you to distribute, rent, lease,
+                    sublicense, or commercially exploit the Website or its content without express written permission from XPDevs.
+                </p>
+<h2>4. Modifications to the Website</h2>
+                <p>
+                    We reserve the right to modify, suspend, or discontinue any aspect or feature of the Website at any time without
+                    notice. We are not obligated to provide maintenance, support, or updates unless explicitly stated otherwise.
+                </p>
+<h2>5. Intellectual Property</h2>
+                <p>
+                    All content and materials available on the Website—including but not limited to text, code, graphics, logos,
+                    icons, interfaces, software, design, layout, and structure—are the property of XPDevs or its licensors and are
+                    protected by applicable intellectual property laws. This Agreement does not transfer any ownership rights; the
+                    Website is licensed, not sold, to you.
+                </p>
+<h2>6. Restrictions</h2>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Copy, modify, distribute, or create derivative works based on the Website or its contents.</li>
+                    <li>Reverse-engineer, decompile, or disassemble any part of the Website, except where such activity is expressly permitted by applicable law.</li>
+                    <li>Remove, obscure, or alter any copyright, trademark, or other proprietary notices.</li>
+                    <li>Use the Website in any unlawful manner or for any unlawful purpose.</li>
+                    <li>Use bots, scrapers, or other automated tools to access the Website without prior consent.</li>
+                </ul>
+<h2>7. Termination</h2>
+                <p>
+                    This Agreement is effective until terminated. Your rights under this license will terminate automatically and without
+                    notice if you breach any term of this Agreement. Upon termination, you must cease all use of the Website and destroy
+                    any downloaded or cached copies in your possession.
+                </p>
+<h2>8. Disclaimer of Warranties</h2>
+                <p>
+                    The Website is provided on an "AS IS" and "AS AVAILABLE" basis. To the fullest extent permitted by law, XPDevs
+                    disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability,
+                    fitness for a particular purpose, title, and non-infringement. We do not guarantee that the Website will be
+                    error-free, secure, or uninterrupted.
+                </p>
+<h2>9. Limitation of Liability</h2>
+                <p>
+                    To the maximum extent permitted by applicable law, XPDevs shall not be liable for any indirect, incidental, special,
+                    consequential, punitive, or exemplary damages (including loss of data, revenue, or profits) arising from or related
+                    to your use of or inability to use the Website, even if we have been advised of the possibility of such damages.
+                </p>
+<h2>10. Governing Law</h2>
+                <p>
+                    This Agreement shall be governed by and construed in accordance with the laws of England and Wales. Any dispute
+                    arising under or in connection with this Agreement shall be subject to the exclusive jurisdiction of the courts
+                    located in England and Wales.
+                </p>
+<h2>11. Amendments to this Agreement</h2>
+                <p>
+                    We may modify this Agreement at any time by updating this page. Continued use of the Website following any changes
+                    constitutes your acceptance of the updated terms. We recommend reviewing this page periodically to stay informed
+                    of your rights and obligations.
+                </p>
+<h2>12. Website-Specific Terms</h2>
+                <p>
+                    This Agreement applies specifically to the XPDevs website, located at <a href="https://xpdevs.github.io/">https://xpdevs.github.io/</a>.
+                    It also applies to any related content, features, subdomains, or updates released by XPDevs unless explicitly excluded.
+                    Any updates, bug fixes, or enhancements to the Website are considered part of the Website and governed by this Agreement.
+                </p>
+<h2>13. Contact</h2>
+                <p>
+                    If you have any questions about this Agreement or the Website, you may contact XPDevs through the contact methods
+                    listed on the Website.
+                </p>
+            </div>
+        </div>
+    </div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Account</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+        <li><a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a></li>
+        <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>About XPDevs</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+        <ul class="legal-links">
+          <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+          <li><a href="sitemap.xml">Site Map</a></li>
+        </ul>
+      </div>
+      <span>🇬🇧 Based in the United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="assets/js/scripts.js"></script>
+    
+</body>
+</html>
