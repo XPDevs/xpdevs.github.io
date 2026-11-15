@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="https://xpdevs.github.io/logo/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XPDevs</title>
+    <link rel="stylesheet" href="assets/css/design.css">
+    <style>
+        .feature-card {
+            background: var(--content-bg);
+            border-radius: var(--radius-4xl);
+            box-shadow: var(--shadow-modal);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .sneak-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .sneak-grid div {
+            overflow: hidden;
+            border-radius: var(--radius-4xl);
+            box-shadow: var(--shadow-modal);
+            background: var(--content-bg);
+            transition: transform 0.3s ease;
+        }
+        .sneak-grid div:hover {
+            transform: scale(1.02);
+        }
+        .sneak-grid img {
+            transition: transform 0.3s ease;
+            display: block;
+            width: 280px;
+            height: 160px;
+            border-radius: var(--radius-4xl) var(--radius-4xl) 0 0;
+        }
+        .sneak-grid figcaption {
+            padding: 15px;
+            font-size: 13px;
+            opacity: 0.7;
+            text-align: center;
+            background: var(--content-bg);
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 40px auto 0;
+            overflow: hidden;
+            border-radius: var(--radius-4xl);
+            box-shadow: var(--shadow-modal);
+            background: var(--content-bg);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .carousel-caption {
+            padding: 15px 20px;
+            color: var(--text);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            box-sizing: border-box;
+            opacity: 0.7;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: rgba(0,0,0,0.5);
+        }
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+        @media (max-width: 768px) {
+            .carousel-btn { width: 32px; height: 32px; font-size: 18px; }
+            .carousel-btn.prev { left: 8px; }
+            .carousel-btn.next { right: 8px; }
+            .carousel-caption { font-size: 12px; padding: 12px 16px; }
+            .feature-card-image { height: 250px !important; }
+            .feature-card-content { padding: 30px !important; }
+        }
+    </style>
+</head>
+<body>
+<nav class="topbar">
+  <div class="topbar-brand">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="https://xpdevs.github.io/">
+    <img src="https://xpdevs.github.io/logo/XPDevs_horizontal_typeography_logo.png" alt="XPDevs" style="width:100px;height:100px;">
+    </a>
+  </div>
+  <div class="topbar-center">
+    <a href="https://xpdevs.github.io/#about" class="topbar-link">About Us</a>
+    <a href="https://xpdevs.github.io/#sneak-peek" class="topbar-link">Preview</a>
+    <a href="https://xpdevs.github.io/download/OS-downloader" class="topbar-link">Download</a>
+    <div class="dropdown">
+      <a href="#" class="topbar-link" style="cursor:default;">Search ▾</a>
+      <div class="dropdown-content">
+        <a href="https://xpdevs.github.io/Gateway">Gateway</a>
+        <a href="https://xpdevs.github.io/OFL">OFL</a>
+      </div>
+    </div>
+    <a href="https://xpdevs.github.io/Doors" class="topbar-link">DoorsOS</a>
+    <a href="https://xpdevs.github.io/ExamOS" class="topbar-link">ExamOS</a>
+    <a href="https://xpdevs.github.io/AI" class="topbar-link">AI</a>
+    <a href="https://xpdevs.github.io/rules" class="topbar-link">Rules</a>
+    <a href="https://xpdevs.github.io/beta" class="topbar-link">Beta</a>
+    <a href="https://xpdevs.github.io/kernel" class="topbar-link">Kernel</a>
+    <a href="https://xpdevs.github.io/feedback" class="topbar-link">Feedback</a>
+    <a href="https://xpdevs.github.io/contribute.html" class="topbar-link">Contribute</a>
+  </div>
+  <div class="topbar-actions">
+    <a href="https://xpdevs.github.io/account/signin">
+      <img src="https://xpdevs.github.io/images/account/user-icon.png" alt="Sign In" style="height:20px;width:20px;opacity:0.8;">
+    </a>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+    <li><a href="https://xpdevs.github.io/#sneak-peek">Preview</a></li>
+    <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+    <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+    <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+    <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+    <li><a href="https://xpdevs.github.io/rules">Rules</a></li>
+    <li><a href="https://xpdevs.github.io/beta">Beta</a></li>
+    <li><a href="https://xpdevs.github.io/kernel">Kernel</a></li>
+    <li><a href="https://xpdevs.github.io/Gateway">Gateway</a></li>
+    <li><a href="https://xpdevs.github.io/OFL">OFL</a></li>
+    <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+    <li><a href="https://xpdevs.github.io/download/OS-downloader">Downloads</a></li>
+    <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+  </ul>
+</div>
+
+<div class="hero-center">
+    <h1>Welcome to XPDevs</h1>
+    <p style="font-size: 21px; line-height: 1.4; max-width: 600px; margin: 15px auto 0; color: #86868b;">
+        Creating innovative, accessible, and powerful operating systems.
+    </p>
+    <p style="font-size: 16px; line-height: 1.4; max-width: 600px; margin: 10px auto 0; color: #86868b;">
+        Based in the United Kingdom.
+    </p>
+</div>
+
+<section id="ai-promo" style="padding-top: 0;">
+    <div class="container">
+        <div class="feature-card" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div class="feature-card-image" style="flex: 1 1 400px; height: 400px;">
+                <img src="https://xpdevs.github.io/images/Genesis-AI/homepage.png" alt="Genesis AI" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="feature-card-content" style="flex: 1 1 400px; padding: 60px;">
+                <h2>Genesis-AI</h2>
+                <p style="margin: 20px 0;">
+                    An experimental, web-based artificial intelligence platform created by XPDevs.
+                </p>
+                <a href="AI.html" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="gateway-promo" style="padding-top: 0;">
+    <div class="container">
+        <div class="feature-card" style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div class="feature-card-image" style="flex: 1 1 400px; height: 400px;">
+                <img src="https://xpdevs.github.io/images/Gateway/homepage_example.png" alt="Gateway" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+            <div class="feature-card-content" style="flex: 1 1 400px; padding: 60px;">
+                <h2>Gateway</h2>
+                <p style="margin: 20px 0;">
+                    Gateway Search by XPDevs - a fast, private, multi-source search engine with a bundled local web index, Quick Wiki answers and hybrid BM25 ranking.
+                </p>
+                <a href="Gateway.html" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sneak Peek Section -->
+<section id="sneak-peek" class="sneak-peek">
+    <div class="container">
+        <h2>Preview</h2>at Our Latest Project</h2>
+        <p>Be the first to see what Software we are developing</p>
+        <div class="carousel-container">
+            <div class="carousel-track" id="track"></div>
+            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+        </div>
+    </div>
+</section>
+
+<!-- Announcement -->
+<section id="news" style="padding-top: 0;">
+    <div class="container" style="text-align: center;">
+        <h2>Announcement from XPDevs</h2>
+        <p style="max-width: 700px; margin: 0 auto 20px;">We are currently dedicating significant resources and effort into the development of Gateway to bring you a powerful, private search experience.</p>
+        <p style="max-width: 700px; margin: 0 auto;">In other news, the latest DoorsOS build (2101261104) now introduces experimental mouse cursor support. Please note that this feature is still in early development and may be buggy as we continue to refine it.</p>
+    </div>
+</section>
+
+
+
+<!-- About Us Section -->
+<section id="about" class="about">
+   <div class="container" style="text-align: center;">
+    <h2>About XPDevs</h2>
+    <p style="max-width: 700px; margin: 0 auto 20px;">I'm the developer behind XPDevs, a project where I build operating systems that are fast, simple, and actually respect the user. I start from the kernel and work up, keeping things as straightforward as possible with no unnecessary complexity, just clean, secure code.
+
+My aim is to keep technology open and easy to understand. I don't think anyone should have to pay for software, so everything from XPDevs is and will always be free and open source.
+
+Thanks for checking out my work and for being part of a different way of thinking about technology. I believe it should be simple, open, and made with care.</p>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Contact XPDevs</h2>
+        <p>We can be contacted through our customer support email: <a href="mailto:xpdevs.github.io.com@gmail.com">xpdevs.github.io.com@gmail.com</a></p>
+        <p>If you would like us to make custom software for you please email use here: <a href="mailto:xpdevsclient@gmail.com">xpdevsclient@gmail.com</a></p>
+    </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/Doors">DoorsOS</a></li>
+        <li><a href="https://xpdevs.github.io/ExamOS">ExamOS</a></li>
+        <li><a href="https://xpdevs.github.io/AI">AI</a></li>
+        <li><a href="https://xpdevs.github.io/kernel">Our Kernel</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Account</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/account/signin">Sign Up</a></li>
+        <li><a href="https://xpdevs.github.io/beta">Beta Program</a></li>
+        <li><a href="https://xpdevs.github.io/feedback">Feedback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/rules">Rules & EULA</a></li>
+        <li><a href="https://xpdevs.github.io/download/OS-downloader">All Downloads</a></li>
+        <li><a href="https://xpdevs.github.io/contribute.html">Contribute</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>About XPDevs</h3>
+      <ul>
+        <li><a href="https://xpdevs.github.io/#about">About Us</a></li>
+        <li><a href="https://xpdevs.github.io/#contact">Contact</a></li>
+        <li><a href="https://github.com/XPDevs">GitHub</a></li>
+        <li><a href="mailto:xpdevs.github.io.com@gmail.com">Support</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <span>Copyright &copy; 2026 XPDevs. All rights reserved.</span>
+        <ul class="legal-links">
+          <li><a href="https://xpdevs.github.io/rules">Privacy Policy</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Terms of Use</a></li>
+          <li><a href="https://xpdevs.github.io/rules">Legal</a></li>
+          <li><a href="sitemap.xml">Site Map</a></li>
+        </ul>
+      </div>
+      <span>🇬🇧 Based in the United Kingdom</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/scripts.js"></script>
+<script>
+    const track = document.getElementById('track');
+    
+    const slides = [
+        { src: 'images/main-screen.jpg', text: 'DoorsOS NexShell main screen (text mode)' },
+        { src: 'images/boot-screen.jpg', text: 'DoorsOS NexShell boot screen' },
+        { src: 'https://xpdevs.github.io/images/Genesis-AI/homepage.png', text: 'Genesis AI Homepage' },
+        { src: 'https://xpdevs.github.io/images/Genesis-AI/Studio/homepage.png', text: 'Genesis AI Studio Homepage' }
+    ];
+
+    let allSlides = [];
+    let currentIndex = 1;
+    let isTransitioning = false;
+    const intervalTime = 5000;
+    let slideInterval;
+
+    function initSlides() {
+        // Clone first and last for infinite loop
+        allSlides = [slides[slides.length - 1], ...slides, slides[0]];
+        currentIndex = 1;
+        renderSlides();
+    }
+
+    function renderSlides() {
+        track.innerHTML = allSlides.map(slide => `
+            <div class="carousel-slide">
+                <img src="${slide.src}" alt="${slide.text}">
+                <div class="carousel-caption">${slide.text}</div>
+            </div>
+        `).join('');
+        updatePosition(false);
+    }
+
+    function updatePosition(transition = true) {
+        track.style.transition = transition ? 'transform 0.5s ease-in-out' : 'none';
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function moveSlide(direction) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex += direction;
+        updatePosition(true);
+        resetTimer();
+    }
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        if (currentIndex === 0) {
+            currentIndex = allSlides.length - 2;
+            updatePosition(false);
+        } else if (currentIndex === allSlides.length - 1) {
+            currentIndex = 1;
+            updatePosition(false);
+        }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
+    document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
+
+    function startTimer() {
+        slideInterval = setInterval(() => moveSlide(1), intervalTime);
+    }
+
+    function resetTimer() {
+        clearInterval(slideInterval);
+        startTimer();
+    }
+
+    initSlides();
+    startTimer();
+</script>
+</body>
+</html>
